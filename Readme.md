@@ -6,7 +6,7 @@ It wasn't...
 
 I learned a lot of things about game design and game developpement in c# and using Unity.
 
-# Improvements
+# TODO
 
 ## Ennemies & traps
 - Ennemy AI
