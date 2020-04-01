@@ -13,14 +13,14 @@ I learned a lot of things about game design and game developpement in c# and usi
 - Spikes
 - Hidden Spikes
 - Trap door
-  - opening on spikes
-  - opening on lava
+  - Opening on spikes
+  - Opening on lava
 - Lava as traps
   
 ## Map generation
 - Add trap to generation
 - Add ennemies to generation
-- Add randomness in the different layout
+- Add randomness in the different layouts
 
 ## Gameplay
 - GameOver scene
