@@ -45,3 +45,9 @@ And of course moving is binded by default on `arrow keys` and `space`
 - [ ] Scoreboard
 - [ ] Point Counting
 - [ ] Tutorial
+
+## Story
+- [ ] An Intro cinematic
+- [ ] A themed Menu
+- [ ] A themed GameOver
+- [ ] A story ?
