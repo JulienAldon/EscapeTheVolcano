@@ -29,3 +29,13 @@ I learned a lot of things about game design and game developpement in c# and usi
 - Scoreboard
 - Point Counting
 - Tutorial
+
+# How to play
+This section will be removed when a proper tutorial will be in the game.
+
+There is only 3 major keys:
+- Action (Default `A`)
+- Fire (Default `E`)
+- Switch (Default `Z`)
+
+And of course moving is binded by default on `arrow keys` and `space`
