@@ -25,23 +25,23 @@ And of course moving is binded by default on `arrow keys` and `space`
 # TODO
 
 ## Ennemies & traps
-- [] Ennemy AI
-- [] Spikes
-- [] Hidden Spikes
-- [] Trap door
-  - [] Opening on spikes
-  - [] Opening on lava
-- [] Lava as traps
+- [ ] Ennemy AI
+- [ ] Spikes
+- [ ] Hidden Spikes
+- [ ] Trap door
+  - [ ] Opening on spikes
+  - [ ] Opening on lava
+- [ ] Lava as traps
   
 ## Map generation
-- [] Add trap to generation
-- [] Add ennemies to generation
-- [] Add randomness in the different layouts
+- [ ] Add trap to generation
+- [ ] Add ennemies to generation
+- [ ] Add randomness in the different layouts
 
 ## Gameplay
-- [] GameOver scene
-- [] Input gestion
-- [] Win conditions
-- [] Scoreboard
-- [] Point Counting
-- [] Tutorial
+- [ ] GameOver scene
+- [ ] Input gestion
+- [ ] Win conditions
+- [ ] Scoreboard
+- [ ] Point Counting
+- [ ] Tutorial
