@@ -6,31 +6,13 @@ It wasn't...
 
 I learned a lot of things about game design and game developpement in c# and using Unity.
 
-# TODO
-
-## Ennemies & traps
-- Ennemy AI
-- Spikes
-- Hidden Spikes
-- Trap door
-  - Opening on spikes
-  - Opening on lava
-- Lava as traps
-  
-## Map generation
-- Add trap to generation
-- Add ennemies to generation
-- Add randomness in the different layouts
-
-## Gameplay
-- GameOver scene
-- Input gestion
-- Win conditions
-- Scoreboard
-- Point Counting
-- Tutorial
 
 # How to play
+
+## Get The Game !
+Go to release and download the latest version of the game.
+
+## Keyboard
 This section will be removed when a proper tutorial will be in the game.
 
 There is only 3 major keys:
@@ -39,3 +21,27 @@ There is only 3 major keys:
 - Switch (Default `Z`)
 
 And of course moving is binded by default on `arrow keys` and `space`
+
+# TODO
+
+## Ennemies & traps
+- [] Ennemy AI
+- [] Spikes
+- [] Hidden Spikes
+- [] Trap door
+  - [] Opening on spikes
+  - [] Opening on lava
+- [] Lava as traps
+  
+## Map generation
+- [] Add trap to generation
+- [] Add ennemies to generation
+- [] Add randomness in the different layouts
+
+## Gameplay
+- [] GameOver scene
+- [] Input gestion
+- [] Win conditions
+- [] Scoreboard
+- [] Point Counting
+- [] Tutorial
