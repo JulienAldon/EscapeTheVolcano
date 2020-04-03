@@ -306,7 +306,7 @@ public class TestController : MonoBehaviour
 				if (Input.GetKeyUp(KeyCode.A)) {
 				}
 			}
-			else if (Character.ClassType.GetValue() == 6 || true) // Grenadier
+			else if (Character.ClassType.GetValue() == 6) // Grenadier
 			{
 				if (Input.GetKeyDown(KeyCode.A)) {
 					shootBomb();

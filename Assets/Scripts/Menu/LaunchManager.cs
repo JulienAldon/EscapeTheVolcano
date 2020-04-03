@@ -13,5 +13,12 @@ public class LaunchManager : MonoBehaviour
     public void play()
     {
         SceneManager.LoadScene("SelectionScene", LoadSceneMode.Single);
+        Time.timeScale = 1f;
+    }
+
+    public void backToMenu()
+    {
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        Time.timeScale = 1f;
     }
 }

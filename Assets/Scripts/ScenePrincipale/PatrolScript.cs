@@ -42,14 +42,16 @@ public class PatrolScript : MonoBehaviour
 
     void move()
     {
-        animator.ResetTrigger("Attack");
+        // animator.ResetTrigger("Attack");
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
     
+    
+
     void Attack()
     {
         isAttacking = true;
-        animator.SetTrigger("Attack");
+        // animator.SetTrigger("Attack");
     }
 
     void EndAttack()

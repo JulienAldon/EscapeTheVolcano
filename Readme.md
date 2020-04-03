@@ -11,6 +11,8 @@ I learned a lot of things about game design and game developpement in c# and usi
 # How to play
 
 ## Get The Game !
+Game is available on Windows and Linux !
+
 Go to release and download the latest version of the game.
 
 ## Goal
@@ -34,7 +36,7 @@ You'll need to choose between 6 classes:
 - Tracker : can lend an land mark using is Action key
 - Tank (not implemented)
 
-You can switch between your team to use the best power in a given situation
+You can switch between your team to use the best power in a given situation.
 
 For the moment you can't gather crystals.
 
@@ -51,8 +53,14 @@ And of course moving is binded by default on `arrow keys` and `space`
 
 # TODO
 
+## Importants stuff
+- [X] GameOver scene
+- [ ] Death of a member gestion
+- [ ] Input gestion
+- [ ] Win conditions
+
 ## Ennemies & traps
-- [ ] Ennemy AI
+- [x] Ennemy AI
 - [ ] Spikes
 - [ ] Hidden Spikes
 - [ ] Trap door
@@ -66,15 +74,27 @@ And of course moving is binded by default on `arrow keys` and `space`
 - [ ] Add randomness in the different layouts
 
 ## Gameplay
-- [ ] GameOver scene
-- [ ] Input gestion
-- [ ] Win conditions
 - [ ] Scoreboard
 - [ ] Point Counting
 - [ ] Tutorial
 
 ## Story
 - [ ] An Intro cinematic
-- [ ] A themed Menu
-- [ ] A themed GameOver
+- [X] A themed Menu
+- [X] A themed GameOver
 - [ ] A story ?
+
+## Fix and Improvements
+- [X] Fix the climber behavior.
+- [X] Fix a bug when the bomber was activated by default.
+- [X] Fix the dust effect with the player jump.
+- [X] Enhence the size of the camera view to allow the player easier movements.
+- [X] Lowered a bit the max speed of the player.
+- [X] Remade the menu to something clearer and easier to use.
+- [X] Fix a bug in the menu where you couldn't press the button randomly.
+- [ ] Changed the lava behavior to a more fair one.
+- [ ] Add Dialogue window for the selection scene.
+- [ ] Fix a bug where the turrets can bump you inside a block.
+- [ ] Fix a graphic bug where turrets life can pass behind background.
+- [ ] Change Bomber launching abilities for a more controlable sending.
+- [X] Add a Pause Menu where you can reset or leave the game.

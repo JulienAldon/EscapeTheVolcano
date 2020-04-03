@@ -7,7 +7,8 @@ public class LevelGeneration : MonoBehaviour
 	public Transform[] startingPositions;
 	public GameObject[] rooms; // index 0 --> LR, index 1 --> LRB, index 2 --> LRT, index 3 --> LRBT
 	public GameObject spawn;
-
+	
+	public GameObject AstarPath;
 	public GameObject wayOut;
 	public GameObject Player;
 	public float moveAmount;
@@ -95,7 +96,7 @@ public class LevelGeneration : MonoBehaviour
 				direction = Random.Range(1, 6);
 			} else {
 				// Stop level Gen
-				Instantiate(wayOut, new Vector2(transform.position.x, transform.position.y - 4.0f), Quaternion.identity);
+				Instantiate(wayOut, new Vector2(transform.position.x, transform.position.y - 2.0f), Quaternion.identity);
 				stopGeneration = true;
 			}
 		}
@@ -117,5 +118,6 @@ public class LevelGeneration : MonoBehaviour
 			Player.transform.position = playerStart.transform.position;
 			Level.path.RemoveAll(item => item == null);
 		}
+		AstarPath.GetComponent<AstarPath>().Scan();
 	}
 }
