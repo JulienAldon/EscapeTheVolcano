@@ -18,6 +18,16 @@ public class LoadingLevel : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadGameOverScene()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void LoadWinScene()
+    {
+        StartCoroutine(LoadLevel(4));
+    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("start");

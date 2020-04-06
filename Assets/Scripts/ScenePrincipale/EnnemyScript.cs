@@ -150,6 +150,7 @@ public class EnnemyScript : MonoBehaviour
         if (groundState.isWall() && !groundState.isGround()) {
             rb.velocity = new Vector2(-groundState.wallDirection() * 4f * 0.75f, rb.velocity.y); //Add force negative to wall direction (with speed reduction)
         }
+        
         // if (force.y > 0) 
         // {
         //     velocity.y = force.y;

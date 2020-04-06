@@ -93,6 +93,7 @@ public class CharacterStats : MonoBehaviour
     public void LavaDie()
     {
         // Game over
+        GameObject.Find("LevelLoader").GetComponent<LoadingLevel>().LoadGameOverScene();
         print("player died in lava not possible to respawn GAMEOVER");
         // Trigger Gameover scene
     }
