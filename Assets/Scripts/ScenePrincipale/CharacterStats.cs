@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
+    public GameObject colorBlindEffect;
+    public GameObject BlindEffect;
+    public GameObject ParanoidEffect;
+
     public int maxHealth;
     public int currentHealth {get; private set;}
 
@@ -13,6 +17,8 @@ public class CharacterStats : MonoBehaviour
     public Stat Speed;
     public Stat ClassType;
     public int nbFlags;
+
+    public static int nbCrystals;
     /*
         1 - Runner
         2 - Climber
@@ -40,10 +46,30 @@ public class CharacterStats : MonoBehaviour
             ClassType.SetValue(5);
         else if (Team.team[currentChar].archetype == "Grenadier")
             ClassType.SetValue(6);
+        
+        if (Team.team[currentChar].trait == "ColorBlind") {
+            ParanoidEffect.SetActive(false);
+            BlindEffect.SetActive(false);
+            colorBlindEffect.SetActive(true);
+        } else if (Team.team[currentChar].trait == "Blind"){
+            ParanoidEffect.SetActive(false);
+            BlindEffect.SetActive(true);
+            colorBlindEffect.SetActive(false);
+        } else if (Team.team[currentChar].trait == "Paranoid"){
+            ParanoidEffect.SetActive(true);
+            BlindEffect.SetActive(false);
+            colorBlindEffect.SetActive(false);
+        } else if (Team.team[currentChar].trait == "Normal"){
+            ParanoidEffect.SetActive(false);
+            BlindEffect.SetActive(false);
+            colorBlindEffect.SetActive(false);
+        }
+
         Text life = GameObject.Find("LifeText").GetComponent<Text>();
         Text archetype = GameObject.Find("ArchetypeText").GetComponent<Text>();
         archetype.text = Team.team[currentChar].archetype;
         life.text = currentHealth.ToString();
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Team.team[currentChar].color;                
     }
 
     void Awake()
@@ -56,7 +82,7 @@ public class CharacterStats : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetKeyDown(KeyBindScript.keys["Switch"])) {
             currentChar += 1;
             if (currentChar >= 4)
                 currentChar = 0;
@@ -96,5 +122,14 @@ public class CharacterStats : MonoBehaviour
         GameObject.Find("LevelLoader").GetComponent<LoadingLevel>().LoadGameOverScene();
         print("player died in lava not possible to respawn GAMEOVER");
         // Trigger Gameover scene
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 23)
+        {
+            nbCrystals += 1;
+            print(nbCrystals);
+        }
     }
 }

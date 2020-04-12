@@ -110,7 +110,7 @@ public class EnnemyScript : MonoBehaviour
     void UpdatePath()
     {
         if (seeker.IsDone())
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            seeker.StartPath(rb.position, new Vector2(target.position.x - 0.5f, target.position.y - 0.5f), OnPathComplete);
     }
 
     void OnPathComplete(Path p)
@@ -134,23 +134,28 @@ public class EnnemyScript : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
-
-        Vector2 velocity = rb.velocity;
-        velocity.x = force.x;
-        rb.velocity = velocity;
-
-        if (direction.y > 0.01 && groundState.isGround())
+        if (Vector2.Distance(transform.position, target.position) > 2 && transform.position.x != target.position.x)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 1 * jumpspeed);
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * speed * Time.deltaTime;
+
+            Vector2 velocity = rb.velocity;
+            velocity.x = force.x;
+            rb.velocity = velocity;
+
+            if (direction.y > 0.01 && groundState.isGround())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 1 * jumpspeed);
+            } else {
+                rb.velocity = new Vector2(force.x, rb.velocity.y);
+            }
+            if (groundState.isWall() && !groundState.isGround()) {
+                rb.velocity = new Vector2(-groundState.wallDirection() * 4f * 0.75f, rb.velocity.y); //Add force negative to wall direction (with speed reduction)
+            }
         } else {
-            rb.velocity = new Vector2(force.x, rb.velocity.y);
+            // fire
         }
-        if (groundState.isWall() && !groundState.isGround()) {
-            rb.velocity = new Vector2(-groundState.wallDirection() * 4f * 0.75f, rb.velocity.y); //Add force negative to wall direction (with speed reduction)
-        }
-        
+
         // if (force.y > 0) 
         // {
         //     velocity.y = force.y;
@@ -187,7 +192,11 @@ public class EnnemyScript : MonoBehaviour
         }
     }
 
-    // void OnTriggerEnter2D(Collider2D collision) 
-    // {
-    // }
+    void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if (collision.gameObject.layer == 19)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

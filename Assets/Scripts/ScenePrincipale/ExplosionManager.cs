@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExplosionManager : MonoBehaviour
 {
     void Start() {
-        Destroy(gameObject, 0.4f);
+        Destroy(gameObject, 0.8f);
     }
 
     public void AlertObservers(string message)

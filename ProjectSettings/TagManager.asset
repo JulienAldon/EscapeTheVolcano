@@ -9,6 +9,8 @@ TagManager:
   - StartRoom
   - Exit
   - SpawnPlayer
+  - continue
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -30,10 +32,10 @@ TagManager:
   - ennemyBullet
   - Ennemy
   - Explosion
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Shield
+  - PostProcessingLayer
+  - Treasure
   - 
   - 
   - 
@@ -45,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 2476928231
+    locked: 0
+  - name: ExteriorBackground
+    uniqueID: 645931797
     locked: 0
   - name: Default
     uniqueID: 0

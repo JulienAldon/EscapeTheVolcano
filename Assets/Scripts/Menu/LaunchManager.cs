@@ -8,6 +8,7 @@ public class LaunchManager : MonoBehaviour
     public void quit()
     {
         Application.Quit();
+        Time.timeScale = 1f;
     }
 
     public void play()

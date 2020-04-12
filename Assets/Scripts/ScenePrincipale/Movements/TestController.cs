@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
- 
+using DG.Tweening;
+
 public class TestController : MonoBehaviour
 {
 	public class GroundState
@@ -84,28 +86,31 @@ public class TestController : MonoBehaviour
 	}
  
 	//Feel free to tweak these values in the inspector to perfection.  I prefer them private.
+	[Header("Movement")]
 	public float    speed = 14f;
 	public float    accel = 6f;
 	public float airAccel = 3f;
 	public float     jump = 14f;  //I could use the "speed" variable, but this is only coincidental in my case.  Replace line 89 if you think otherwise.
 
-	// Timed jumping
 	private float jumpTimeCounter;
 	public float jumpTime;
 	private bool isJumping;
 	
-	//Shoot
-	public GameObject BulletLeft, BulletRight;
+	[Header("Shooting")]
+	public GameObject BulletLeft;
+	public GameObject BulletRight;
 	public GameObject Shell;
 	public float FireRate = 0.5f;
-	public Animator animator;
 	float nextFire = 0;
+	private bool isFiring = false;
 
+	[Header("Effects")]
+	public Animator animator;
 	public ParticleSystem dust;
 	private GroundState groundState;
 	private Shake shake;
 
-	// Dash (runner)
+	[Header("Runner")]
 	public float dashSpeed;
 	public float startDashTime;
 
@@ -113,21 +118,28 @@ public class TestController : MonoBehaviour
 	private int direction = 0;
 	private bool canDash = true;
 	
-	// Grappling
+	[Header("Climber")]
 	public DistanceJoint2D joint;
 	public LineRenderer line;
 	public float step = 0.1f;
 	private int facing;
 
+	[Header("Tracker")]
 	// Tracker
 	public GameObject FlagSprite;
 	public float FlagRate;
 	private float NextFlag;
 
-	// Grenadier
+	[Header("Grenadier")]
 	public GameObject Bomb;
 	public float BombRate;
 	private float nextBomb = 0;
+	
+	[Header("Tank")]
+	public GameObject Shield;
+	public float ShieldTime = 15f;
+	private float usedTimeShield;
+	private bool canShield = true;
 
 	void Start()
 	{
@@ -146,18 +158,18 @@ public class TestController : MonoBehaviour
 	private Vector2 input;
     Vector2 bulletPos; 
 	
-
 	void Update()
 	{
 		//Handle input
-		if(groundState.isTouching() && Input.GetKeyDown(KeyCode.Space)) {
+		if(groundState.isTouching() && Input.GetKeyDown(KeyBindScript.keys["Jump"])) {
 			isJumping = true;
 			jumpTimeCounter = jumpTime;
 			if (groundState.isTouching())
 				createDust();
 			input.y = 1;
+			animator.SetTrigger("Jumping");			
 		}
-		if (Input.GetKey(KeyCode.Space) && isJumping == true) {
+		if (Input.GetKey(KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
 				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
 				jumpTimeCounter -= Time.deltaTime;
@@ -165,53 +177,66 @@ public class TestController : MonoBehaviour
 				isJumping = false;
 			}
 		}
-		if (Input.GetKeyUp(KeyCode.Space)) {
+		if (Input.GetKeyUp(KeyBindScript.keys["Jump"])) {
 			isJumping = false;
 		}
 
-		if(Input.GetKey(KeyCode.LeftArrow)) {
+		if(Input.GetKey(KeyBindScript.keys["Left"])) {
 			input.x = -1;
 			if (transform.localRotation.y == 0) {
 				if (groundState.isGround())
 					createDust();
-				transform.localRotation = Quaternion.Euler(0, 180, 0);
-				facing = -1;
+				if (!isFiring) {
+					transform.localRotation = Quaternion.Euler(0, 180, 0);
+					facing = -1;
+				}
 			}
-			animator.SetBool("Running", true);
-		} else if(Input.GetKey(KeyCode.RightArrow)) {
+			if (!isJumping)
+				animator.SetBool("Running", true);
+		} else if(Input.GetKey(KeyBindScript.keys["Right"])) {
 			input.x = 1;
 			if (transform.localRotation.y == -1) {
 				if (groundState.isGround())
 					createDust();
-				transform.localRotation = Quaternion.Euler(0, 0, 0);
-				facing = 1;
+				if (!isFiring) {
+					transform.localRotation = Quaternion.Euler(0, 0, 0);
+					facing = 1;
+				}
 			}
-			animator.SetBool("Running", true);
+			if (!isJumping)
+				animator.SetBool("Running", true);
 		} else {
 			input.x = 0;
 			animator.SetBool("Running", false);
 		}
 
-		if (groundState.isGround() == false) {
+		if (isJumping) {
 			animator.SetBool("Running", false);
-			animator.SetBool("Jumping", true);
-		} else {
-			animator.SetBool("Jumping", false);
 		}
-
+		if (isJumping && groundState.isGround())
+			isJumping = false;
 		// Fire
-		if (Input.GetKey(KeyCode.E) && Time.time > nextFire) {
+		if (Input.GetKey(KeyBindScript.keys["Fire"]) && Time.time > nextFire) {
 			nextFire = Time.time + FireRate;
 			fire();
-			gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * -facing * 200f);
+			//gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * -facing * 200f);
 			shake.camShake();
+		}
+		if (Input.GetKeyDown(KeyBindScript.keys["Fire"]))
+		{
+			isFiring = true;
+		}
+		if (Input.GetKeyUp(KeyBindScript.keys["Fire"]))
+		{
+			isFiring = false;
 		}
 
 		// Mechanic
 		CharacterStats Character = GameObject.Find("Player").GetComponent<CharacterStats>();
 		if (Character.ClassType.GetValue() == 1) // Runner
 			{
-				if (Input.GetKeyDown(KeyCode.A) && canDash) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && canDash) {
+					Dash(2f, 2f);
 					if (direction == 0) {
 						if (input.x == -1) {
 							direction = 1;
@@ -220,14 +245,14 @@ public class TestController : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}
 			}
 			else if (Character.ClassType.GetValue() == 2) //Climber
 			{
-				if (Input.GetKeyDown(KeyCode.A)) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"])) {
 					//create the link (raycast ...)
 					int LayerIndex = LayerMask.NameToLayer("Ground");
 					int layerMask = (1 << LayerIndex);
@@ -244,7 +269,7 @@ public class TestController : MonoBehaviour
 					line.SetPosition(1, hit.point);
 					
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 					if (joint.distance > 0.2f ){
 						joint.distance -= step;
 					} else {
@@ -253,7 +278,7 @@ public class TestController : MonoBehaviour
 					}
 					line.SetPosition(0, transform.position);
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 					// delete the link
 					joint.enabled = false;
 					line.enabled = false;
@@ -263,7 +288,7 @@ public class TestController : MonoBehaviour
 			{
 				GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
 				GameObject turret = GetClosestTurret(turrets);
-				if (Input.GetKeyDown(KeyCode.A)) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"])) {
 					// Show range
 					foreach (GameObject n in turrets) {
 						if (!n.transform.GetChild(1).gameObject.GetComponent<turretScript>().getDeactivation())
@@ -272,10 +297,10 @@ public class TestController : MonoBehaviour
 							n.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = false;
 					}
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 					turret.transform.GetChild(1).gameObject.GetComponent<turretScript>().hack(transform.position);
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 					// Hide range
 					foreach (GameObject n in turrets) {
 						n.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = false;
@@ -285,41 +310,89 @@ public class TestController : MonoBehaviour
 			}
 			else if (Character.ClassType.GetValue() == 4) // Tracker
 			{
-				if (Input.GetKeyDown(KeyCode.A) && Time.time > NextFlag && groundState.isGround() && Character.nbFlags > 0) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && Time.time > NextFlag && groundState.isGround() && Character.nbFlags > 0) {
 					NextFlag = Time.time + FlagRate;
 					Character.nbFlags -= 1;
 					// Spawn a landmark
 					Instantiate(FlagSprite, new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z), Quaternion.identity);
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}	
 			}
-			else if (Character.ClassType.GetValue() == 5) // Tank
+			else if (Character.ClassType.GetValue() == 5 || true) // Tank
 			{
-				if (Input.GetKeyDown(KeyCode.A)) {
-					// shield
+				if (Shield.activeSelf == true) {
+					usedTimeShield += Time.deltaTime;
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (usedTimeShield >= ShieldTime) {
+					canShield = false;
+					Shield.SetActive(false);					
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"])) {
+					if (Shield.activeSelf == false && canShield) {
+						Shield.SetActive(true);
+					} else {
+						Shield.SetActive(false);
+					}
+				}
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
+				}
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}
 			}
 			else if (Character.ClassType.GetValue() == 6) // Grenadier
 			{
-				if (Input.GetKeyDown(KeyCode.A)) {
+				if (Input.GetKeyDown(KeyBindScript.keys["Action"])) {
 					shootBomb();
 				}
-				if (Input.GetKey(KeyCode.A)) {
+				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 					shootBomb();
 				}
-				if (Input.GetKeyUp(KeyCode.A)) {
+				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}
 			}
 
 	}
-	
+
+	private void Dash(float x, float y)
+    {
+        Camera.main.transform.DOComplete();
+        Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
+      
+        //hasDashed = true;
+
+        //anim.SetTrigger("dash");
+
+        // rb.velocity = Vector2.zero;
+        // Vector2 dir = new Vector2(x, y);
+
+        // rb.velocity += dir.normalized * dashSpeed;
+        StartCoroutine(DashWait());
+    }
+
+    IEnumerator DashWait()
+    {
+        FindObjectOfType<GhostTrail>().ShowGhost();
+        //StartCoroutine(GroundDash());
+        // DOVirtual.Float(14, 0, .8f, RigidbodyDrag);
+
+        // dashParticle.Play();
+        // rb.gravityScale = 0;
+        // GetComponent<BetterJumping>().enabled = false;
+        // wallJumped = true;
+        // isDashing = true;
+
+        yield return new WaitForSeconds(.3f);
+
+        // dashParticle.Stop();
+        // rb.gravityScale = 3;
+        // GetComponent<BetterJumping>().enabled = true;
+        // wallJumped = false;
+        // isDashing = false;
+    }
+
 	GameObject GetClosestTurret(GameObject[] turrets) 
 	{
 		GameObject bestTarget = null;
@@ -369,7 +442,6 @@ public class TestController : MonoBehaviour
 		if (direction == 0) {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(((input.x * speed) - GetComponent<Rigidbody2D>().velocity.x) * (groundState.isGround() ? accel : airAccel), GetComponent<Rigidbody2D>().velocity.y)); //Move player.
 		} else {
-			createDust();
 			if (dashTime <= 0) {
 				direction = 0;
 				dashTime = startDashTime;
@@ -385,13 +457,13 @@ public class TestController : MonoBehaviour
 				canDash = false;
 			}
 		}
-		if (groundState.isGround() || groundState.isWall()) {
+		if ((groundState.isGround() || groundState.isWall()) && input.x != 0 || input.y != 0) {
 			canDash = true;
 		}
 		GetComponent<Rigidbody2D>().velocity = new Vector2((input.x == 0 && groundState.isGround()) ? 0 : GetComponent<Rigidbody2D>().velocity.x, (input.y == 1 && groundState.isTouching()) ? jump : GetComponent<Rigidbody2D>().velocity.y); //Stop player if input.x is 0 (and grounded) and jump if input.y is 1
 		if(groundState.isWall() && !groundState.isGround() && input.y == 1) {
 
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-groundState.wallDirection() * speed * 0.75f, GetComponent<Rigidbody2D>().velocity.y); //Add force negative to wall direction (with speed reduction)
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-groundState.wallDirection() * speed * 1.3f, GetComponent<Rigidbody2D>().velocity.y); //Add force negative to wall direction (with speed reduction)
 		}
 		input.y = 0;
 	}

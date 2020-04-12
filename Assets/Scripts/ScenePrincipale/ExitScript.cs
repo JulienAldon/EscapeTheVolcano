@@ -6,7 +6,7 @@ public class ExitScript : MonoBehaviour
 {
     private GameObject Player;
     // Start is called before the first frame update
-    public static int state = -1;
+    // public static int state = -1;
     private bool lavaFlow = false;
 
     void Start()
@@ -22,11 +22,11 @@ public class ExitScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        state += 1;
-        print(state);
-        if (state == 0) {
+        Level.state += 1;
+        print(Level.state);
+        if (Level.state == 0) {
             Player.transform.position = GameObject.Find("SpawnTreasure").transform.position;
-        } else if (state == 1)
+        } else if (Level.state == 1)
         {
             Player.transform.position = GameObject.Find("WayOut(Clone)").transform.position;
             Level.canWin = true;
@@ -36,12 +36,12 @@ public class ExitScript : MonoBehaviour
 
     static public int GetState()
     {
-        return state;
+        return Level.state;
     }
 
     public bool GetLavaFlow()
     {
-        if (state >= 0)
+        if (Level.state >= 0)
             return true;
         return false;
     }

@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileExtern
       objectReference: {fileID: 0}
+    - target: {fileID: 8167720382598111934, guid: 4268cebf668eb6148a39dc27523056af,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8346940614306060364, guid: 4268cebf668eb6148a39dc27523056af,
         type: 3}
       propertyPath: m_LocalPosition.x

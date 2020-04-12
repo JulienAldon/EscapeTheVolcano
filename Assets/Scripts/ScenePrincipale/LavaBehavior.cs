@@ -12,6 +12,9 @@ public class LavaBehavior : MonoBehaviour
     public Transform PointB;
     public Transform PointC;
     public Transform PointD;
+    public Transform Area1;
+    public Transform Area2;
+    
     private bool stopped = false;
     public float step = 0.1f;
 
@@ -19,7 +22,7 @@ public class LavaBehavior : MonoBehaviour
 
     void Start()
     {
-        localPos = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
+        localPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.position = localPos;
     }
 
@@ -62,6 +65,13 @@ public class LavaBehavior : MonoBehaviour
             // Phase 4
             // TODO: GameOver
         }
+        // int LayerIndex = LayerMask.NameToLayer("Player");
+        // int layerMask = (1 << LayerIndex);
+        // Collider2D hit = Physics2D.OverlapArea(Area1.position, Area2.position, layerMask);
+        // if (hit) 
+        // {
+        //     print("aze");
+        // }
     }
 
     public void AddSpeed(float speed)
@@ -69,8 +79,21 @@ public class LavaBehavior : MonoBehaviour
         FireRate = speed;
     }
 
+    void OnCollisionEnter2D(Collision2D other) 
+    {
+        if (other.collider.GetType() == typeof(CapsuleCollider2D))
+        {
+            GameObject.Find("Player").GetComponent<CharacterStats>().LavaDie();
+        }
+        else if (other.collider.GetType() == typeof(CircleCollider2D))
+        {
+         // do stuff only for the circle collider
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject.Find("Player").GetComponent<CharacterStats>().LavaDie();
+        print(collision);
+        //
     }
 }
