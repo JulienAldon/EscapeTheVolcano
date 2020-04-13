@@ -51,13 +51,13 @@ public class LavaBehavior : MonoBehaviour
         {
             // Phase 2
             FireRate = 0.05f;
-            step = 0.2f;
+            step = 0.1f;
         }
         if (transform.position.y >= PointC.position.y)
         {
             // Phase 3
             FireRate = 0.01f;
-            step = 0.3f;
+            step = 0.2f;
         }
         if (transform.position.y >= PointD.position.y)
         {

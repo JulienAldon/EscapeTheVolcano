@@ -85,6 +85,8 @@ public class EnnemyScript : MonoBehaviour
 		}
 	}
 
+	private Shake shake;
+    public GameObject blood; 
     public Transform target;
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
@@ -103,6 +105,7 @@ public class EnnemyScript : MonoBehaviour
 		groundState = new GroundState(transform.gameObject);
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
@@ -188,7 +191,7 @@ public class EnnemyScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
-            Destroy(gameObject);
+            StartCoroutine(Death());
         }
     }
 
@@ -196,7 +199,16 @@ public class EnnemyScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 19)
         {
-            Destroy(gameObject);
+            StartCoroutine(Death());
         }
+    }
+    IEnumerator Death()
+    {
+        shake.camShake();
+        Instantiate(blood, transform.position, Quaternion.identity);        
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(0.01f);
+        Time.timeScale = 1;        
+        Destroy(gameObject);        
     }
 }

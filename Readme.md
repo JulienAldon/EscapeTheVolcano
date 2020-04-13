@@ -40,24 +40,13 @@ You can switch between your team to use the best power in a given situation.
 
 For the moment you can't gather crystals.
 
-
-## Keyboard
-This section will be removed when a proper tutorial will be in the game.
-
-There is only 3 major keys:
-- Action (Default `A`)
-- Fire (Default `E`)
-- Switch (Default `Z`)
-
-And of course moving is binded by default on `arrow keys` and `space`
-
 # TODO
 
 ## Importants stuff
 - [X] GameOver scene
 - [ ] Death of a member gestion
-- [ ] Input gestion
-- [ ] Win conditions
+- [X] Input gestion
+- [X] Win conditions
 
 ## Ennemies & traps
 - [x] Ennemy AI
@@ -93,7 +82,7 @@ And of course moving is binded by default on `arrow keys` and `space`
 - [X] Remade the menu to something clearer and easier to use.
 - [X] Fix a bug in the menu where you couldn't press the button randomly.
 - [ ] Changed the lava behavior to a more fair one.
-- [ ] Add Dialogue window for the selection scene.
+- [X] Add Dialogue window for the selection scene.
 - [ ] Fix a bug where the turrets can bump you inside a block.
 - [ ] Fix a graphic bug where turrets life can pass behind background.
 - [ ] Change Bomber launching abilities for a more controlable sending.

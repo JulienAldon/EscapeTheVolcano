@@ -157,9 +157,20 @@ public class TestController : MonoBehaviour
  
 	private Vector2 input;
     Vector2 bulletPos; 
+	private float rawY;
 	
 	void Update()
 	{
+		if (Input.GetKey(KeyBindScript.keys["Up"]))
+		{
+			rawY = 1f;
+		} else if (Input.GetKey(KeyBindScript.keys["Down"]))
+		{
+			rawY = -1f;
+		} else {
+			rawY = 0f;
+		}
+		CharacterStats Character = GameObject.Find("Player").GetComponent<CharacterStats>();		
 		//Handle input
 		if(groundState.isTouching() && Input.GetKeyDown(KeyBindScript.keys["Jump"])) {
 			isJumping = true;
@@ -216,34 +227,27 @@ public class TestController : MonoBehaviour
 		if (isJumping && groundState.isGround())
 			isJumping = false;
 		// Fire
-		if (Input.GetKey(KeyBindScript.keys["Fire"]) && Time.time > nextFire) {
-			nextFire = Time.time + FireRate;
-			fire();
-			//gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * -facing * 200f);
-			shake.camShake();
+		if (Character.currentAffliction != "Pacifist") {
+			if (Input.GetKey(KeyBindScript.keys["Fire"]) && Time.time > nextFire) {
+				nextFire = Time.time + FireRate;
+				fire();
+				//gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * -facing * 200f);
+				shake.camShake();
+			}
+			if (Input.GetKeyDown(KeyBindScript.keys["Fire"]))
+			{
+				isFiring = true;
+			}
+			if (Input.GetKeyUp(KeyBindScript.keys["Fire"]))
+			{
+				isFiring = false;
+			}
 		}
-		if (Input.GetKeyDown(KeyBindScript.keys["Fire"]))
-		{
-			isFiring = true;
-		}
-		if (Input.GetKeyUp(KeyBindScript.keys["Fire"]))
-		{
-			isFiring = false;
-		}
-
 		// Mechanic
-		CharacterStats Character = GameObject.Find("Player").GetComponent<CharacterStats>();
 		if (Character.ClassType.GetValue() == 1) // Runner
 			{
 				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && canDash) {
-					Dash(2f, 2f);
-					if (direction == 0) {
-						if (input.x == -1) {
-							direction = 1;
-						} else if (input.x == 1) {
-							direction = 2;
-						}
-					}
+					Dash(input.x, rawY);
 				}
 				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 				}
@@ -321,7 +325,7 @@ public class TestController : MonoBehaviour
 				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}	
 			}
-			else if (Character.ClassType.GetValue() == 5 || true) // Tank
+			else if (Character.ClassType.GetValue() == 5) // Tank
 			{
 				if (Shield.activeSelf == true) {
 					usedTimeShield += Time.deltaTime;
@@ -358,9 +362,10 @@ public class TestController : MonoBehaviour
 
 	private void Dash(float x, float y)
     {
-        Camera.main.transform.DOComplete();
-        Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
-      
+		shake.camShake();
+		Vector2 dashDir = new Vector2(input.x, rawY);
+		GetComponent<Rigidbody2D>().velocity += dashDir.normalized * dashSpeed;
+		canDash = false;
         //hasDashed = true;
 
         //anim.SetTrigger("dash");
@@ -385,6 +390,8 @@ public class TestController : MonoBehaviour
         // isDashing = true;
 
         yield return new WaitForSeconds(.3f);
+		
+		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         // dashParticle.Stop();
         // rb.gravityScale = 3;
@@ -441,22 +448,7 @@ public class TestController : MonoBehaviour
 	{
 		if (direction == 0) {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(((input.x * speed) - GetComponent<Rigidbody2D>().velocity.x) * (groundState.isGround() ? accel : airAccel), GetComponent<Rigidbody2D>().velocity.y)); //Move player.
-		} else {
-			if (dashTime <= 0) {
-				direction = 0;
-				dashTime = startDashTime;
-				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			} else {
-				dashTime -= Time.deltaTime;
-				if (direction == 1) {
-					GetComponent<Rigidbody2D>().velocity = Vector2.left * dashSpeed;
-					
-				} else if (direction == 2) {
-					GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed;
-				}
-				canDash = false;
-			}
-		}
+		} 
 		if ((groundState.isGround() || groundState.isWall()) && input.x != 0 || input.y != 0) {
 			canDash = true;
 		}
@@ -471,5 +463,46 @@ public class TestController : MonoBehaviour
 	void createDust()
 	{
 		dust.Play();
+	}
+
+	public GameObject insult; 
+	public GameObject poop;
+
+	void OnCollisionEnter2D(Collision2D collision)
+    {
+		if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D))
+        {
+			if (collision.gameObject.layer == 17 || collision.gameObject.layer == 18) {
+				CharacterStats Character = GameObject.Find("Player").GetComponent<CharacterStats>();			
+				Character.TakeDamage(1);
+				shake.camShake();		
+				if (Character.currentAffliction == "Coprolalia") {
+					StartCoroutine(Insult());
+				} else if (Character.currentAffliction == "I.B.S") {
+					Instantiate(poop, transform.position, Quaternion.identity);
+				} else if (Character.currentAffliction == "Sissy") {
+					Character.CharacterSwitch();
+				}
+			}
+        } else if (collision.otherCollider.GetType() == typeof(CircleCollider2D)) {
+         // do stuff only for the circle collider
+        }
+		
+    //    anim.SetTrigger("isHit");
+    }
+
+    void OnTriggerEnter2D(Collider2D collision) 
+    {
+		if (collision.gameObject.layer == 17 || collision.gameObject.layer == 18) {
+            print("hit");
+        }
+	//    anim.SetTrigger("isHit");
+    }
+	
+	IEnumerator Insult()
+	{
+		insult.SetActive(true);
+		yield return new WaitForSeconds(1.5f);
+		insult.SetActive(false);
 	}
 }

@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d4e69bbefa2a4a8f88c667db6774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 8586574397201729817, guid: 24ef0253d94f24241ab9a746a3897967, type: 3}
   target: {fileID: 0}
   speed: 200
   nextWaypointDistance: 3

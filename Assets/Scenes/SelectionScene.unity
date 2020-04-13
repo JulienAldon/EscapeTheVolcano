@@ -1069,6 +1069,13 @@ MonoBehaviour:
   - Paranoid
   - ColorBlind
   - Normal
+  - Pacifist
+  - Astronaut
+  - Partygoer
+  - Coprolalia
+  - I.B.S
+  - Fat
+  - Sissy
   player: {fileID: 1444566285434272323, guid: bc814b502af0c87419c2af74fd166ba9, type: 3}
   gameContinue: {fileID: 1319333925}
 --- !u!212 &451474635
