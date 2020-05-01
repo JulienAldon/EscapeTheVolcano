@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGeneration : MonoBehaviour
 {
+	public static LevelGeneration current;
+	public bool isDone = false;
 	public Transform[] startingPositions;
 	public GameObject[] rooms; // index 0 --> LR, index 1 --> LRB, index 2 --> LRT, index 3 --> LRBT
 	public GameObject spawn;
-	
+
 	public GameObject AstarPath;
 	public GameObject wayOut;
 	public GameObject Player;
@@ -27,8 +30,14 @@ public class LevelGeneration : MonoBehaviour
 	private bool once = true;
 	private Vector2 start;
 	// Start is called before the first frame update
+	void Awake()
+	{
+		current = this;
+	}
+
 	void Start()
 	{
+		SceneManager.SetActiveScene(SceneManager.GetSceneByName("ScenePrincipale"));
 		int randStartingPos = Random.Range(0, startingPositions.Length);
 		transform.position = startingPositions[randStartingPos].position;
 		Level.FirstRoom = Instantiate(rooms[0], transform.position, Quaternion.identity);
@@ -113,11 +122,29 @@ public class LevelGeneration : MonoBehaviour
 		if (stopGeneration == true && once == true)
 		{
 			once = false;
-			Instantiate(spawn, start, Quaternion.identity);
-			GameObject playerStart = GameObject.FindGameObjectsWithTag("SpawnPlayer")[0];
-			Player.transform.position = playerStart.transform.position;
-			Level.path.RemoveAll(item => item == null);
+			StartCoroutine(SpawnPlayer());
 		}
 		AstarPath.GetComponent<AstarPath>().Scan();
+	}
+
+	IEnumerator SpawnPlayer()
+	{
+		int LayerIndex = LayerMask.NameToLayer("Ground");
+		int layerMask = (1 << LayerIndex);
+		var hit = Physics2D.OverlapCircle(start, 0.5f, layerMask);
+		print(hit);
+		if (hit)
+		{
+			int randStartingPos = 0;
+			start = startingPositions[randStartingPos].position;
+		}
+		Instantiate(spawn, start, Quaternion.identity);
+		GameObject playerStart = GameObject.FindGameObjectsWithTag("SpawnPlayer")[0];
+		Player.transform.position = playerStart.transform.position;
+		Level.path.RemoveAll(item => item == null);
+		
+		yield return new WaitForSeconds(0.5f);
+
+		isDone = true;
 	}
 }

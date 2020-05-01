@@ -13,6 +13,12 @@ public class LoadingLevel : MonoBehaviour
         
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+        Time.timeScale = 1f;
+    }
+
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
@@ -21,25 +27,34 @@ public class LoadingLevel : MonoBehaviour
     public void LoadGameOverScene()
     {
         reset();
-        StartCoroutine(LoadLevel(3));
+        LaunchManager.instance.LoadLose();
+        //StartCoroutine(LoadLevel(3));
     }
 
     public void LoadMenuScene()
     {
         reset();
-        StartCoroutine(LoadLevel(0));
+        //StartCoroutine(LoadLevel(0));
+        LaunchManager.instance.LoadMenu();
+    }
+
+    public void LoadGameScene()
+    {
+        LaunchManager.instance.LoadGame();
     }
 
     public void LoadWinScene()
     {
         // reset();
-        StartCoroutine(LoadLevel(4));
+        LaunchManager.instance.LoadWin();      
+        //StartCoroutine(LoadLevel(4));
     }
 
     public void LoadSelectScene()
     {
         reset();
-        StartCoroutine(LoadLevel(1));
+        LaunchManager.instance.LoadSelect();
+        //StartCoroutine(LoadLevel(1));
     }
 
     public void reset()
@@ -57,9 +72,7 @@ public class LoadingLevel : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("start");
-
         yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(levelIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
     }
 }

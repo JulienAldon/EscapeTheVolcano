@@ -47,8 +47,10 @@ public class EnnemyScript : MonoBehaviour
 		//Returns whether or not player is touching ground.
 		public bool isGround()
 		{
-			int LayerIndex = LayerMask.NameToLayer("Ground");
-			int layerMask = (1 << LayerIndex);
+			
+            int gnd = 1 << LayerMask.NameToLayer("Ground");
+            int ally = 1 << LayerMask.NameToLayer("Ennemy");
+			int layerMask = gnd | ally;
 //			layerMask = ~layerMask;
 			bool bottom1 = Physics2D.Raycast(new Vector2(player.transform.position.x, player.transform.position.y - height), -Vector2.up, length, layerMask);
 			bool bottom2 = Physics2D.Raycast(new Vector2(player.transform.position.x + (width - 0.2f), player.transform.position.y - height), -Vector2.up, length, layerMask);
@@ -85,7 +87,11 @@ public class EnnemyScript : MonoBehaviour
 		}
 	}
 
-	private Shake shake;
+    public GameObject BulletLeft;
+	public GameObject BulletRight;
+	public GameObject chargeEffect;
+	
+    private Shake shake;
     public GameObject blood; 
     public Transform target;
     public float speed = 200f;
@@ -98,6 +104,10 @@ public class EnnemyScript : MonoBehaviour
     private GroundState groundState;
     private Seeker seeker;
     private Rigidbody2D rb;
+    private Vector2 bulletPos; 
+
+    public float FireRate = 2f;
+	float nextFire = 0;
 
     void Start()
     {
@@ -137,7 +147,7 @@ public class EnnemyScript : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        if (Vector2.Distance(transform.position, target.position) > 2 && transform.position.x != target.position.x)
+        if (Vector2.Distance(transform.position, target.position) > 4f && transform.position.x != target.position.x)
         {
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
             Vector2 force = direction * speed * Time.deltaTime;
@@ -146,17 +156,31 @@ public class EnnemyScript : MonoBehaviour
             velocity.x = force.x;
             rb.velocity = velocity;
 
-            if (direction.y > 0.01 && groundState.isGround())
+            if (force.x > 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            } else if (force.x < 0) {
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+
+            if (direction.y > 0.5 && groundState.isGround())
             {
                 rb.velocity = new Vector2(rb.velocity.x, 1 * jumpspeed);
+            } else if (direction.y > 0.01 && groundState.isWall()) {
+                rb.velocity = new Vector2(rb.velocity.x, jumpspeed); //Add force negative to wall direction (with speed reduction)
+            } else if (direction.y < 0 && !groundState.isGround()) {
+                rb.velocity = new Vector2(0, -jumpspeed); //Add force negative to wall direction (with speed reduction)
             } else {
                 rb.velocity = new Vector2(force.x, rb.velocity.y);
             }
-            if (groundState.isWall() && !groundState.isGround()) {
-                rb.velocity = new Vector2(-groundState.wallDirection() * 4f * 0.75f, rb.velocity.y); //Add force negative to wall direction (with speed reduction)
-            }
+            
+            
         } else {
             // fire
+            if (Time.time > nextFire) {
+				nextFire = Time.time + FireRate;                
+                StartCoroutine(Shoot());
+            }
         }
 
         // if (force.y > 0) 
@@ -173,19 +197,23 @@ public class EnnemyScript : MonoBehaviour
             currentWaypoint ++;
         }
     }
-    
-    public bool isGround()
+
+    IEnumerator Shoot()
     {
-        int LayerIndex = LayerMask.NameToLayer("Ground");
-        int layerMask = (1 << LayerIndex);
-//			layerMask = ~layerMask;
-        bool bottom1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - GetComponent<Collider2D>().bounds.extents.y), -Vector2.up, 0.5f, layerMask);
-//			bool bottom2 = Physics2D.Raycast(new Vector2(player.transform.position.x + (width - 0.2f), player.transform.position.y - height), -Vector2.up, length, layerMask);
-//			bool bottom3 = Physics2D.Raycast(new Vector2(player.transform.position.x - (width - 0.2f), player.transform.position.y - height), -Vector2.up, length, layerMask);
-        if(bottom1) //  || bottom2 || bottom3
-            return true;
-        else
-            return false;
+        // Start Shoot anim
+        var clone = Instantiate(chargeEffect, transform.position, Quaternion.identity);
+        clone.transform.parent = transform;
+        yield return new WaitForSeconds(1f);
+        
+        bulletPos = transform.position;
+        Vector2 dir = target.position - transform.position;
+        if (dir.x > 0) {
+			bulletPos += new Vector2(+0.6f, -0.05f);            
+            Instantiate(BulletRight, bulletPos, Quaternion.identity);
+        } else if (dir.x < 0) {
+			bulletPos += new Vector2(-0.6f, -0.05f);            
+	        Instantiate(BulletLeft, bulletPos, Quaternion.identity);            
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -202,6 +230,7 @@ public class EnnemyScript : MonoBehaviour
             StartCoroutine(Death());
         }
     }
+
     IEnumerator Death()
     {
         shake.camShake();

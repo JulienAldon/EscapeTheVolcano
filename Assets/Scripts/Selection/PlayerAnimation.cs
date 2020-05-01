@@ -9,16 +9,19 @@ public class PlayerAnimation : MonoBehaviour
     private bool acceptState = false;
     public Animator animator;
     public float[] placement;
+    public float[] worldPlacement;
     private int moveState;
     private float step;
     public float speed = 5f;
     private Vector3 finalPos;
+    private Vector3 finalWorldPos;
     // Start is called before the first frame update
     void Start()
     {
         sel = GameObject.Find("selectTable").GetComponent<select>();
         moveState = 0;
         finalPos = new Vector3(placement[count], 1, 0);
+        finalWorldPos = new Vector3(worldPlacement[count], 1, 0);
     }
 
     // Update is called once per frame
@@ -55,7 +58,7 @@ public class PlayerAnimation : MonoBehaviour
      
         if (moveState == 4)
         {
-            transform.localScale = new Vector3(5, 5, 0);            
+            transform.localScale = new Vector3(1, 1, 0);            
             step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(6, transform.position.y, transform.position.z), step);
         }
@@ -65,7 +68,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         if (moveState == 5)
         {
-            transform.localScale = new Vector3(5, 5, 0);            
+            transform.localScale = new Vector3(1, 1, 0);            
             step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(-6, transform.position.y, transform.position.z), step);
         }
@@ -83,9 +86,9 @@ public class PlayerAnimation : MonoBehaviour
         }
         if (moveState == 8) {
             step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, finalPos, step);
+            transform.position = Vector3.MoveTowards(transform.position, finalWorldPos, step);
         }
-        if (moveState == 8 && transform.position.x == finalPos.x)
+        if (moveState == 8 && transform.position.x == finalWorldPos.x)
         {
             moveState = 10;
             animator.SetTrigger("endSelected");
@@ -93,11 +96,7 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     void accepted()
-    {
-     
-        Debug.Log(placement[count]);
-        
-        
+    {   
         count += 1;
         if (count <= 3) {
             sel.regenerateCard();

@@ -12,13 +12,21 @@ public class TeamDisplay : MonoBehaviour
     public Transform Slot4;
 
     public void AddCharacter(int selected) {
-        if (selected == 0)
-            Instantiate(Character, Slot1.position, Quaternion.identity);
-        else if (selected == 1)
-            Instantiate(Character, Slot2.position, Quaternion.identity);
-        else if (selected == 2)
-            Instantiate(Character, Slot3.position, Quaternion.identity);
-        else if (selected == 3)
-            Instantiate(Character, Slot4.position, Quaternion.identity);
+        if (selected == 0){
+            var clone = Instantiate(Character, Slot1.position, Quaternion.identity);
+            clone.transform.parent = transform;
+        }
+        else if (selected == 1){
+            var clone = Instantiate(Character, Slot2.position, Quaternion.identity);
+            clone.transform.parent = transform;
+        }
+        else if (selected == 2){
+            var clone = Instantiate(Character, Slot3.position, Quaternion.identity);
+            clone.transform.parent = transform;
+        }
+        else if (selected == 3){
+            var clone = Instantiate(Character, Slot4.position, Quaternion.identity);
+            clone.transform.parent = transform;
+        }
     }
 }

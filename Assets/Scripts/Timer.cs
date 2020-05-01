@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer instance;
     public Text timerText;
+    public bool started = false;
     private float startTime;
     private bool finnish = false;
     public static float endTime;
@@ -13,12 +15,15 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         startTime = Time.time;    
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!started)
+            return;
         if (finnish)
             return;
         float t = Time.time - startTime;

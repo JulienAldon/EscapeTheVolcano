@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class DisplayCharacter : MonoBehaviour
 {
-    public TextMesh life;
-    public TextMesh archetype;
-    public TextMesh speed;
-    public TextMesh name;
+    public Text life;
+    public Text archetype;
+    public Text trait;
+    public Text speed;
+    public Text name;
 
     private Character currentCharacter;
 
@@ -21,5 +22,6 @@ public class DisplayCharacter : MonoBehaviour
         speed.text = currentCharacter.speed.ToString();
         name.text = currentCharacter.name;
         archetype.text = currentCharacter.archetype;
+        trait.text = currentCharacter.trait;
     }
 }

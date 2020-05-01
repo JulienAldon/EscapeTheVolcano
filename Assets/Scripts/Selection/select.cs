@@ -53,7 +53,7 @@ public class select : MonoBehaviour
         } else if (CanSwitch == true && Input.anyKeyDown) {
             gameContinue.active = false;
             print(gameContinue.active);
-            FindObjectOfType<LoadingLevel>().LoadNextLevel();
+            FindObjectOfType<LoadingLevel>().LoadGameScene();
         }
         if (Team.nbSelected == 4 && once)
         {
@@ -78,6 +78,8 @@ public class select : MonoBehaviour
     {
         currentCharacter = GenerateCharacter(); 
         currentPlayer = Instantiate(player, new Vector3(12f, 0.7f, 0f), Quaternion.identity);
+        currentPlayer.transform.parent = transform;
+        currentPlayer.transform.localScale = new Vector3(3f, 3f, 0.1f);
         currentPlayer.GetComponent<SpriteRenderer>().color = currentCharacter.color;
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();

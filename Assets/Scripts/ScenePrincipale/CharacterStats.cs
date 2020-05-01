@@ -29,6 +29,9 @@ public class CharacterStats : MonoBehaviour
     public GameObject normalRight;
     public GameObject[] interfaceTeam;
 
+    private bool damaged;
+    public float damageRate;
+    private float nextDamage = 0;
     public static int nbCrystals;
     /*
         1 - Runner
@@ -105,15 +108,24 @@ public class CharacterStats : MonoBehaviour
         if (Input.GetKeyDown(KeyBindScript.keys["Switch"])) {
             CharacterSwitch();
         }
+        if (damaged && Time.time > nextDamage)
+        {
+            nextDamage = Time.time + damageRate;
+            damaged = false;
+        }
     }
 
     public void TakeDamage(int damage)
     {
+        if (damaged)
+            return;
+        shake.camShake();
         anim.SetTrigger("Hit");
         currentHealth -= damage;
         Team.team[currentChar].currentHealth -= 1;
         Text life = GameObject.Find("LifeText").GetComponent<Text>();
         life.text = currentHealth.ToString();
+        damaged = true;
         if (currentHealth <= 0) {
             Die();
             return;

@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
                 displayScore += 10; //Increment the display score by 1
                 score.text = displayScore.ToString(); //Write it to the UI
             }
-            yield return new WaitForSeconds(0.002f); // I used .2 secs but you can update it as fast as you want
+            yield return new WaitForSeconds(0.002f);
         }
     }
 }

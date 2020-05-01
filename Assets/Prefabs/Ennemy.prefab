@@ -164,11 +164,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d4e69bbefa2a4a8f88c667db6774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletLeft: {fileID: 8064680120321283452, guid: c60ab27f19ddeed459e0e782760dc9f8,
+    type: 3}
+  BulletRight: {fileID: 7926856927157649592, guid: 92c6b79e89df21b438c635f65d2919b6,
+    type: 3}
+  chargeEffect: {fileID: 8413227027460817036, guid: 2b234f80b0c20854eb12857ee99aa054,
+    type: 3}
   blood: {fileID: 8586574397201729817, guid: 24ef0253d94f24241ab9a746a3897967, type: 3}
   target: {fileID: 0}
   speed: 200
   nextWaypointDistance: 3
   jumpspeed: 7
+  FireRate: 2
 --- !u!50 &4405755977626769733
 Rigidbody2D:
   serializedVersion: 4
