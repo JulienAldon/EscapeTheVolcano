@@ -112,8 +112,10 @@ public class TestController : MonoBehaviour
 
 	[Header("Runner")]
 	public float dashSpeed;
+	public GameObject dashParticle;
 	public float startDashTime;
 
+	private Vector2 lastInput;
 	private float dashTime;
 	private int direction = 0;
 	private bool canDash = true;
@@ -141,6 +143,7 @@ public class TestController : MonoBehaviour
 	private float usedTimeShield;
 	private bool canShield = true;
 
+	private AudioManager audio;
 	void Start()
 	{
 		//Create an object to check if player is grounded or touching wall
@@ -153,6 +156,7 @@ public class TestController : MonoBehaviour
 		joint.enabled = false;
 		line.enabled = false;
 		facing = 1;
+		audio = FindObjectOfType<AudioManager>();
 	}
  
 	private Vector2 input;
@@ -178,11 +182,13 @@ public class TestController : MonoBehaviour
 			if (groundState.isTouching())
 				createDust();
 			input.y = 1;
+			audio.Play("PlayerJump");
 			animator.SetTrigger("Jumping");			
 		}
 		if (Input.GetKey(KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
 				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
+				
 				jumpTimeCounter -= Time.deltaTime;
 			} else {
 				isJumping = false;
@@ -194,6 +200,7 @@ public class TestController : MonoBehaviour
 
 		if(Input.GetKey(KeyBindScript.keys["Left"])) {
 			input.x = -1;
+			lastInput.x = -1;
 			if (transform.localRotation.y == 0) {
 				if (groundState.isGround())
 					createDust();
@@ -206,6 +213,7 @@ public class TestController : MonoBehaviour
 				animator.SetBool("Running", true);
 		} else if(Input.GetKey(KeyBindScript.keys["Right"])) {
 			input.x = 1;
+			lastInput.x = 1;
 			if (transform.localRotation.y == -1) {
 				if (groundState.isGround())
 					createDust();
@@ -359,12 +367,19 @@ public class TestController : MonoBehaviour
 			}
 
 	}
+	
+	float AngleBetweenPoints(Vector2 a, Vector2 b) {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
 
 	private void Dash(float x, float y)
     {
+		Vector2 dashDir = new Vector2(lastInput.x, rawY);
+		Vector3 newDashDir = new Vector3(dashDir.x, dashDir.y, 0);
+		float angle = AngleBetweenPoints(transform.position + newDashDir, transform.position);
+		var a = Instantiate(dashParticle, transform.position, Quaternion.Euler(0, 0, angle));
+		GetComponent<Rigidbody2D>().velocity = new Vector2(dashDir.normalized.x * dashSpeed * 2, dashDir.normalized.y * dashSpeed);
 		shake.camShake();
-		Vector2 dashDir = new Vector2(input.x, rawY);
-		GetComponent<Rigidbody2D>().velocity += dashDir.normalized * dashSpeed;
 		canDash = false;
         //hasDashed = true;
 
@@ -392,7 +407,6 @@ public class TestController : MonoBehaviour
         yield return new WaitForSeconds(.3f);
 		
 		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
         // dashParticle.Stop();
         // rb.gravityScale = 3;
         // GetComponent<BetterJumping>().enabled = true;

@@ -4,58 +4,38 @@ using UnityEngine;
 
 public class PatrolScript : MonoBehaviour
 {
+    Rigidbody2D rb;
+
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public float speed;
-    public float distance = 2f;
-    public float tagRadius = 5f;
-    private bool movingRight = true;
-    public Transform GroundDetection;
-	public Animator animator;
-    public float AttackRate;
-    private float nextAttack = 0f;
-    private bool isAttacking = false;
-    private float resetAttackTimer = 0;
-    private float resetAttackTime = 2;
-
+    public BoxCollider2D col;
     void Update() {
-        int layerMask = (LayerMask.GetMask("Ground"));
-        RaycastHit2D groundInfo = Physics2D.Raycast(GroundDetection.position, Vector2.down, distance, layerMask);
-        if (groundInfo.collider == false) {
-            if (movingRight == true) {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
-            } else {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
+        // move();
+         //RaycastHit2D groundInfo = Physics2D.Raycast(GroundDetection.position, Vector2.down, distance);
+        Collider2D[] r = new Collider2D[10];
+        ContactFilter2D f = new ContactFilter2D();
+        f.layerMask = LayerMask.GetMask("Ground");
+        int a = col.OverlapCollider(f, r);
+        if (col.IsTouchingLayers(LayerMask.GetMask("Ground")) == false || a > 2)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
         }
-        layerMask = (LayerMask.GetMask("Player"));
-        move();
-        // Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, tagRadius, layerMask); 
-        // if (hitCollider == true && Time.time > nextAttack) {
-        //     nextAttack += Time.time + AttackRate;
-        //     Attack();
-        //     print("not moving");
-        // } else if (isAttacking == false){
-        //     move();
-        // }
+        if (IsFacingRight()) {
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+        } else {
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+        }
+        
     }
 
-    void move()
+    private bool IsFacingRight()
     {
-        // animator.ResetTrigger("Attack");
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        return transform.localScale.x > Mathf.Epsilon;
     }
     
-    
-
-    void Attack()
-    {
-        isAttacking = true;
-        // animator.SetTrigger("Attack");
-    }
-
-    void EndAttack()
-    {
-        isAttacking = false;
-    }
 }

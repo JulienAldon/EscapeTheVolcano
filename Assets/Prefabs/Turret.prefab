@@ -56,7 +56,7 @@ MonoBehaviour:
   range: {fileID: 1378997269994343531}
   cursor: {fileID: 2418803976126565399}
   hackDistance: 65
-  hackTime: 3
+  hackTime: 1.5
   hackRechargeSpeed: 0.1
   turretRange: 90
   speed: 5

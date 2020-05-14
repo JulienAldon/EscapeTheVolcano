@@ -63,6 +63,14 @@ public class LaunchManager : MonoBehaviour
         StartCoroutine(GetSelectSceneLoadProgress());
    }
 
+   public void LoadTutorial()
+   {
+        currentScene = "Tutorial";
+        LoadingScreen.gameObject.SetActive(true);
+        scenesLoading.Add(SceneManager.UnloadSceneAsync("Menu"));
+        scenesLoading.Add(SceneManager.LoadSceneAsync("Tutorial", LoadSceneMode.Additive));
+        StartCoroutine(GetSelectSceneLoadProgress());
+   }
 
    public IEnumerator GetGameSceneLoadProgress()
    {

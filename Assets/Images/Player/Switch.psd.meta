@@ -23,6 +23,114 @@ TextureImporter:
   - first:
       213: -1920256020897589015
     second: Switch_6
+  - first:
+      213: 4965184516152239339
+    second: Switch_0
+  - first:
+      213: -1412573632822783321
+    second: Switch_1
+  - first:
+      213: -7508028173910887158
+    second: Switch_2
+  - first:
+      213: -3318178063656091875
+    second: Switch_3
+  - first:
+      213: 7331786112711111160
+    second: Switch_4
+  - first:
+      213: -5255459169512023852
+    second: Switch_5
+  - first:
+      213: -2232316236123404723
+    second: Switch_6
+  - first:
+      213: -8393174718479557469
+    second: Switch_7
+  - first:
+      213: 1751851605108373373
+    second: Switch_8
+  - first:
+      213: 4396688744014121994
+    second: Switch_9
+  - first:
+      213: -6988444129553127900
+    second: Switch_10
+  - first:
+      213: -8131861916802627391
+    second: Switch_11
+  - first:
+      213: -2555576145007030488
+    second: Switch_12
+  - first:
+      213: -8546378451327108073
+    second: Switch_13
+  - first:
+      213: 6232268024251672225
+    second: Switch_14
+  - first:
+      213: 8640444208250578747
+    second: Switch_15
+  - first:
+      213: 7993412812757040452
+    second: Switch_16
+  - first:
+      213: -1762732526935882348
+    second: Switch_17
+  - first:
+      213: -3042029869887792396
+    second: Switch_18
+  - first:
+      213: -1865147175097536047
+    second: Switch_19
+  - first:
+      213: -6758445701996391057
+    second: Switch_20
+  - first:
+      213: 5594913853151896339
+    second: Switch_21
+  - first:
+      213: 7442892583009640948
+    second: Switch_22
+  - first:
+      213: -6152154650461047645
+    second: Switch_23
+  - first:
+      213: 4672589823572468251
+    second: Switch_24
+  - first:
+      213: -6944351240944557903
+    second: Switch_25
+  - first:
+      213: -2859750052456253044
+    second: Switch_26
+  - first:
+      213: -5775866213283249879
+    second: Switch_27
+  - first:
+      213: -6315568822494563864
+    second: Switch_28
+  - first:
+      213: -5810043225723566828
+    second: Switch_29
+  - first:
+      213: -7675275961359993738
+    second: Switch_30
+  - first:
+      213: 2136748524722135323
+    second: Switch_31
+  - first:
+      213: -4726529053390288897
+    second: Switch_32
+  - first:
+      213: -6889811561667775254
+    second: Switch_33
+  - first:
+      213: 1838891636907537651
+    second: Switch_34
+  - first:
+      213: -6712047142428578988
+    second: Switch_35
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,19 +219,19 @@ TextureImporter:
       name: Switch_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 56
-        height: 101
+        x: 5
+        y: 471
+        width: 115
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bbb91715fdf24be0800000000000000
-      internalID: -1494352897237206093
+      spriteID: be42681c201e7e440800000000000000
+      internalID: 4965184516152239339
       vertices: []
       indices: 
       edges: []
@@ -132,19 +240,19 @@ TextureImporter:
       name: Switch_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 0
-        width: 59
-        height: 101
+        x: 116
+        y: 472
+        width: 106
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10a90e4c6b5634840800000000000000
-      internalID: 5207117429831932417
+      spriteID: 7a2d38cd3c7856ce0800000000000000
+      internalID: -1412573632822783321
       vertices: []
       indices: 
       edges: []
@@ -153,19 +261,19 @@ TextureImporter:
       name: Switch_2
       rect:
         serializedVersion: 2
-        x: 152
-        y: 0
-        width: 61
-        height: 101
+        x: 249
+        y: 471
+        width: 106
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9275a8b521276e00800000000000000
-      internalID: 1037834685027545754
+      spriteID: a05ba62b7202ec790800000000000000
+      internalID: -7508028173910887158
       vertices: []
       indices: 
       edges: []
@@ -174,19 +282,19 @@ TextureImporter:
       name: Switch_3
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
-        width: 65
-        height: 101
+        x: 378
+        y: 472
+        width: 104
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4319181c0e86984c0800000000000000
-      internalID: -4284778255937859276
+      spriteID: d1ff84ea1a673f1d0800000000000000
+      internalID: -3318178063656091875
       vertices: []
       indices: 
       edges: []
@@ -195,61 +303,61 @@ TextureImporter:
       name: Switch_4
       rect:
         serializedVersion: 2
-        x: 290
-        y: 0
-        width: 65
-        height: 101
+        x: 494
+        y: 472
+        width: 107
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62407105d98923fc0800000000000000
-      internalID: -3516580557601962970
+      spriteID: 8f1b941cf9cbfb560800000000000000
+      internalID: 7331786112711111160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_5
+      name: Switch_10
       rect:
         serializedVersion: 2
-        x: 354
-        y: 0
-        width: 61
-        height: 101
+        x: 6
+        y: 307
+        width: 103
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3af82ce9cdb6b7c0800000000000000
-      internalID: -4055845739452368323
+      spriteID: 426625d271f040f90800000000000000
+      internalID: -6988444129553127900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_6
+      name: Switch_11
       rect:
         serializedVersion: 2
-        x: 418
-        y: 0
-        width: 52
-        height: 101
+        x: 122
+        y: 307
+        width: 103
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e8189ca251e955e0800000000000000
-      internalID: -1920256020897589015
+      spriteID: 1c8c37ecba2d52f80800000000000000
+      internalID: -8131861916802627391
       vertices: []
       indices: 
       edges: []
@@ -263,7 +371,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 005caec445c3b604699d8d225ec5b668, type: 3}
+      name: _Emmision
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

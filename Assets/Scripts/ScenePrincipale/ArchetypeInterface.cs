@@ -54,15 +54,17 @@ public class ArchetypeInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead == true) {
+            selectImage.color = new Color32(200, 50, 50, 255);
+            return;
+        }
         if (isSelected == true)
         {
             selectImage.color = new Color32(50, 200, 50, 255);
         } else if (isSelected == false) {
             selectImage.color = new Color32(99, 99, 99, 255);            
         }
-        if (isDead == true) {
-            selectImage.color = new Color32(200, 50, 50, 255);
-        }
+        
         // UpdateLife();
     }
 }

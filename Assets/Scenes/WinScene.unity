@@ -2194,8 +2194,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: backToMenu
+      - m_Target: {fileID: 1467595510}
+        m_MethodName: LoadMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3243,7 +3243,7 @@ MonoBehaviour:
   crystalsText: {fileID: 1406751543}
   timeText: {fileID: 1478953826}
   lost: {fileID: 55996788}
-  levelMaxTime: 200
+  levelMaxTime: 300
   levelScore: 50
 --- !u!1 &2146245163
 GameObject:

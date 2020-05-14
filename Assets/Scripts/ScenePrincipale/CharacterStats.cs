@@ -12,6 +12,10 @@ public class CharacterStats : MonoBehaviour
     public GameObject blood; 
     public GameObject fetard;
     public Animator anim;
+    public GameObject gfx;
+    public Material matWhite;
+
+    private Material matDefault;
 
 	private Shake shake;
     public int maxHealth;
@@ -76,8 +80,8 @@ public class CharacterStats : MonoBehaviour
 
     void Awake()
     {
-        UpdateStats();
 		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
+        UpdateStats();
         int i = 0;
         foreach (var member in interfaceTeam)
         {
@@ -89,10 +93,16 @@ public class CharacterStats : MonoBehaviour
         Text life = GameObject.Find("LifeText").GetComponent<Text>();
         life.text = currentHealth.ToString();
     }
+    
+    void Start()
+    {
+        matDefault = gfx.GetComponent<SpriteRenderer>().material;        
+    }
 
     public void CharacterSwitch()
     {
         anim.SetTrigger("Switch");
+        GetComponent<TestController>().Shield.SetActive(false);
         if (currentChar >= Team.team.Length)
             currentChar = 0;
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
@@ -119,6 +129,8 @@ public class CharacterStats : MonoBehaviour
     {
         if (damaged)
             return;
+        gfx.GetComponent<SpriteRenderer>().material = matWhite;
+        Invoke("ResetMaterial", .2f);
         shake.camShake();
         anim.SetTrigger("Hit");
         currentHealth -= damage;
@@ -131,7 +143,12 @@ public class CharacterStats : MonoBehaviour
             return;
         }
     }
-
+    
+    void ResetMaterial()
+    {
+        gfx.GetComponent<SpriteRenderer>().material = matDefault;
+    }
+    
     public void Die() 
     {
         // switch and supress char from team
@@ -142,6 +159,9 @@ public class CharacterStats : MonoBehaviour
             LavaDie();
             return;
         }
+//        CharacterSwitch();
+        GetComponent<TestController>().Shield.SetActive(false);
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
         var list = new List<Character>(Team.team);
         list.Remove(Team.team[currentChar]);
         Team.team = list.ToArray();
@@ -151,6 +171,12 @@ public class CharacterStats : MonoBehaviour
         interfaceTeam = list2.ToArray();
        
         // switch
+        anim.SetTrigger("Switch");        
+        currentChar+=1;
+        if (currentChar >= Team.team.Length)
+            currentChar = 0;
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;
+
         StartCoroutine(Death());
         // Supress team member display
         // Make cool thing to say the player is dead
@@ -169,8 +195,6 @@ public class CharacterStats : MonoBehaviour
         Time.timeScale = 0.1f; 
         yield return new WaitForSeconds(0.2f);
         Time.timeScale = 1;
-
-        CharacterSwitch();
     }
     
     public void LavaDie()

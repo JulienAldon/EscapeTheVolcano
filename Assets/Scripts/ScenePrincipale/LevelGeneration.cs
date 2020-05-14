@@ -129,14 +129,22 @@ public class LevelGeneration : MonoBehaviour
 
 	IEnumerator SpawnPlayer()
 	{
-		int LayerIndex = LayerMask.NameToLayer("Ground");
-		int layerMask = (1 << LayerIndex);
-		var hit = Physics2D.OverlapCircle(start, 0.5f, layerMask);
-		print(hit);
-		if (hit)
-		{
-			int randStartingPos = 0;
-			start = startingPositions[randStartingPos].position;
+		int LayerIndex1 = 1 << LayerMask.NameToLayer("Ground");
+		int LayerIndex2 = 1 << LayerMask.NameToLayer("Ennemy");
+		int LayerIndex3 = 1 << LayerMask.NameToLayer("Turret");
+		int layerMask = LayerIndex1 | LayerIndex2 | LayerIndex3;
+		// Collider2D[] res = new Collider2D[20];
+		// ContactFilter2D f = new ContactFilter2D();
+		// f.layerMask = layerMask;
+		var res = Physics2D.OverlapCircleAll(start, 3f, layerMask);
+		if (res.Length > 0) {
+			foreach (var item in res)
+			{
+				if(item) {
+					print(item.gameObject);
+					Destroy(item.gameObject);
+				}
+			}
 		}
 		Instantiate(spawn, start, Quaternion.identity);
 		GameObject playerStart = GameObject.FindGameObjectsWithTag("SpawnPlayer")[0];

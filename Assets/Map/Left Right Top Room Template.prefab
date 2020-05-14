@@ -46,3 +46,4 @@ MonoBehaviour:
   objects:
   - {fileID: 7376315742594000539, guid: ee5d7cd977c1c00478f3a3c7f858f07e, type: 3}
   - {fileID: 496490001183305962, guid: cd2dbfde0ff651043926c28973945db3, type: 3}
+  - {fileID: 7376315742594000539, guid: e96c7e1c9d7dcde4c876c47d5cf0d07c, type: 3}
