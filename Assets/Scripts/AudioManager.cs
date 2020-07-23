@@ -20,11 +20,12 @@ public class AudioManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Play(string name)
+    public void Play(string name, float pitch=1f)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
             return;
+        s.source.pitch = pitch;
         s.source.Play();
     }
 }

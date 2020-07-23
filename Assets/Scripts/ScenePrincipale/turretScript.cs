@@ -42,16 +42,18 @@ public class turretScript : MonoBehaviour
 
     void Start()
     {
+        this.target = GameObject.FindWithTag("Player").transform;
+        hackTime = target.GetComponent<CharacterStats>().hacker_time;
         firstCanonEndPos = canonEnd.position;
         hackTimer = hackTime;
         hackingCursorTimer = hackingCursorTime;
         hackingResetTimer = hackingResetTime;
         fire();
-        this.target = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()
     {
+        hackTime = target.GetComponent<CharacterStats>().hacker_time;        
         if (!deactivated) {
             if (currentLaser) 
                 firing = currentLaser.GetComponent<LaserScript>().getStoppedState();

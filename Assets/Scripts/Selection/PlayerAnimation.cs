@@ -92,6 +92,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             moveState = 10;
             animator.SetTrigger("endSelected");
+            transform.position = new Vector3(transform.position.x, transform.position.y, 2);
         }
     }
 

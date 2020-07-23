@@ -44,7 +44,7 @@ For the moment you can't gather crystals.
 
 ## Importants stuff
 - [X] GameOver scene
-- [ ] Death of a member gestion
+- [X] Death of a member gestion
 - [X] Input gestion
 - [X] Win conditions
 
@@ -59,12 +59,12 @@ For the moment you can't gather crystals.
   
 ## Map generation
 - [ ] Add trap to generation
-- [ ] Add ennemies to generation
+- [X] Add ennemies to generation
 - [ ] Add randomness in the different layouts
 
 ## Gameplay
 - [ ] Scoreboard
-- [ ] Point Counting
+- [X] Point Counting
 - [ ] Tutorial
 
 ## Story
@@ -81,9 +81,9 @@ For the moment you can't gather crystals.
 - [X] Lowered a bit the max speed of the player.
 - [X] Remade the menu to something clearer and easier to use.
 - [X] Fix a bug in the menu where you couldn't press the button randomly.
-- [ ] Changed the lava behavior to a more fair one.
+- [X] Changed the lava behavior to a more fair one.
 - [X] Add Dialogue window for the selection scene.
 - [ ] Fix a bug where the turrets can bump you inside a block.
-- [ ] Fix a graphic bug where turrets life can pass behind background.
+- [X] Fix a graphic bug where turrets life can pass behind background.
 - [ ] Change Bomber launching abilities for a more controlable sending.
 - [X] Add a Pause Menu where you can reset or leave the game.

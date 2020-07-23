@@ -11,12 +11,12 @@ public class TutorialManager : MonoBehaviour
     void Awake()
     {
         Team.team = new Character[6];
-        Team.team[0] = new Character("tutoRunner", "Runner" , 5, 20, new Color32(102,255,80, 255), "Normal");
-        Team.team[1] = new Character("tutoClimber", "Climber" , 5, 20, new Color32(95,25,255, 255), "Normal");
-        Team.team[2] = new Character("tutoHacker", "Hacker" , 5, 20, new Color32(255,150,0, 255), "Normal");
-        Team.team[3] = new Character("tutoTank", "Tank" , 5, 20, new Color32(75,55,215, 255), "Normal");
-        Team.team[4] = new Character("tutoGrenadier", "Grenadier" , 5, 20, new Color32(60,180,255, 255), "Normal");
-        Team.team[5] = new Character("tutoTracker", "Tracker" , 5, 20, new Color32(60,180,255, 255), "Normal");
+        Team.team[0] = new Character("tutoRunner", "Runner" , Random.Range(3,6), 20, new Color32(102,255,80, 255), "Normal", Random.Range(1,3));
+        Team.team[1] = new Character("tutoClimber", "Climber" , Random.Range(3,6), 20, new Color32(95,25,255, 255), "Normal", Random.Range(1,3));
+        Team.team[2] = new Character("tutoHacker", "Hacker" , Random.Range(3,6), 20, new Color32(255,150,0, 255), "Normal", Random.Range(1,3));
+        Team.team[3] = new Character("tutoTank", "Tank" , Random.Range(3,6), 20, new Color32(75,55,215, 255), "Normal", Random.Range(1,3));
+        Team.team[4] = new Character("tutoGrenadier", "Grenadier" , Random.Range(3,6), 20, new Color32(60,180,255, 255), "Normal", Random.Range(1,3));
+        Team.team[5] = new Character("tutoTracker", "Tracker" , Random.Range(3,6), 20, new Color32(60,180,255, 255), "Normal", Random.Range(1,3));
     }
     void Start() 
     {

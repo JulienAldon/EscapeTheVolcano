@@ -36,7 +36,7 @@ TagManager:
   - Shield
   - PostProcessingLayer
   - Treasure
-  - 
+  - Flag
   - 
   - 
   - 
@@ -45,11 +45,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3764846421
+    locked: 0
   - name: Background
     uniqueID: 2476928231
     locked: 0
+  - name: Sun
+    uniqueID: 72627123
+    locked: 0
+  - name: City
+    uniqueID: 4014592653
+    locked: 0
   - name: ExteriorBackground
     uniqueID: 645931797
+    locked: 0
+  - name: Volcano
+    uniqueID: 2707393537
     locked: 0
   - name: Default
     uniqueID: 0

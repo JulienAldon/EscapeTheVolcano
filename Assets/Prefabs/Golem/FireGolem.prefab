@@ -259,6 +259,6 @@ MonoBehaviour:
   anim: {fileID: 6251704234207897441}
   blood: {fileID: 8586574397201729817, guid: 24ef0253d94f24241ab9a746a3897967, type: 3}
   fireRate: 1
-  Health: 3
+  Health: 5
   matWhite: {fileID: 2100000, guid: 3510c76e1fad17e409cc96f9b63cd38d, type: 2}
   gfx: {fileID: 6251704234207897443}

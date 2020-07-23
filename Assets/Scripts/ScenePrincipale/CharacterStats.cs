@@ -26,7 +26,7 @@ public class CharacterStats : MonoBehaviour
     public string currentAffliction;
     public Stat Speed;
     public Stat ClassType;
-    public int nbFlags;
+    public int efficiency;
     public GameObject confettisLeft;
     public GameObject confettisRight;
     public GameObject normalLeft;
@@ -37,7 +37,13 @@ public class CharacterStats : MonoBehaviour
     public float damageRate;
     private float nextDamage = 0;
     public static int nbCrystals;
-    /*
+
+    public int nbFlags;    
+    public float runner_CDR;
+    public float climber_CDR;
+    public float grenadier_bombs;
+    public float tank_shield;
+    public float hacker_time;    /*
         1 - Runner
         2 - Climber
         3 - Hacker
@@ -48,10 +54,17 @@ public class CharacterStats : MonoBehaviour
 
     void UpdateStats()
     {
+        nbFlags = Team.team[currentChar].nbFlags;
+        runner_CDR = Team.team[currentChar].runner_CDR;
+        climber_CDR = Team.team[currentChar].climber_CDR;
+        grenadier_bombs = Team.team[currentChar].grenadier_bombs;
+        tank_shield = Team.team[currentChar].tank_shield;
+        hacker_time = Team.team[currentChar].hacker_time;
+
         maxHealth = Team.team[currentChar].life;
         currentHealth = Team.team[currentChar].currentHealth;
-        nbFlags = Team.team[currentChar].nbFlags;
         Speed.SetValue(Team.team[currentChar].speed);
+        efficiency = Team.team[currentChar].efficiency;
         if (Team.team[currentChar].archetype == "Runner")
             ClassType.SetValue(1);
         else if (Team.team[currentChar].archetype == "Climber")
@@ -176,7 +189,7 @@ public class CharacterStats : MonoBehaviour
         if (currentChar >= Team.team.Length)
             currentChar = 0;
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;
-
+        UpdateStats();
         StartCoroutine(Death());
         // Supress team member display
         // Make cool thing to say the player is dead

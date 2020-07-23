@@ -11,11 +11,13 @@ public class select : MonoBehaviour
     public TextMesh speed;
     public TextMesh name;
     public TextMesh trait;
+    public TextMesh efficiency;
 
     public string[] archetypes;
     public string[] traits;
     public GameObject player;
     public GameObject gameContinue;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D middleLight = null;
 
     public Character currentCharacter {get; private set;}
 
@@ -29,6 +31,8 @@ public class select : MonoBehaviour
         currentCharacter = GenerateCharacter();
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
+        efficiency.text = currentCharacter.efficiency < 5 ? "BAD": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "GOOD": "LEGENDARY";
+        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(230, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(50, 200, 24, 255) : new Color32(250, 230, 70, 255) ;     
         name.text = currentCharacter.name;
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
@@ -66,7 +70,10 @@ public class select : MonoBehaviour
     }
 
     void refuse() {
-        currentPlayer.GetComponent<PlayerAnimation>().refuse();        
+        currentPlayer.GetComponent<PlayerAnimation>().refuse();    
+        StartCoroutine(changeColor(new Color32(154,17,0,255)));
+        // TODO: add noise
+    
     }
 
     public void setCanPressAgain()
@@ -84,6 +91,9 @@ public class select : MonoBehaviour
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
         name.text = currentCharacter.name;
+        print(currentCharacter.efficiency);
+        efficiency.text = currentCharacter.efficiency < 5 ? "BAD": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "GOOD": "LEGENDARY";
+        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(230, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(50, 200, 24, 255) : new Color32(250, 230, 70, 255) ;        
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
     }
@@ -95,6 +105,19 @@ public class select : MonoBehaviour
         t.AddCharacter(Team.nbSelected);
         Team.nbSelected += 1;
         currentPlayer.GetComponent<PlayerAnimation>().accept();
+
+        // change light for 1.5 sec
+        StartCoroutine(changeColor(new Color32(50,150,30,255)));
+        // TODO: add noise        
+    }
+
+    IEnumerator changeColor(Color32 color)
+    {
+        yield return new WaitForSeconds(.4f);        
+        Color32 def = middleLight.color;
+        middleLight.color = color;
+        yield return new WaitForSeconds(.8f);
+        middleLight.color = def;
     }
 
     Character GenerateCharacter()
@@ -104,6 +127,7 @@ public class select : MonoBehaviour
         string name = generateName(5);
         int speed = Random.Range(1, 3);
         int life = Random.Range(3, 5);
+        int efficiency = Random.Range(1, 11);
         Color color;
         if (arch == "Runner") {
             color = new Color32(102,255,80, 255);
@@ -118,7 +142,7 @@ public class select : MonoBehaviour
         } else { // grenadier
             color = new Color32(60,180,255, 255);
         }
-        Character carac = new Character(name, arch, speed, life, color, trait);
+        Character carac = new Character(name, arch, speed, life, color, trait, efficiency);
         return carac;
     }
 

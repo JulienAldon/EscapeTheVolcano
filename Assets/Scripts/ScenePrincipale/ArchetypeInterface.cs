@@ -61,8 +61,8 @@ public class ArchetypeInterface : MonoBehaviour
         if (isSelected == true)
         {
             selectImage.color = new Color32(50, 200, 50, 255);
-        } else if (isSelected == false) {
-            selectImage.color = new Color32(99, 99, 99, 255);            
+        } else if (isSelected == false && isDead == false) {
+            selectImage.color = new Color32(217, 217, 217, 255);            
         }
         
         // UpdateLife();

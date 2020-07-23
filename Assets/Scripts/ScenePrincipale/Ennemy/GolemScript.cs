@@ -16,7 +16,7 @@ public class GolemScript : MonoBehaviour
     private bool attacking;
     Rigidbody2D rb;
     private float nextFire = 0;
-    public int Health = 3;
+    public int Health = 5;
     public Material matWhite;
     private Material matDefault;
     public GameObject gfx;
