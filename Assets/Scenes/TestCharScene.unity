@@ -781,6 +781,11 @@ PrefabInstance:
       propertyPath: sounds.Array.data[8].pitch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2124520916048872256, guid: 4667e15d3f023fa47aa8a70e3244cfe1,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dcf603ccaccaf1b43a6628b61ba1764a, type: 3}
     - target: {fileID: 2124520916048872257, guid: 4667e15d3f023fa47aa8a70e3244cfe1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5975,7 +5980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217181940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -0.06, z: -1}
+  m_LocalPosition: {x: 0.15, y: -0.12, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 400978978}
@@ -6690,7 +6695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2046064991
 Transform:
   m_ObjectHideFlags: 0
