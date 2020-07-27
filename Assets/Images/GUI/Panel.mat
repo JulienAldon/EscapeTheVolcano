@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow
+  m_Name: Panel
   m_Shader: {fileID: -6465566751694194690, guid: b0c299f9353c79347a634a8b505aee75,
     type: 3}
   m_ShaderKeywords: 
@@ -30,4 +30,4 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_5BAD5D5F: {r: 11.984314, g: 0, b: 8.219608, a: 0}
+    - Color_5BAD5D5F: {r: 4.237095, g: 0, b: 2.662049, a: 1}
