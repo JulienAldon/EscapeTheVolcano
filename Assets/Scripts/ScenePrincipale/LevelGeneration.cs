@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
 public class LevelGeneration : MonoBehaviour
@@ -20,6 +21,9 @@ public class LevelGeneration : MonoBehaviour
 	public float minX;
 	public float maxX;
 	public float minY;
+
+	public Tilemap tilemap;
+	public TileBase wall;
 
 	public LayerMask room;
 	public bool stopGeneration;
@@ -150,9 +154,15 @@ public class LevelGeneration : MonoBehaviour
 		GameObject playerStart = GameObject.FindGameObjectsWithTag("SpawnPlayer")[0];
 		Player.transform.position = playerStart.transform.position;
 		Level.path.RemoveAll(item => item == null);
-		
-		yield return new WaitForSeconds(0.5f);
 
+		yield return new WaitForSeconds(1f);
+		
+		var Ground = GameObject.FindGameObjectsWithTag("Ground");
+		foreach (var obj in Ground) {
+			print(obj.transform.position);
+			tilemap.SetTile(new Vector3Int((int)(obj.transform.position.x), (int)(Mathf.Round(obj.transform.position.y- 0.5f) ), (int)(obj.transform.position.z)), wall);
+		}
+		
 		isDone = true;
 	}
 }

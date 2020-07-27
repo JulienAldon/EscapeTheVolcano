@@ -31,8 +31,8 @@ public class select : MonoBehaviour
         currentCharacter = GenerateCharacter();
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
-        efficiency.text = currentCharacter.efficiency < 5 ? "BAD": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "GOOD": "LEGENDARY";
-        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(230, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(50, 200, 24, 255) : new Color32(250, 230, 70, 255) ;     
+        efficiency.text = currentCharacter.efficiency < 5 ? "COMMON": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "RARE": "LEGENDARY";
+        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);     
         name.text = currentCharacter.name;
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
@@ -91,9 +91,8 @@ public class select : MonoBehaviour
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
         name.text = currentCharacter.name;
-        print(currentCharacter.efficiency);
-        efficiency.text = currentCharacter.efficiency < 5 ? "BAD": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "GOOD": "LEGENDARY";
-        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(230, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(50, 200, 24, 255) : new Color32(250, 230, 70, 255) ;        
+        efficiency.text = currentCharacter.efficiency < 5 ? "COMMON": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "RARE": "LEGENDARY";
+        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);        
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
     }

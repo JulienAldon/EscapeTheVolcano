@@ -95,6 +95,7 @@ public class TestController : MonoBehaviour
 	private float jumpTimeCounter;
 	public float jumpTime;
 	private bool isJumping;
+	private bool jumped;
 	
 	[Header("Shooting")]
 	public GameObject BulletLeft;
@@ -109,6 +110,7 @@ public class TestController : MonoBehaviour
 	[Header("Effects")]
 	public Animator animator;
 	public ParticleSystem dust;
+	public ParticleSystem dustWeapon;
 	private GroundState groundState;
 	private Shake shake;
 
@@ -190,6 +192,7 @@ public class TestController : MonoBehaviour
 		//Handle input
 		if(groundState.isTouching() && Input.GetKeyDown(KeyBindScript.keys["Jump"])) {
 			isJumping = true;
+			jumped = true;
 			jumpTimeCounter = jumpTime;
 			if (groundState.isTouching()) {
 				createDust();				
@@ -246,7 +249,6 @@ public class TestController : MonoBehaviour
 		}
 		if (isJumping && groundState.isGround()) {
 			isJumping = false;
-			// audio.Play("PlayerLand");
 		}
 		// Fire
 		if (Character.currentAffliction != "Pacifist") {
@@ -463,6 +465,7 @@ public class TestController : MonoBehaviour
 
     void fire() 
     {
+		dustWeapon.Play();
         bulletPos = transform.position;		
 		GameObject clone;
 		if (currentFire > 2)
@@ -548,6 +551,10 @@ public class TestController : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision)
     {
+		if (collision.gameObject.layer == 8 && jumped) {
+			audio.Play("PlayerLand", UnityEngine.Random.Range(0.1f, 3f));
+			jumped = false;
+		}
 		if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D))
         {
 			if (collision.gameObject.layer == 17 || collision.gameObject.layer == 18) {
