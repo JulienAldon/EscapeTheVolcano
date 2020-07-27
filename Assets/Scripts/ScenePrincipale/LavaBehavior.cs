@@ -37,7 +37,7 @@ public class LavaBehavior : MonoBehaviour
 
         if (ExitScript.GetState() >= 2)
         {
-            FireRate = 0;
+            FireRate = 0.05f;
             step = 0.5f;
         } 
         

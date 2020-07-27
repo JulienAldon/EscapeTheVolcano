@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     private float endTime;
     public float levelMaxTime = 200f;
     public int levelScore = 50;
+    public float minLevelTime = 60f;
     private int finalScore = 0;
     private int displayScore;
     // Start is called before the first frame update
@@ -38,7 +39,13 @@ public class ScoreManager : MonoBehaviour
     {
         endTime = Timer.endTime;
         crystals = CharacterStats.nbCrystals;
-        return ((Mathf.Max(0, (int)(levelMaxTime - endTime)) * levelScore) + crystals * levelScore) - ((4 - Team.team.Length) * 1000);
+        var a = 100 / ((int)levelMaxTime - (int)minLevelTime);
+        var b = -minLevelTime * a;
+        var trans = (int)endTime * a + b;
+        var bonusTime = 100 - trans;
+        var crystalScore = 1000 + (bonusTime * 5);
+        return (Mathf.Max(500, (crystals * (int)crystalScore) - ((4 - Team.team.Length) * 1000)));
+        // return ((Mathf.Max(0, (int)(levelMaxTime - endTime)) * levelScore) + crystals * levelScore) - ((4 - Team.team.Length) * 1000);
     }
 
     private IEnumerator ScoreUpdater()
@@ -47,7 +54,7 @@ public class ScoreManager : MonoBehaviour
         {
             if(displayScore < finalScore)
             {
-                displayScore += 10; //Increment the display score by 1
+                displayScore += 100; //Increment the display score by 1
                 score.text = displayScore.ToString(); //Write it to the UI
             }
             yield return new WaitForSeconds(0.002f);
