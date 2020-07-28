@@ -159,7 +159,6 @@ public class LevelGeneration : MonoBehaviour
 		
 		var Ground = GameObject.FindGameObjectsWithTag("Ground");
 		foreach (var obj in Ground) {
-			print(obj.transform.position);
 			tilemap.SetTile(new Vector3Int((int)(obj.transform.position.x), (int)(Mathf.Round(obj.transform.position.y- 0.5f) ), (int)(obj.transform.position.z)), wall);
 		}
 		

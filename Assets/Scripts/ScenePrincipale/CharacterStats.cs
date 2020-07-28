@@ -32,6 +32,7 @@ public class CharacterStats : MonoBehaviour
     public GameObject normalLeft;
     public GameObject normalRight;
     public GameObject[] interfaceTeam;
+    public GameObject lifeLostParticles;
 
     private bool damaged;
     public float damageRate;
@@ -80,9 +81,22 @@ public class CharacterStats : MonoBehaviour
         
         TraitUpdate();
 
-        Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        life.text = currentHealth.ToString();
+        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
+        // life.text = currentHealth.ToString();
+        UpdateLife();
+
         StartCoroutine(ChangeColor());
+    }
+
+    void UpdateLife()
+    {
+        for (int i = 0; i <= 5; i++) {
+            if (currentHealth > i) { 
+                GameObject.Find("LifeWire").transform.GetChild(i).gameObject.active = true;
+            } else {
+                GameObject.Find("LifeWire").transform.GetChild(i).gameObject.active = false;                
+            }
+        }
     }
 
     IEnumerator ChangeColor()
@@ -103,8 +117,8 @@ public class CharacterStats : MonoBehaviour
         }
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;        
         currentHealth = maxHealth;
-        Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        life.text = currentHealth.ToString();
+        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
+        // life.text = currentHealth.ToString();
     }
     
     void Start()
@@ -148,8 +162,10 @@ public class CharacterStats : MonoBehaviour
         anim.SetTrigger("Hit");
         currentHealth -= damage;
         Team.team[currentChar].currentHealth -= 1;
-        Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        life.text = currentHealth.ToString();
+        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
+        // life.text = currentHealth.ToString();
+
+        UpdateLife();
         damaged = true;
         if (currentHealth <= 0) {
             Die();

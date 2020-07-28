@@ -200,6 +200,7 @@ public class TestController : MonoBehaviour
 			input.y = 1;
 			audio.Play("PlayerJump");
 			animator.SetTrigger("Jumping");			
+			animator.SetBool("Jump", true);			
 		}
 		if (Input.GetKey(KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
@@ -554,6 +555,7 @@ public class TestController : MonoBehaviour
 		if (collision.gameObject.layer == 8 && jumped) {
 			audio.Play("PlayerLand", UnityEngine.Random.Range(0.1f, 3f));
 			jumped = false;
+			animator.SetBool("Jump", false);						
 		}
 		if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D))
         {

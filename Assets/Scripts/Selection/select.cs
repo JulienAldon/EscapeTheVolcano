@@ -112,10 +112,10 @@ public class select : MonoBehaviour
 
     IEnumerator changeColor(Color32 color)
     {
-        yield return new WaitForSeconds(.4f);        
+        yield return new WaitForSeconds(.1f);        
         Color32 def = middleLight.color;
         middleLight.color = color;
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.6f);
         middleLight.color = def;
     }
 
