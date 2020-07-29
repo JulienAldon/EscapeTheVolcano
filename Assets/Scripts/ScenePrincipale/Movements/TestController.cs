@@ -204,7 +204,7 @@ public class TestController : MonoBehaviour
 		}
 		if (Input.GetKey(KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
-				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
+				// GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
 				
 				jumpTimeCounter -= Time.deltaTime;
 			} else {
@@ -383,7 +383,7 @@ public class TestController : MonoBehaviour
 					shootBomb();
 				}
 				if (Input.GetKey(KeyBindScript.keys["Action"])) {
-					shootBomb();	
+					shootBomb();
 				}
 				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 				}

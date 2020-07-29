@@ -61,11 +61,8 @@ public class CharacterStats : MonoBehaviour
 		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
         UpdateStats();
         int i = 0;
-        print("azeaze");
         foreach (var member in interfaceTeam)
         {
-            print("aze");
-            print(Team.team[i].archetype);
             member.GetComponent<ArchetypeInterface>().archetype = Team.team[i].archetype;
             i+=1;
         }
@@ -375,7 +372,7 @@ public class CharacterStats : MonoBehaviour
             GetComponent<TestController>().BulletRight = normalRight;
             fetard.SetActive(false);
             currentAffliction = "Astronaut";
-            GetComponent<Rigidbody2D>().gravityScale = 1f;
+            GetComponent<Rigidbody2D>().gravityScale = 1.5f;
         } else if (Team.team[currentChar].trait == "Partygoer") {
             // fetard
             ParanoidEffect.SetActive(false);
@@ -415,7 +412,7 @@ public class CharacterStats : MonoBehaviour
             BlindEffect.SetActive(false);
             colorBlindEffect.SetActive(false);
             Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 3.5f;
+            GetComponent<Rigidbody2D>().gravityScale = 3f;
             GetComponent<TestController>().BulletLeft = normalLeft;
             GetComponent<TestController>().BulletRight = normalRight;
             fetard.SetActive(false);

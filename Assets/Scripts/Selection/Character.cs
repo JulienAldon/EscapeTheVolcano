@@ -43,8 +43,8 @@ public class Character
         hacker_time = efficiency < 5 ? 2 : efficiency >= 5 && efficiency <= 9 ? 1.5f : 1; // 2 1.5 1
 
         // runner_state = 20;
-        // climber_state = 20; 
-        
+        // climber_step = (int)20 % (climber_CDR * 10);
+        // climber_state =  
         tank_state = (int)tank_shield;
     }
 }

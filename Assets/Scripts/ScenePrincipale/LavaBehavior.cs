@@ -6,7 +6,7 @@ public class LavaBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 localPos;
-	public float FireRate = 0.3f;
+	public float FireRate = 0.5f;
     float nextFire = 0;
     public Transform PointA;
     public Transform PointB;
@@ -16,7 +16,7 @@ public class LavaBehavior : MonoBehaviour
     public Transform Area2;
     
     private bool stopped = false;
-    public float step = 0.1f;
+    public float step = 0.01f;
 
     public ExitScript ExitState;
 
