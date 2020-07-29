@@ -343,6 +343,7 @@ public class TestController : MonoBehaviour
 				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && Time.time > NextFlag && groundState.isGround() && Team.team[GetComponent<CharacterStats>().currentChar].nbFlags > 0) {
 					NextFlag = Time.time + FlagRate;
 					Team.team[GetComponent<CharacterStats>().currentChar].nbFlags -= 1;
+					GetComponent<CharacterStats>().UpdatePower();
 					// Spawn a landmark
 					Instantiate(FlagSprite, new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z), Quaternion.identity);
 				} else if (Team.team[GetComponent<CharacterStats>().currentChar].nbFlags <= 0) {
@@ -357,6 +358,8 @@ public class TestController : MonoBehaviour
 			{
 				if (Shield.activeSelf == true) {
 					Team.team[GetComponent<CharacterStats>().currentChar].used_tank_shield += Time.deltaTime;
+					Team.team[GetComponent<CharacterStats>().currentChar].tank_state = (int)(Team.team[GetComponent<CharacterStats>().currentChar].tank_shield - Team.team[GetComponent<CharacterStats>().currentChar].used_tank_shield);
+					GetComponent<CharacterStats>().UpdatePower();
 				}
 				if (Team.team[GetComponent<CharacterStats>().currentChar].used_tank_shield >= Character.tank_shield) {
 					canShield = false;
@@ -458,6 +461,7 @@ public class TestController : MonoBehaviour
 			nextBomb = Time.time + BombRate;
 			//Throw a bomb
 			Team.team[GetComponent<CharacterStats>().currentChar].grenadier_bombs -= 1;
+			GetComponent<CharacterStats>().UpdatePower();
 			GameObject clone;
 			clone = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
 			clone.GetComponent<Rigidbody2D>().AddForce(new Vector2(300 * facing, 400));

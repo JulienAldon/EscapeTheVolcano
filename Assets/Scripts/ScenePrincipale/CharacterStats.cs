@@ -44,7 +44,11 @@ public class CharacterStats : MonoBehaviour
     public float climber_CDR;
     public float grenadier_bombs;
     public float tank_shield;
-    public float hacker_time;    /*
+    public float hacker_time;
+
+    private GameObject[] LifeDisplay;
+    private GameObject[] PowerDisplay;
+    /*
         1 - Runner
         2 - Climber
         3 - Hacker
@@ -52,6 +56,29 @@ public class CharacterStats : MonoBehaviour
         5 - Tank
         6 - Grenadier
     */
+    void Awake()
+    {
+		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
+        UpdateStats();
+        int i = 0;
+        print("azeaze");
+        foreach (var member in interfaceTeam)
+        {
+            print("aze");
+            print(Team.team[i].archetype);
+            member.GetComponent<ArchetypeInterface>().archetype = Team.team[i].archetype;
+            i+=1;
+        }
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;        
+        currentHealth = maxHealth;
+        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
+        // life.text = currentHealth.ToString();
+    }
+    
+    void Start()
+    {
+        matDefault = gfx.GetComponent<SpriteRenderer>().material;        
+    }
 
     void UpdateStats()
     {
@@ -84,18 +111,78 @@ public class CharacterStats : MonoBehaviour
         // Text life = GameObject.Find("LifeText").GetComponent<Text>();
         // life.text = currentHealth.ToString();
         UpdateLife();
+        UpdatePower();
 
         StartCoroutine(ChangeColor());
     }
 
+    public void UpdatePower()
+    {
+        int a = 0;
+        PowerDisplay = GameObject.FindGameObjectsWithTag("PowerDisplay");
+        foreach (var power in PowerDisplay) {
+            for (int i = 0; i < 20; i++) {
+                if (Team.team[a].archetype == "Runner") {
+                    if (Team.team[a].runner_CDR > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+
+                } else if (Team.team[a].archetype == "Climber") {
+                    if (Team.team[a].climber_CDR > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+
+                } else if (Team.team[a].archetype == "Hacker") {
+                    if (Team.team[a].hacker_time > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+                    
+                } else if (Team.team[a].archetype == "Tracker") {
+                    if (Team.team[a].nbFlags > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+                    
+                } else if (Team.team[a].archetype == "Tank") {
+                    if (Team.team[a].tank_state > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+                    
+                } else if (Team.team[a].archetype == "Grenadier") {
+                    if (Team.team[a].grenadier_bombs > i) {
+                        power.transform.GetChild(i).gameObject.active = true;
+                    } else {
+                        power.transform.GetChild(i).gameObject.active = false;
+                    }
+                    
+                }
+            }
+            a+=1;
+        }
+    }
+
     void UpdateLife()
     {
-        for (int i = 0; i <= 5; i++) {
-            if (currentHealth > i) { 
-                GameObject.Find("LifeWire").transform.GetChild(i).gameObject.active = true;
-            } else {
-                GameObject.Find("LifeWire").transform.GetChild(i).gameObject.active = false;                
+        int a = 0;
+        LifeDisplay = GameObject.FindGameObjectsWithTag("LifeDisplay");
+        foreach (var elem in LifeDisplay) {
+            for (int i = 0; i < 5; i++) {
+                if (Team.team[a].currentHealth > i) { 
+                    elem.transform.GetChild(i).gameObject.active = true;
+                } else {
+                    elem.transform.GetChild(i).gameObject.active = false;                
+                }
             }
+        a += 1;
         }
     }
 
@@ -105,27 +192,7 @@ public class CharacterStats : MonoBehaviour
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = Team.team[currentChar].color;
     }
 
-    void Awake()
-    {
-		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        UpdateStats();
-        int i = 0;
-        foreach (var member in interfaceTeam)
-        {
-            member.GetComponent<ArchetypeInterface>().archetype = Team.team[i].archetype;
-            i+=1;
-        }
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;        
-        currentHealth = maxHealth;
-        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        // life.text = currentHealth.ToString();
-    }
-    
-    void Start()
-    {
-        matDefault = gfx.GetComponent<SpriteRenderer>().material;        
-    }
-
+  
     public void CharacterSwitch()
     {
         anim.SetTrigger("Switch");
@@ -189,6 +256,8 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 //        CharacterSwitch();
+        PowerDisplay[currentChar].tag = "Untagged";
+        LifeDisplay[currentChar].tag = "Untagged";
         GetComponent<TestController>().Shield.SetActive(false);
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
         var list = new List<Character>(Team.team);

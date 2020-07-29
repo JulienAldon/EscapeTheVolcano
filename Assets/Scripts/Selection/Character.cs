@@ -20,7 +20,7 @@ public class Character
     public float tank_shield;
     public float hacker_time;
     public float used_tank_shield;
-
+    public int tank_state;
     
     public Sprite artwork;
 
@@ -41,5 +41,10 @@ public class Character
         tank_shield = efficiency < 5 ? 10 : efficiency >= 5 && efficiency <= 9 ? 15 : 20; // 10 15 20
         used_tank_shield = 0;
         hacker_time = efficiency < 5 ? 2 : efficiency >= 5 && efficiency <= 9 ? 1.5f : 1; // 2 1.5 1
+
+        // runner_state = 20;
+        // climber_state = 20; 
+        
+        tank_state = (int)tank_shield;
     }
 }

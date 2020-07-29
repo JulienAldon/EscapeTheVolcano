@@ -55,14 +55,14 @@ public class ArchetypeInterface : MonoBehaviour
     void Update()
     {
         if (isDead == true) {
-            selectImage.color = new Color32(200, 50, 50, 255);
+            selectImage.color = new Color32(0, 0, 0, 255);
             return;
         }
         if (isSelected == true)
         {
-            selectImage.color = new Color32(50, 200, 50, 255);
+            selectImage.color = new Color32(140, 129, 85, 255);
         } else if (isSelected == false && isDead == false) {
-            selectImage.color = new Color32(217, 217, 217, 255);            
+            selectImage.color = new Color32(0, 0, 0, 255);            
         }
         
         // UpdateLife();

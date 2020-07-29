@@ -228,10 +228,10 @@ TextureImporter:
       name: LifeBar_4
       rect:
         serializedVersion: 2
-        x: 348
-        y: 409
-        width: 132
-        height: 137
+        x: 324
+        y: 441
+        width: 142
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +312,10 @@ TextureImporter:
       name: LifeBar_8
       rect:
         serializedVersion: 2
-        x: 18
-        y: 149
-        width: 240
-        height: 152
+        x: 37
+        y: 181
+        width: 221
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
