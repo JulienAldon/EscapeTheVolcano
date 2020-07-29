@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
     public static Timer instance;
-    public Text timerText;
+    public TextMeshProUGUI timerText;
     public bool started = false;
     private float startTime;
     private bool finnish = false;
     public static float endTime;
+     
 
     // Start is called before the first frame update
     void Start()
