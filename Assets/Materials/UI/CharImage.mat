@@ -25,11 +25,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 240e10d1fb2be4e49b771bd6020046b8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 15eae564a4b82134697a83104ca11f11, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d7e7962cd94283d4892f4f4d90d4d4fb, type: 3}
+        m_Texture: {fileID: 2800000, guid: d76d7a1595a717b468c3565827c42277, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_5BAD5D5F: {r: 0, g: 0.423985, b: 0.0073100864, a: 0}
+    - Color_5BAD5D5F: {r: 0, g: 5.4529777, b: 12.7014475, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

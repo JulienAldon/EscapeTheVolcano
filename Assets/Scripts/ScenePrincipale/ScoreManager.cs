@@ -43,6 +43,7 @@ public class ScoreManager : MonoBehaviour
         var b = -minLevelTime * a;
         var trans = (int)endTime * a + b;
         var bonusTime = 100 - trans;
+        print(bonusTime);
         var crystalScore = 1000 + (bonusTime * 5);
         return (Mathf.Max(500, (crystals * (int)crystalScore) - ((4 - Team.team.Length) * 1000)));
         // return ((Mathf.Max(0, (int)(levelMaxTime - endTime)) * levelScore) + crystals * levelScore) - ((4 - Team.team.Length) * 1000);
