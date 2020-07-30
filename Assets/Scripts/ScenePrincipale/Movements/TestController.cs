@@ -120,6 +120,7 @@ public class TestController : MonoBehaviour
 	public float startDashTime;
 
 	private float nextDash;
+	private float nextRefreshRunner = 0;
 	private Vector2 lastInput;
 	private float dashTime;
 	private int direction = 0;
@@ -131,6 +132,8 @@ public class TestController : MonoBehaviour
 	public LineRenderer line;
 	public float step = 0.1f;
 	private int facing;
+	private float nextRefreshClimber = 0;
+
 
 	[Header("Tracker")]
 	// Tracker
@@ -273,7 +276,16 @@ public class TestController : MonoBehaviour
 			{
 				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && canDash && Time.time > nextDash) {
 					Dash(input.x, rawY);
+					Team.team[Character.currentChar].runner_state = 0;
 					nextDash = Time.time + Character.runner_CDR;
+				} else if (Time.time > nextRefreshRunner) {
+					nextRefreshRunner = Time.time + 0.1f;
+					if (Team.team[Character.currentChar].runner_state + Team.team[Character.currentChar].runner_step > 20) {
+						Team.team[Character.currentChar].runner_state = 20;
+					} else {
+						Team.team[Character.currentChar].runner_state += Team.team[Character.currentChar].runner_step;
+					}
+					print(Team.team[Character.currentChar].runner_state);
 				}
 				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 				}
@@ -283,7 +295,6 @@ public class TestController : MonoBehaviour
 			else if (Character.ClassType.GetValue() == 2) //Climber
 			{
 				if (Input.GetKeyDown(KeyBindScript.keys["Action"]) && Time.time > nextClimb) {
-					nextClimb = Time.time + Character.climber_CDR;
 					//create the link (raycast ...)
 					int LayerIndex = LayerMask.NameToLayer("Ground");
 					int layerMask = (1 << LayerIndex);
@@ -298,7 +309,15 @@ public class TestController : MonoBehaviour
 					line.enabled = true;
 					line.SetPosition(0, transform.position);
 					line.SetPosition(1, hit.point);	
-				}
+				} else if (Time.time > nextRefreshClimber) {
+					nextRefreshClimber = Time.time + 0.1f;
+					if (Team.team[Character.currentChar].climber_state + Team.team[Character.currentChar].climber_step > 20) {
+						Team.team[Character.currentChar].climber_state = 20;
+					} else {
+						Team.team[Character.currentChar].climber_state += Team.team[Character.currentChar].climber_step;
+					}
+					print(Team.team[Character.currentChar].climber_state);
+				} 
 				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 					if (joint.distance > 0.2f ){
 						joint.distance -= step;
@@ -310,9 +329,11 @@ public class TestController : MonoBehaviour
 				}
 				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 					// delete the link
+					nextClimb = Time.time + Character.climber_CDR;
+					Team.team[Character.currentChar].climber_state = 0;
 					joint.enabled = false;
 					line.enabled = false;
-				}
+				} 
 			}
 			else if (Character.ClassType.GetValue() == 3) // Hacker
 			{

@@ -15,15 +15,16 @@ public class KeyBindScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        keys.Add("Up", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W")));
-        keys.Add("Down", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
-        keys.Add("Left", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left", "Q")));
-        keys.Add("Right", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right", "D")));
-        keys.Add("Jump", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Jump", "Space")));
-        keys.Add("Fire", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Fire", "E")));
-        keys.Add("Switch", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Switch", "A")));
-        keys.Add("Action", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Action", "R")));
-
+        if (!GameObject.Find("Player")) {
+            keys.Add("Up", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "G")));
+            keys.Add("Down", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
+            keys.Add("Left", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left", "Q")));
+            keys.Add("Right", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right", "D")));
+            keys.Add("Jump", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Jump", "Space")));
+            keys.Add("Fire", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Fire", "E")));
+            keys.Add("Switch", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Switch", "A")));
+            keys.Add("Action", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Action", "R")));
+        }
         up.text = keys["Up"].ToString();
         down.text = keys["Down"].ToString();
         left.text = keys["Left"].ToString();
@@ -34,8 +35,8 @@ public class KeyBindScript : MonoBehaviour
         action.text = keys["Action"].ToString();
     }
 
-    // void Start()
-    // {
+    void Start()
+    {
     //     keys.Add("Up", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W")));
     //     keys.Add("Down", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
     //     keys.Add("Left", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left", "Q")));
@@ -44,16 +45,7 @@ public class KeyBindScript : MonoBehaviour
     //     keys.Add("Fire", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Fire", "E")));
     //     keys.Add("Switch", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Switch", "A")));
     //     keys.Add("Action", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Action", "R")));
-
-    //     up.text = keys["Up"].ToString();
-    //     down.text = keys["Down"].ToString();
-    //     left.text = keys["Left"].ToString();
-    //     right.text = keys["Right"].ToString();
-    //     jump.text = keys["Jump"].ToString();
-    //     fire.text = keys["Fire"].ToString();
-    //     switchKey.text = keys["Switch"].ToString();
-    //     action.text = keys["Action"].ToString();
-    // }
+    }
 
     void OnGUI()
     {
@@ -96,6 +88,14 @@ public class KeyBindScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        up.text = keys["Up"].ToString();
+        down.text = keys["Down"].ToString();
+        left.text = keys["Left"].ToString();
+        right.text = keys["Right"].ToString();
+        jump.text = keys["Jump"].ToString();
+        fire.text = keys["Fire"].ToString();
+        switchKey.text = keys["Switch"].ToString();
+        action.text = keys["Action"].ToString();
         // if (Input.GetKeyDown[keys["Up"]]) // access the key
     }
 }
