@@ -21,6 +21,10 @@ public class Character
     public float hacker_time;
     public float used_tank_shield;
     public int tank_state;
+    public int runner_state;
+    public int climber_state;
+    public int runner_step;
+    public int climber_step;
     
     public Sprite artwork;
 
@@ -46,5 +50,13 @@ public class Character
         // climber_step = (int)20 % (climber_CDR * 10);
         // climber_state =  
         tank_state = (int)tank_shield;
+        runner_state = 0;
+        if (runner_CDR != 0) {
+            runner_step = (int)(20 / (runner_CDR / 0.1f));
+        } else {
+            runner_step = 0;
+        }
+        climber_state = 0;
+        climber_step = (int)(20 / (climber_CDR / 0.1));
     }
 }

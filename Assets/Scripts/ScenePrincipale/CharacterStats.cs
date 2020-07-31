@@ -120,19 +120,17 @@ public class CharacterStats : MonoBehaviour
         foreach (var power in PowerDisplay) {
             for (int i = 0; i < 20; i++) {
                 if (Team.team[a].archetype == "Runner") {
-                    if (Team.team[a].runner_CDR > i) {
+                    if (Team.team[a].runner_state > i) {
                         power.transform.GetChild(i).gameObject.active = true;
                     } else {
                         power.transform.GetChild(i).gameObject.active = false;
                     }
-
                 } else if (Team.team[a].archetype == "Climber") {
-                    if (Team.team[a].climber_CDR > i) {
+                    if (Team.team[a].climber_state > i) {
                         power.transform.GetChild(i).gameObject.active = true;
                     } else {
                         power.transform.GetChild(i).gameObject.active = false;
                     }
-
                 } else if (Team.team[a].archetype == "Hacker") {
                     if (Team.team[a].hacker_time > i) {
                         power.transform.GetChild(i).gameObject.active = true;
@@ -214,6 +212,7 @@ public class CharacterStats : MonoBehaviour
             nextDamage = Time.time + damageRate;
             damaged = false;
         }
+        UpdatePower();
     }
 
     public void TakeDamage(int damage)
