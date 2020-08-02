@@ -195,7 +195,6 @@ public class TestController : MonoBehaviour
 		//Handle input
 		if(groundState.isTouching() && Input.GetKeyDown(KeyBindScript.keys["Jump"])) {
 			isJumping = true;
-			jumped = true;
 			jumpTimeCounter = jumpTime;
 			if (groundState.isTouching()) {
 				createDust();				
@@ -205,6 +204,7 @@ public class TestController : MonoBehaviour
 			animator.SetTrigger("Jumping");			
 			animator.SetBool("Jump", true);			
 		}
+		
 		if (Input.GetKey(KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
 				// GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
@@ -253,6 +253,9 @@ public class TestController : MonoBehaviour
 		}
 		if (isJumping && groundState.isGround()) {
 			isJumping = false;
+		}
+		if (GetComponent<Rigidbody2D>().velocity.y < 0 && groundState.isTouching() == false) {
+			jumped = true;
 		}
 		// Fire
 		if (Character.currentAffliction != "Pacifist") {
@@ -305,10 +308,12 @@ public class TestController : MonoBehaviour
 					joint.connectedBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
 					joint.connectedAnchor = hit.point - new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.y);
 					joint.distance = Vector2.Distance(transform.position, hit.point);
-
 					line.enabled = true;
 					line.SetPosition(0, transform.position);
 					line.SetPosition(1, hit.point);	
+					nextClimb = Time.time + Character.climber_CDR;
+					if (Team.team[Character.currentChar].climber_state == 20)
+						Team.team[Character.currentChar].climber_state = 0;
 				} else if (Time.time > nextRefreshClimber) {
 					nextRefreshClimber = Time.time + 0.1f;
 					if (Team.team[Character.currentChar].climber_state + Team.team[Character.currentChar].climber_step > 20) {
@@ -316,7 +321,6 @@ public class TestController : MonoBehaviour
 					} else {
 						Team.team[Character.currentChar].climber_state += Team.team[Character.currentChar].climber_step;
 					}
-					print(Team.team[Character.currentChar].climber_state);
 				} 
 				if (Input.GetKey(KeyBindScript.keys["Action"])) {
 					if (joint.distance > 0.2f ){
@@ -329,8 +333,8 @@ public class TestController : MonoBehaviour
 				}
 				if (Input.GetKeyUp(KeyBindScript.keys["Action"])) {
 					// delete the link
-					nextClimb = Time.time + Character.climber_CDR;
-					Team.team[Character.currentChar].climber_state = 0;
+					
+					
 					joint.enabled = false;
 					line.enabled = false;
 				} 

@@ -39,6 +39,7 @@ public class turretScript : MonoBehaviour
     private float hackingCursorTimer;
     
     private float lastAngle = 0;
+    private float nextRefreshHacker = 0;
 
     void Start()
     {
@@ -118,6 +119,7 @@ public class turretScript : MonoBehaviour
     /// This public function reset the hack mecanic
 	/// The function will reset the hackTimer variable, then reset the progression bar (UI)
 	public void resetHack() {
+        Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_state = 20;    
         hackingInProgress = false;
 	}
 
@@ -136,6 +138,14 @@ public class turretScript : MonoBehaviour
 		if (dSqrToTarget > hackDistance) {
 			resetHack();
 		} else if (getDeactivation() == false) {
+            if (Time.time > nextRefreshHacker) {
+                nextRefreshHacker = Time.time + 0.1f;
+                if (Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_state - Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_step < 0) {
+                    Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_state = 0;
+                } else {
+                    Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_state -= Team.team[target.GetComponent<CharacterStats>().currentChar].hacker_step;                    
+                }
+            }
             cursor.GetComponent<SpriteRenderer>().enabled = true;
 			hackTimer -= Time.deltaTime;
 			progressionBar.GetComponent<ProgressBar>().SetProgress(hackTimer / hackTime / 2);

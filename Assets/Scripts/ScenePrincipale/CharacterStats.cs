@@ -132,7 +132,7 @@ public class CharacterStats : MonoBehaviour
                         power.transform.GetChild(i).gameObject.active = false;
                     }
                 } else if (Team.team[a].archetype == "Hacker") {
-                    if (Team.team[a].hacker_time > i) {
+                    if (Team.team[a].hacker_state > i) {
                         power.transform.GetChild(i).gameObject.active = true;
                     } else {
                         power.transform.GetChild(i).gameObject.active = false;
