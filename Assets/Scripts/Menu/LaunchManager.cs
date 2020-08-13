@@ -18,6 +18,11 @@ public class LaunchManager : MonoBehaviour
 
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
    
+    public string GetCurrentScene()
+    {
+        return (currentScene);
+    }
+
     public void LoadSelect()
     {
         LoadingScreen.gameObject.SetActive(true);

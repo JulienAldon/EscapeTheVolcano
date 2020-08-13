@@ -6,7 +6,6 @@ public class PlayerAnimation : MonoBehaviour
 {
     private select sel;
     public static int count = 0;
-    private bool acceptState = false;
     public Animator animator;
     public float[] placement;
     public float[] worldPlacement;

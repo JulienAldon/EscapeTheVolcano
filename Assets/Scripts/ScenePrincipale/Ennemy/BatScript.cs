@@ -33,6 +33,11 @@ public class BatScript : MonoBehaviour
             seeker.StartPath(rb.position, new Vector2(target.position.x - 0.5f, target.position.y - 0.5f), OnPathComplete);
     }
     
+    public bool GetReachedEndOfPath()
+    {
+        return (reachedEndOfPath);
+    }
+
     void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -91,13 +96,25 @@ public class BatScript : MonoBehaviour
         }
     }
 
+    public ParticleSystem splatParticles;
+
     IEnumerator Death()
     {
         shake.camShake();
-        Instantiate(blood, transform.position, Quaternion.identity);        
+
+        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
+		RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+        splatParticles.transform.position = hit.point;
+        splatParticles.Play();
         Time.timeScale = 0.1f;
         yield return new WaitForSeconds(0.01f);
         Time.timeScale = 1;        
         Destroy(gameObject);        
     }
+
+    void OnParticleCollision(GameObject other)
+	{
+		GetComponent<Rigidbody2D>().AddForce(new Vector2( 1000 * (transform.position.x - other.transform.position.x ), 1000 * (transform.position.y - other.transform.position.y)));
+	}
+
 }

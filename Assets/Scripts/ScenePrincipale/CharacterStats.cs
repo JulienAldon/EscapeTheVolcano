@@ -48,6 +48,8 @@ public class CharacterStats : MonoBehaviour
 
     private GameObject[] LifeDisplay;
     private GameObject[] PowerDisplay;
+    public GameObject[] PowerDisplays;
+
     /*
         1 - Runner
         2 - Climber
@@ -116,47 +118,47 @@ public class CharacterStats : MonoBehaviour
     public void UpdatePower()
     {
         int a = 0;
-        PowerDisplay = GameObject.FindGameObjectsWithTag("PowerDisplay");
-        foreach (var power in PowerDisplay) {
+        // PowerDisplay = GameObject.FindGameObjectsWithTag("PowerDisplay");
+        foreach (var power in interfaceTeam) {
             for (int i = 0; i < 20; i++) {
                 if (Team.team[a].archetype == "Runner") {
                     if (Team.team[a].runner_state > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                 } else if (Team.team[a].archetype == "Climber") {
                     if (Team.team[a].climber_state > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                 } else if (Team.team[a].archetype == "Hacker") {
                     if (Team.team[a].hacker_state > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                     
                 } else if (Team.team[a].archetype == "Tracker") {
                     if (Team.team[a].nbFlags > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                     
                 } else if (Team.team[a].archetype == "Tank") {
                     if (Team.team[a].tank_state > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                     
                 } else if (Team.team[a].archetype == "Grenadier") {
                     if (Team.team[a].grenadier_bombs > i) {
-                        power.transform.GetChild(i).gameObject.active = true;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
                     } else {
-                        power.transform.GetChild(i).gameObject.active = false;
+                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
                     }
                     
                 }
@@ -172,9 +174,9 @@ public class CharacterStats : MonoBehaviour
         foreach (var elem in LifeDisplay) {
             for (int i = 0; i < 5; i++) {
                 if (Team.team[a].currentHealth > i) { 
-                    elem.transform.GetChild(i).gameObject.active = true;
+                    elem.transform.GetChild(i).gameObject.SetActive(true);
                 } else {
-                    elem.transform.GetChild(i).gameObject.active = false;                
+                    elem.transform.GetChild(i).gameObject.SetActive(false);                
                 }
             }
         a += 1;
@@ -192,6 +194,8 @@ public class CharacterStats : MonoBehaviour
     {
         anim.SetTrigger("Switch");
         GetComponent<TestController>().Shield.SetActive(false);
+        GetComponent<TestController>().joint.enabled = false;
+        GetComponent<TestController>().line.enabled = false;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
@@ -252,7 +256,7 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 //        CharacterSwitch();
-        PowerDisplay[currentChar].tag = "Untagged";
+        // PowerDisplay[currentChar].tag = "Untagged";
         LifeDisplay[currentChar].tag = "Untagged";
         GetComponent<TestController>().Shield.SetActive(false);
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
@@ -276,16 +280,54 @@ public class CharacterStats : MonoBehaviour
         // Make cool thing to say the player is dead
     }
 
+    public ParticleSystem splatParticles;
+    public GameObject splatPrefab;
+    public Transform splatHolder;
+
+	private void SplatCastRay()
+	{
+        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) - new Vector3(0, 10, 0) );
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
+		if (hit.collider != null) 
+		{
+			GameObject splat = Instantiate(splatPrefab, hit.point, Quaternion.identity) as GameObject;
+			splat.transform.SetParent(splatHolder, true);
+            Splat splatScript = splat.GetComponent<Splat>();
+            // GameObject a = Instantiate(blood, transform.position, Quaternion.identity);
+            if (Team.team.Length <= 0)
+            {
+                LavaDie();
+            }
+            splatParticles.transform.position = hit.point;
+            splatParticles.Play();
+            var main = splatParticles.main; 
+            main.startColor = Team.team[currentChar].color;
+            if (hit.collider.gameObject.tag == "BG") {
+                splatScript.Initialize(Splat.SplatLocation.Background);
+            } else {
+                splatScript.Initialize(Splat.SplatLocation.Foreground);
+            }
+		}
+        // else {
+        //     Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
+
+        //     RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+        //     if (Team.team.Length <= 0)
+        //     {
+        //         LavaDie();
+        //     }
+        //     splatParticles.transform.position = hit.point;
+        //     splatParticles.Play();
+        //     var main = splatParticles.main;
+        //     main.startColor = Team.team[currentChar].color;
+        // }
+	}
+
     IEnumerator Death()
     {
         shake.camShake();
-        GameObject a = Instantiate(blood, transform.position, Quaternion.identity);        
-        var main = a.GetComponent<ParticleSystem>().main;
-        if (Team.team.Length <= 0)
-        {
-            LavaDie();
-        }
-        main.startColor = Team.team[currentChar].color;
+        SplatCastRay();
         Time.timeScale = 0.1f; 
         yield return new WaitForSeconds(0.2f);
         Time.timeScale = 1;
@@ -295,7 +337,6 @@ public class CharacterStats : MonoBehaviour
     {
         // Game over
         GameObject.Find("LevelLoader").GetComponent<LoadingLevel>().LoadGameOverScene();
-        print("player died no switch possible Game Over");
         // Trigger Gameover scene
     }
 
@@ -304,7 +345,6 @@ public class CharacterStats : MonoBehaviour
         if (other.gameObject.layer == 23)
         {
             nbCrystals += 1;
-            print(nbCrystals);
         }
     }
 

@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class select : MonoBehaviour
 {
     public TextMesh life;
+    public TextMesh weapon;
     public TextMesh archetype;
     public TextMesh speed;
-    public TextMesh name;
+    public new TextMesh name;
     public TextMesh trait;
     public TextMesh efficiency;
 
@@ -35,6 +36,7 @@ public class select : MonoBehaviour
         efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);     
         name.text = currentCharacter.name;
         archetype.text = currentCharacter.archetype;
+        weapon.text = currentCharacter.weaponType;
         trait.text = currentCharacter.trait;
         currentPlayer = GameObject.Find("Player");
         
@@ -55,14 +57,13 @@ public class select : MonoBehaviour
             canPressAgain = false;
             accept();
         } else if (CanSwitch == true && Input.anyKeyDown) {
-            gameContinue.active = false;
-            print(gameContinue.active);
+            gameContinue.SetActive(false);
             FindObjectOfType<LoadingLevel>().LoadGameScene();
         }
         if (Team.nbSelected == 4 && once)
         {
             once = false;
-            gameContinue.active = true;
+            gameContinue.SetActive(true);
             CanSwitch = true;
         }
        
@@ -95,6 +96,7 @@ public class select : MonoBehaviour
         efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);        
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
+        weapon.text = currentCharacter.weaponType;
     }
 
     void accept() {
@@ -127,6 +129,8 @@ public class select : MonoBehaviour
         int speed = Random.Range(1, 3);
         int life = Random.Range(3, 5);
         int efficiency = Random.Range(1, 11);
+        int weaponChoice = Random.Range(0, 2);
+        string weaponType = weaponChoice == 0 ? "Missile" : weaponChoice == 2 ? "EnergyGun" : "Gatling"; 
         Color color;
         if (arch == "Runner") {
             color = new Color32(102,255,80, 255);
@@ -141,7 +145,7 @@ public class select : MonoBehaviour
         } else { // grenadier
             color = new Color32(60,180,255, 255);
         }
-        Character carac = new Character(name, arch, speed, life, color, trait, efficiency);
+        Character carac = new Character(name, arch, speed, life, color, trait, efficiency, weaponType);
         return carac;
     }
 

@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8064680120321283452}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 12.3409, y: 1.0818, z: -0.009817339}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &2225440645557076517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,10 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb61cb363a639d42ab1d0c8af2f4e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velX: -30
-  velY: 0
   DestroyEffect: {fileID: 7592633569487473421, guid: 6876dfc0bd826554f9bfc34efe767e8e,
     type: 3}
+  maxBounce: 0
 --- !u!61 &3439722997616109946
 BoxCollider2D:
   m_ObjectHideFlags: 0

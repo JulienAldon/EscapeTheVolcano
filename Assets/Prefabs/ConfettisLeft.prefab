@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5234564154972603607}
   - component: {fileID: 1757927114898746108}
   - component: {fileID: 3736879367449306507}
-  - component: {fileID: 6947186537103359961}
+  - component: {fileID: 7253787793011444104}
   m_Layer: 0
   m_Name: ConfettisLeft
   m_TagString: Untagged
@@ -169,8 +169,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 50
-      minScalar: 20
+      scalar: -20
+      minScalar: -10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -660,8 +660,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 2
-    angle: 15.8
+    type: 4
+    angle: 46
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -804,7 +804,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 90
+      value: 39.2
       mode: 0
       spread: 0
       speed:
@@ -3791,7 +3791,7 @@ ParticleSystem:
     radiusScale: 9.66
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 262400
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4813,7 +4813,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6947186537103359961
+--- !u!114 &7253787793011444104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4822,6 +4822,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3951109537451782005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d4c3c19089d1e4ba589ddbf399bb0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c38a3e8e75ff9e4ebdd2f4fb06b4dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 3

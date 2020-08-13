@@ -102,15 +102,26 @@ public class GolemScript : MonoBehaviour
         }
 	}
 
+    public ParticleSystem splatParticles;
+
     IEnumerator Death()
     {
         shake.camShake();
-        GameObject a = Instantiate(blood, transform.position, Quaternion.identity);        
-		var main = a.GetComponent<ParticleSystem>().main;
-		main.startColor = new Color(250, 80, 1, 255);
+
+        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
+		RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+        splatParticles.transform.position = hit.point;
+        splatParticles.Play();
         Time.timeScale = 0.1f;
         yield return new WaitForSeconds(0.01f);
         Time.timeScale = 1;
         Destroy(gameObject);
     }
+
+    void OnParticleCollision(GameObject other)
+	{
+		GetComponent<Rigidbody2D>().AddForce(new Vector2( 100 * (transform.position.x - other.transform.position.x ), 100 * (transform.position.y - other.transform.position.y)));
+	}
+
+
 }

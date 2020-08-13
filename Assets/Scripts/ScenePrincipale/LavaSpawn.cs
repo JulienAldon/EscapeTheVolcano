@@ -28,7 +28,6 @@ public class LavaSpawn : MonoBehaviour
         if (whereIsLava >= Level.path.Count)
         {
             // Display a message, press any key to continue -> GAME OVER SCREENs
-            print("The exit has been submerged GAME OVER");
         }
     }
 }

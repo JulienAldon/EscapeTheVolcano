@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character
 {
-    public new string name;
+    public string name;
     public string archetype;
     public int speed;
     public int life;
@@ -28,8 +28,9 @@ public class Character
     public int hacker_state;
     public int hacker_step;
     public Sprite artwork;
-
-    public Character(string _name, string _archetype, int _speed, int _life, Color _color, string _trait, int _efficiency)
+    public string weaponType;
+    public int currentFire;
+    public Character(string _name, string _archetype, int _speed, int _life, Color _color, string _trait, int _efficiency, string _weaponType)
     {
         name = _name;
         archetype = _archetype;
@@ -46,7 +47,8 @@ public class Character
         tank_shield = efficiency < 5 ? 10 : efficiency >= 5 && efficiency <= 9 ? 15 : 20; // 10 15 20
         used_tank_shield = 0;
         hacker_time = efficiency < 5 ? 2 : efficiency >= 5 && efficiency <= 9 ? 1.5f : 1; // 2 1.5 1
-
+        weaponType = _weaponType;
+        currentFire = 0;
         // runner_state = 20;
         // climber_step = (int)20 % (climber_CDR * 10);
         // climber_state =  

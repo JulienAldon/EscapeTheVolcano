@@ -19,26 +19,17 @@ public class turretScript : MonoBehaviour
     public float turretRange = 90f;
 	private float hackTimer;
 	float nextFire = 0f;
-    Vector2 bulletPos;	
     bool deactivated = false;
-
-    // rotate toward player
-    public float speed = 200f;
-
     private Transform target;
     private bool firing = false;
     private GameObject currentLaser;
     private bool hackingInProgress;
-    
-    private bool once = true;
     private Vector3 firstCanonEndPos;
 
     private float hackingResetTime = 1f;
     private float hackingResetTimer;
     private float hackingCursorTime = 0.1f;
     private float hackingCursorTimer;
-    
-    private float lastAngle = 0;
     private float nextRefreshHacker = 0;
 
     void Start()
@@ -125,8 +116,7 @@ public class turretScript : MonoBehaviour
 
 	/// This public function is in charge of the hacking mecanic
 	/// Given the player position (Vector2),
-	/// the function will add progression to the progression bar (UI) of the turret,
-	/// once hacktime elapse, the turret will be deactivated, if player go outside of the hackDistance,
+	///nce hacktime elapse, the turret will be deactivated, if player go outside of the hackDistance,
 	/// the progression is reset
 	public void hack(Vector2 position)
 	{
@@ -181,7 +171,6 @@ public class turretScript : MonoBehaviour
     public void deactivate()
     {
         if (deactivated == false) {
-            print("turret deactivated");
 			animator.SetBool("deactivated", true);
             deactivated = true;
         }

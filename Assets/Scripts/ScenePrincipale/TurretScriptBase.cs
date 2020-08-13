@@ -18,7 +18,6 @@ public class TurretScriptBase : MonoBehaviour
         if (!cannon.GetComponent<turretScript>().getDeactivation() && !cannon.GetComponent<turretScript>().getStoppedState()) {
             Vector2 direction = target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation;
             if (angle < -90 || angle > 90) {
                 GetComponent<SpriteRenderer>().flipX = true;
             } else {

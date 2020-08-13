@@ -142,7 +142,6 @@ public class BlobScript : MonoBehaviour
 
     bool IsInside (Collider2D enterableCollider, Collider2D enteringCollider)
 	{
-
 		Bounds enterableBounds = enterableCollider.bounds;
 		Bounds enteringBounds = enteringCollider.bounds;
 	
@@ -176,6 +175,12 @@ public class BlobScript : MonoBehaviour
 		jumping = false;
     }
 	
+	void OnParticleCollision(GameObject other)
+	{
+		GetComponent<Rigidbody2D>().AddForce(new Vector2( 100 * (transform.position.x - other.transform.position.x ), 100 * (transform.position.y - other.transform.position.y)));
+	}
+
+
 	void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
@@ -191,14 +196,18 @@ public class BlobScript : MonoBehaviour
         }
 	}
 
+	public ParticleSystem splatParticles;
+
 	IEnumerator Death()
     {
         shake.camShake();
 		gfx.GetComponent<SpriteRenderer>().material = matWhite;
 		Invoke("ResetMaterial", .2f);
-        GameObject a = Instantiate(blood, transform.position, Quaternion.identity);        
-		var main = a.GetComponent<ParticleSystem>().main;
-		main.startColor = new Color(50, 30, 22, 255);
+
+		Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
+		RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+        splatParticles.transform.position = hit.point;
+        splatParticles.Play();
         Time.timeScale = 0.1f;
         yield return new WaitForSeconds(0.01f);
 		gfx.GetComponent<SpriteRenderer>().material = matDefault;

@@ -9,7 +9,6 @@ public class LaserScript : MonoBehaviour
     public GameObject Bullet;
 
     private LineRenderer _line;
-    private int canTouch = 1;
     private float angle;
     private float timeSpawn;
     private int once = 0;
@@ -55,10 +54,8 @@ public class LaserScript : MonoBehaviour
         }
         int layerMaskP = (LayerMask.GetMask("Player"));
 
-//        RaycastHit2D hitP = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMaskP);
-//        if (hitP && canTouch > 0) {
+//        RaycastHit2D hitP = Physic{
 //            GameObject.Find("Player").GetComponent<CharacterStats>().TakeDamage(1);
-//            canTouch = 0;
 //        }
         if (Time.time > timeSpawn && once == 0) {
             once = 1;

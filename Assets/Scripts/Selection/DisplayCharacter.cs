@@ -10,7 +10,7 @@ public class DisplayCharacter : MonoBehaviour
     public Text archetype;
     public Text trait;
     public Text speed;
-    public Text name;
+    public new Text name;
 
     private Character currentCharacter;
 

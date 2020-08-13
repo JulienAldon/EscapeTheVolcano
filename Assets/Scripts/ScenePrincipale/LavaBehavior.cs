@@ -15,11 +15,23 @@ public class LavaBehavior : MonoBehaviour
     public Transform Area1;
     public Transform Area2;
     
+    private float lavaTimer = 0f;
+    private bool startTimer = false;
+    private float bonusTime = 0f;
+
+    public float minTime = 0f;
+    public float maxTime = 60f;
+    public float minBonusTime = 30f;
+    public float maxBonusTime = 90f;
+    
     private bool stopped = false;
+
     public float step = 0.01f;
-
+    public float baseExitTime = 30f;
+    
+    private float exitTime;
+    private bool once = true;
     public ExitScript ExitState;
-
     void Start()
     {
         localPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -29,6 +41,19 @@ public class LavaBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startTimer) {
+            lavaTimer += Time.deltaTime;
+        }
+
+        if (ExitScript.GetState() == 0) {
+            startTimer = true;
+        } else if (once) {
+            once = false;
+            startTimer = false;
+            var a = (maxBonusTime - maxTime) / minBonusTime;
+            var b = maxTime;
+            bonusTime = a * lavaTimer + b;
+        }
         if (Time.time > nextFire && ExitState.GetLavaFlow() && !stopped) {
             nextFire = Time.time + FireRate;
             localPos.y += step;
@@ -43,34 +68,32 @@ public class LavaBehavior : MonoBehaviour
         
         if (transform.position.y >= PointA.position.y)
         {
-            // Phase 1
-            FireRate = 0.1f;
             step = 0.1f;
+            FireRate = 90f / (baseExitTime + bonusTime);
         }
-        if (transform.position.y >= PointB.position.y)
-        {
-            // Phase 2
-            FireRate = 0.05f;
-            step = 0.1f;
-        }
-        if (transform.position.y >= PointC.position.y)
-        {
-            // Phase 3
-            FireRate = 0.05f;
-            step = 0.2f;
-        }
-        if (transform.position.y >= PointD.position.y)
-        {
-            stopped = true;
-            // Phase 4
-            // TODO: GameOver
-        }
+        // if (transform.position.y >= PointB.position.y)
+        // {
+        //     // Phase 2
+        //     FireRate = 0.05f;
+        //     step = 0.1f;
+        // }
+        // if (transform.position.y >= PointC.position.y)
+        // {
+        //     // Phase 3
+        //     FireRate = 0.05f;
+        //     step = 0.2f;
+        // }
+        // if (transform.position.y >= PointD.position.y)
+        // {
+        //     stopped = true;
+        //     // Phase 4
+        //     // TODO: GameOver
+        // }
         // int LayerIndex = LayerMask.NameToLayer("Player");
         // int layerMask = (1 << LayerIndex);
         // Collider2D hit = Physics2D.OverlapArea(Area1.position, Area2.position, layerMask);
         // if (hit) 
         // {
-        //     print("aze");
         // }
     }
 
@@ -93,7 +116,6 @@ public class LavaBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision);
         //
     }
 }

@@ -145,7 +145,6 @@ public class LevelGeneration : MonoBehaviour
 			foreach (var item in res)
 			{
 				if(item) {
-					print(item.gameObject);
 					Destroy(item.gameObject);
 				}
 			}
@@ -161,7 +160,6 @@ public class LevelGeneration : MonoBehaviour
 		foreach (var obj in Ground) {
 			tilemap.SetTile(new Vector3Int((int)(obj.transform.position.x), (int)(Mathf.Round(obj.transform.position.y- 0.5f) ), (int)(obj.transform.position.z)), wall);
 		}
-		
 		isDone = true;
 	}
 }

@@ -135,6 +135,11 @@ public class EnnemyScript : MonoBehaviour
         }
     }
 
+    public bool GetReachedEndOfPath()
+    {
+        return (reachedEndOfPath);
+    }
+
     void FixedUpdate()
     {
         if (path == null)
@@ -240,4 +245,10 @@ public class EnnemyScript : MonoBehaviour
         Time.timeScale = 1;        
         Destroy(gameObject);        
     }
+
+    void OnParticleCollision(GameObject other)
+	{
+		GetComponent<Rigidbody2D>().AddForce(new Vector2( 100 * (transform.position.x - other.transform.position.x ), 100 * (transform.position.y - other.transform.position.y)));
+	}
+
 }
