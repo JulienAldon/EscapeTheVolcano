@@ -170,13 +170,13 @@ public class CharacterStats : MonoBehaviour
     void UpdateLife()
     {
         int a = 0;
-        LifeDisplay = GameObject.FindGameObjectsWithTag("LifeDisplay");
-        foreach (var elem in LifeDisplay) {
+        // LifeDisplay = GameObject.FindGameObjectsWithTag("LifeDisplay");
+        foreach (var elem in interfaceTeam) {
             for (int i = 0; i < 5; i++) {
                 if (Team.team[a].currentHealth > i) { 
-                    elem.transform.GetChild(i).gameObject.SetActive(true);
+                    elem.transform.GetChild(2).GetChild(i).gameObject.SetActive(true);
                 } else {
-                    elem.transform.GetChild(i).gameObject.SetActive(false);                
+                    elem.transform.GetChild(2).GetChild(i).gameObject.SetActive(false);                
                 }
             }
         a += 1;
@@ -257,7 +257,7 @@ public class CharacterStats : MonoBehaviour
         }
 //        CharacterSwitch();
         // PowerDisplay[currentChar].tag = "Untagged";
-        LifeDisplay[currentChar].tag = "Untagged";
+        // LifeDisplay[currentChar].tag = "Untagged";
         GetComponent<TestController>().Shield.SetActive(false);
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
         var list = new List<Character>(Team.team);
@@ -269,7 +269,7 @@ public class CharacterStats : MonoBehaviour
         interfaceTeam = list2.ToArray();
        
         // switch
-        anim.SetTrigger("Switch");        
+        anim.SetTrigger("Switch");
         currentChar+=1;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
@@ -286,11 +286,12 @@ public class CharacterStats : MonoBehaviour
 
 	private void SplatCastRay()
 	{
-        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) - new Vector3(0, 10, 0) );
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-
+        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position));
+        LayerMask newMask = ~LayerMask.NameToLayer("Player");
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, newMask);
 		if (hit.collider != null) 
 		{
+            print(hit.point);
 			GameObject splat = Instantiate(splatPrefab, hit.point, Quaternion.identity) as GameObject;
 			splat.transform.SetParent(splatHolder, true);
             Splat splatScript = splat.GetComponent<Splat>();
@@ -303,6 +304,7 @@ public class CharacterStats : MonoBehaviour
             splatParticles.Play();
             var main = splatParticles.main; 
             main.startColor = Team.team[currentChar].color;
+            print(hit.collider.gameObject.tag);
             if (hit.collider.gameObject.tag == "BG") {
                 splatScript.Initialize(Splat.SplatLocation.Background);
             } else {
