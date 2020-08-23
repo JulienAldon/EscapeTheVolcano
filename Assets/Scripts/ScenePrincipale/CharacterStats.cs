@@ -241,24 +241,6 @@ public class CharacterStats : MonoBehaviour {
             LavaDie ();
             return;
         }
-<<<<<<< HEAD
-//        CharacterSwitch();
-        // PowerDisplay[currentChar].tag = "Untagged";
-        // LifeDisplay[currentChar].tag = "Untagged";
-        GetComponent<TestController>().Shield.SetActive(false);
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
-        var list = new List<Character>(Team.team);
-        list.Remove(Team.team[currentChar]);
-        Team.team = list.ToArray();
-        //interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
-        var list2 = new List<GameObject>(interfaceTeam);
-        list2.Remove(interfaceTeam[currentChar]);
-        interfaceTeam = list2.ToArray();
-       
-        // switch
-        anim.SetTrigger("Switch");
-        currentChar+=1;
-=======
         GetComponent<TestController> ().Shield.SetActive (false);
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = false;
         var list = new List<Character> (Team.team);
@@ -271,7 +253,6 @@ public class CharacterStats : MonoBehaviour {
         // switch
         anim.SetTrigger ("Switch");
         currentChar += 1;
->>>>>>> origin/feature/Optimisation
         if (currentChar >= Team.team.Length)
             currentChar = 0;
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = true;
@@ -282,58 +263,6 @@ public class CharacterStats : MonoBehaviour {
     }
 
     public GameObject splatPrefab;
-<<<<<<< HEAD
-    public Transform splatHolder;
-
-	private void SplatCastRay()
-	{
-        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position));
-        LayerMask newMask = ~LayerMask.NameToLayer("Player");
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, newMask);
-		if (hit.collider != null) 
-		{
-            print(hit.point);
-			GameObject splat = Instantiate(splatPrefab, hit.point, Quaternion.identity) as GameObject;
-			splat.transform.SetParent(splatHolder, true);
-            Splat splatScript = splat.GetComponent<Splat>();
-            // GameObject a = Instantiate(blood, transform.position, Quaternion.identity);
-            if (Team.team.Length <= 0)
-            {
-                LavaDie();
-            }
-            splatParticles.transform.position = hit.point;
-            splatParticles.Play();
-            var main = splatParticles.main; 
-            main.startColor = Team.team[currentChar].color;
-            print(hit.collider.gameObject.tag);
-            if (hit.collider.gameObject.tag == "BG") {
-                splatScript.Initialize(Splat.SplatLocation.Background);
-            } else {
-                splatScript.Initialize(Splat.SplatLocation.Foreground);
-            }
-		}
-        // else {
-        //     Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
-
-        //     RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-        //     if (Team.team.Length <= 0)
-        //     {
-        //         LavaDie();
-        //     }
-        //     splatParticles.transform.position = hit.point;
-        //     splatParticles.Play();
-        //     var main = splatParticles.main;
-        //     main.startColor = Team.team[currentChar].color;
-        // }
-	}
-
-    IEnumerator Death()
-    {
-        shake.camShake();
-        SplatCastRay();
-        Time.timeScale = 0.1f; 
-        yield return new WaitForSeconds(0.2f);
-=======
 
     IEnumerator Death () {
         shake.camShake ();
@@ -341,7 +270,6 @@ public class CharacterStats : MonoBehaviour {
         Instantiate (splatPrefab, transform.position, Quaternion.identity);
         Time.timeScale = 0.7f;
         yield return new WaitForSeconds (0.2f);
->>>>>>> origin/feature/Optimisation
         Time.timeScale = 1;
     }
 
