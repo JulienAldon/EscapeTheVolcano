@@ -9,8 +9,9 @@ I firstly made it in Python but the engine I coded wasn't optimized enough so a 
 I learned a lot of things about game design and game developpement in c# and using Unity.
 
 # Get The Game !
-Game is available on Windows and Linux !
-
+Game is available on Windows, Linux and MacOS !
+Warning, I could not test the game on MacOs please report any bug you find using the issue system in github (Menu issue on this page)
+To install the game on MacOs you'll need to allow the application.
 Go to release and download the latest version of the game.
 
 # Presentation of the game
