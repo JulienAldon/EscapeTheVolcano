@@ -15,6 +15,7 @@ TagManager:
   - LifeDisplay
   - PowerDisplay
   - BG
+  - SpawnPoints
   layers:
   - Default
   - TransparentFX

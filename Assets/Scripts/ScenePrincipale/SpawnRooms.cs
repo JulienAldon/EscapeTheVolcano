@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class SpawnRooms : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public LayerMask whatIsRoom;
     public LevelGeneration levelGen;
     // Update is called once per frame

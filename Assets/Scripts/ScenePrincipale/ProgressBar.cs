@@ -1,23 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization; 
+using System;
 
 public class ProgressBar : MonoBehaviour
 {
-    Vector3 localScale;
 
-    void Start()
-    {
-        localScale = transform.localScale;
-    }
+    // void Start()
+    // {
+    //     localScale = transform.localScale;
+    // }
     
     public void SetProgress(float progress)
     {
-        localScale.x = progress;       
-        transform.localScale = localScale;
-    }
-
-    void Update(){
-//        transform.rotation = Quaternion.identity;
+        transform.localScale = new Vector3(progress, transform.localScale.y, transform.localScale.z);
     }
 }

@@ -87,11 +87,20 @@ public class PlayerAnimation : MonoBehaviour
             step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, finalWorldPos, step);
         }
-        if (moveState == 8 && transform.position.x == finalWorldPos.x)
-        {
-            moveState = 10;
-            animator.SetTrigger("endSelected");
-            transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+        if (count < 3) {
+            if (moveState == 8 && transform.position.x == finalWorldPos.x)
+            {
+                moveState = 10;
+                animator.SetTrigger("endSelected");
+                transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+            }
+        } else {
+            if (moveState == 8 && Mathf.Floor(transform.position.x) == finalWorldPos.x)
+            {
+                moveState = 10;
+                animator.SetTrigger("endSelected");
+                transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+            }
         }
     }
 

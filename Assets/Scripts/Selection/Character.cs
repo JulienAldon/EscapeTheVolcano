@@ -30,6 +30,7 @@ public class Character
     public Sprite artwork;
     public string weaponType;
     public int currentFire;
+    public float fireRate;
     public Character(string _name, string _archetype, int _speed, int _life, Color _color, string _trait, int _efficiency, string _weaponType)
     {
         name = _name;
@@ -63,5 +64,16 @@ public class Character
         climber_step = (int)(20 / (climber_CDR / 0.1));
         hacker_state = 20;
         hacker_step = (int)(20 / (hacker_time / 0.1));
+        if (weaponType == "Missile")
+			fireRate = 1.4f;
+        else if (weaponType == "EnergyGun")
+			fireRate = 0.4f;
+        else if (weaponType == "Gatling")
+            fireRate = 0.06f;
+        else if (trait == "Partygoer")
+            fireRate = 0.6f;
+
+
+
     }
 }

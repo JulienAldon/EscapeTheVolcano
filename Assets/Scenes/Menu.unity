@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1984,7 +1984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -191, y: -249.42108}
+  m_AnchoredPosition: {x: -191, y: -315}
   m_SizeDelta: {x: 381.80005, y: 110.399994}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!95 &489069077
@@ -3394,7 +3394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -181}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880519289
@@ -3416,14 +3416,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Game made by Julien ALDON
+  m_text: 'Game design made by Julien ALDON
+
+
+    Game graphics made by Julien ALDON
+
+
+    Game
+    Code made by Julien ALDON
 
 
     Music made by Florian SOULAS
 
 
-    Sound
-    Designed by Lucas PIERRU'
+    Sound Designed
+    by Lucas PIERRU
+
+
+    Test leaded  by Gwendal PERRICHON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
   m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
@@ -3493,12 +3503,12 @@ MonoBehaviour:
   m_margin: {x: -859.3346, y: -513.1534, z: -863.9548, w: -515.8122}
   m_textInfo:
     textComponent: {fileID: 880519289}
-    characterCount: 87
+    characterCount: 197
     spriteCount: 0
-    spaceCount: 16
-    wordCount: 15
+    spaceCount: 38
+    wordCount: 33
     linkCount: 0
-    lineCount: 5
+    lineCount: 11
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

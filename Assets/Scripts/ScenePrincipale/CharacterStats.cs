@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterStats : MonoBehaviour
-{
+public class CharacterStats : MonoBehaviour {
     public GameObject colorBlindEffect;
     public GameObject BlindEffect;
     public GameObject ParanoidEffect;
     public GameObject Weapon;
-    public GameObject blood; 
+    public GameObject blood;
     public GameObject fetard;
     public Animator anim;
     public GameObject gfx;
@@ -17,9 +16,9 @@ public class CharacterStats : MonoBehaviour
 
     private Material matDefault;
 
-	private Shake shake;
+    private Shake shake;
     public int maxHealth;
-    public int currentHealth {get; private set;}
+    public int currentHealth { get; private set; }
 
     public int currentChar = 0;
 
@@ -36,19 +35,15 @@ public class CharacterStats : MonoBehaviour
 
     private bool damaged;
     public float damageRate;
-    private float nextDamage = 0;
+    private float nextDamage = 0f;
     public static int nbCrystals;
 
-    public int nbFlags;    
+    public int nbFlags;
     public float runner_CDR;
     public float climber_CDR;
     public float grenadier_bombs;
     public float tank_shield;
     public float hacker_time;
-
-    private GameObject[] LifeDisplay;
-    private GameObject[] PowerDisplay;
-    public GameObject[] PowerDisplays;
 
     /*
         1 - Runner
@@ -58,29 +53,25 @@ public class CharacterStats : MonoBehaviour
         5 - Tank
         6 - Grenadier
     */
-    void Awake()
-    {
-		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        UpdateStats();
+    void Awake () {
+        shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
+        UpdateStats ();
         int i = 0;
-        foreach (var member in interfaceTeam)
-        {
-            member.GetComponent<ArchetypeInterface>().archetype = Team.team[i].archetype;
-            i+=1;
+        foreach (var member in interfaceTeam) {
+            member.GetComponent<ArchetypeInterface> ().archetype = Team.team[i].archetype;
+            member.GetComponent<ArchetypeInterface> ().weapon = Team.team[i].weaponType;
+            member.GetComponent<ArchetypeInterface> ().trait = Team.team[i].trait;
+            i += 1;
         }
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;        
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = true;
         currentHealth = maxHealth;
-        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        // life.text = currentHealth.ToString();
-    }
-    
-    void Start()
-    {
-        matDefault = gfx.GetComponent<SpriteRenderer>().material;        
     }
 
-    void UpdateStats()
-    {
+    void Start () {
+        matDefault = gfx.GetComponent<SpriteRenderer> ().material;
+    }
+
+    void UpdateStats () {
         nbFlags = Team.team[currentChar].nbFlags;
         runner_CDR = Team.team[currentChar].runner_CDR;
         climber_CDR = Team.team[currentChar].climber_CDR;
@@ -90,382 +81,327 @@ public class CharacterStats : MonoBehaviour
 
         maxHealth = Team.team[currentChar].life;
         currentHealth = Team.team[currentChar].currentHealth;
-        Speed.SetValue(Team.team[currentChar].speed);
+        Speed.SetValue (Team.team[currentChar].speed);
         efficiency = Team.team[currentChar].efficiency;
         if (Team.team[currentChar].archetype == "Runner")
-            ClassType.SetValue(1);
+            ClassType.SetValue (1);
         else if (Team.team[currentChar].archetype == "Climber")
-            ClassType.SetValue(2);
+            ClassType.SetValue (2);
         else if (Team.team[currentChar].archetype == "Hacker")
-            ClassType.SetValue(3);
+            ClassType.SetValue (3);
         else if (Team.team[currentChar].archetype == "Tracker")
-            ClassType.SetValue(4);
+            ClassType.SetValue (4);
         else if (Team.team[currentChar].archetype == "Tank")
-            ClassType.SetValue(5);
+            ClassType.SetValue (5);
         else if (Team.team[currentChar].archetype == "Grenadier")
-            ClassType.SetValue(6);
-        
-        TraitUpdate();
+            ClassType.SetValue (6);
 
-        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        // life.text = currentHealth.ToString();
-        UpdateLife();
-        UpdatePower();
+        TraitUpdate ();
 
-        StartCoroutine(ChangeColor());
+        UpdateLife ();
+        UpdatePower ();
+
+        StartCoroutine (ChangeColor ());
     }
 
-    public void UpdatePower()
-    {
+    public void UpdatePower () {
         int a = 0;
-        // PowerDisplay = GameObject.FindGameObjectsWithTag("PowerDisplay");
         foreach (var power in interfaceTeam) {
             for (int i = 0; i < 20; i++) {
                 if (Team.team[a].archetype == "Runner") {
                     if (Team.team[a].runner_state > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
                 } else if (Team.team[a].archetype == "Climber") {
                     if (Team.team[a].climber_state > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
                 } else if (Team.team[a].archetype == "Hacker") {
                     if (Team.team[a].hacker_state > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
-                    
+
                 } else if (Team.team[a].archetype == "Tracker") {
                     if (Team.team[a].nbFlags > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
-                    
+
                 } else if (Team.team[a].archetype == "Tank") {
                     if (Team.team[a].tank_state > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
-                    
+
                 } else if (Team.team[a].archetype == "Grenadier") {
                     if (Team.team[a].grenadier_bombs > i) {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(true);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (true);
                     } else {
-                        power.transform.GetChild(0).GetChild(0).GetChild(i).gameObject.SetActive(false);
+                        power.transform.GetChild (0).GetChild (0).GetChild (i).gameObject.SetActive (false);
                     }
-                    
+
                 }
             }
-            a+=1;
+            a += 1;
         }
     }
 
-    void UpdateLife()
-    {
+    void UpdateLife () {
         int a = 0;
-        LifeDisplay = GameObject.FindGameObjectsWithTag("LifeDisplay");
-        foreach (var elem in LifeDisplay) {
+        foreach (var elem in interfaceTeam) {
             for (int i = 0; i < 5; i++) {
-                if (Team.team[a].currentHealth > i) { 
-                    elem.transform.GetChild(i).gameObject.SetActive(true);
+                if (Team.team[a].currentHealth > i) {
+                    elem.transform.GetChild (2).GetChild (i).gameObject.SetActive (true);
                 } else {
-                    elem.transform.GetChild(i).gameObject.SetActive(false);                
+                    elem.transform.GetChild (2).GetChild (i).gameObject.SetActive (false);
                 }
             }
-        a += 1;
+            a += 1;
         }
     }
 
-    IEnumerator ChangeColor()
-    {
-        yield return new WaitForSeconds(0.8f);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Team.team[currentChar].color;
+    IEnumerator ChangeColor () {
+        yield return new WaitForSeconds (0.8f);
+        transform.GetChild (0).GetComponent<SpriteRenderer> ().color = Team.team[currentChar].color;
     }
 
-  
-    public void CharacterSwitch()
-    {
-        anim.SetTrigger("Switch");
-        GetComponent<TestController>().Shield.SetActive(false);
-        GetComponent<TestController>().joint.enabled = false;
-        GetComponent<TestController>().line.enabled = false;
+    public void CharacterSwitch () {
+        anim.SetTrigger ("Switch");
+        GetComponent<TestController> ().Shield.SetActive (false);
+        GetComponent<TestController> ().joint.enabled = false;
+        GetComponent<TestController> ().line.enabled = false;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = false;
         currentChar += 1;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;
-        UpdateStats();
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = true;
+        UpdateStats ();
 
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyBindScript.keys["Switch"])) {
-            CharacterSwitch();
+    void Update () {
+        if (Input.GetKeyDown (KeyBindScript.keys["Switch"])) {
+            CharacterSwitch ();
         }
-        if (damaged && Time.time > nextDamage)
-        {
-            nextDamage = Time.time + damageRate;
-            damaged = false;
-        }
-        UpdatePower();
+        // if (damaged && Time.time > nextDamage) {
+        //     nextDamage = Time.time + damageRate;
+        //     damaged = false;
+        // }
+        UpdatePower ();
     }
 
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage (int damage, Vector2 _direction) {
+        print(damaged);
         if (damaged)
             return;
-        gfx.GetComponent<SpriteRenderer>().material = matWhite;
-        Invoke("ResetMaterial", .2f);
-        shake.camShake();
-        anim.SetTrigger("Hit");
+        StartCoroutine( Damaged ());
+        gfx.GetComponent<SpriteRenderer> ().material = matWhite;
+        Invoke ("ResetMaterial", 1f);
+        if (_direction.x < 0) {
+            _direction.x = -1;
+        } else if (_direction.x > 0) {
+            _direction.x = 1;
+        }
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(_direction.x * 30, 20), ForceMode2D.Impulse);
+        shake.camShake ();
+        anim.SetTrigger ("Hit");
         currentHealth -= damage;
         Team.team[currentChar].currentHealth -= 1;
-        // Text life = GameObject.Find("LifeText").GetComponent<Text>();
-        // life.text = currentHealth.ToString();
 
-        UpdateLife();
-        damaged = true;
+        UpdateLife ();
         if (currentHealth <= 0) {
-            Die();
+            Die ();
             return;
         }
     }
-    
-    void ResetMaterial()
-    {
-        gfx.GetComponent<SpriteRenderer>().material = matDefault;
+
+    IEnumerator Damaged() {
+        damaged = true;
+        yield return new WaitForSeconds (1);
+        damaged = false;
     }
-    
-    public void Die() 
-    {
+    void ResetMaterial () {
+        gfx.GetComponent<SpriteRenderer> ().material = matDefault;
+    }
+
+    public void Die () {
         // switch and supress char from team
         // delete
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isDead = true;
-        if (Team.team.Length <= 0)
-        {
-            LavaDie();
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isDead = true;
+        if (Team.team.Length <= 0) {
+            LavaDie ();
             return;
         }
-//        CharacterSwitch();
-        // PowerDisplay[currentChar].tag = "Untagged";
-        LifeDisplay[currentChar].tag = "Untagged";
-        GetComponent<TestController>().Shield.SetActive(false);
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
-        var list = new List<Character>(Team.team);
-        list.Remove(Team.team[currentChar]);
-        Team.team = list.ToArray();
-        //interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = false;
-        var list2 = new List<GameObject>(interfaceTeam);
-        list2.Remove(interfaceTeam[currentChar]);
-        interfaceTeam = list2.ToArray();
-       
+        GetComponent<TestController> ().Shield.SetActive (false);
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = false;
+        var list = new List<Character> (Team.team);
+        list.Remove (Team.team[currentChar]);
+        Team.team = list.ToArray ();
+        var list2 = new List<GameObject> (interfaceTeam);
+        list2.Remove (interfaceTeam[currentChar]);
+        interfaceTeam = list2.ToArray ();
+
         // switch
-        anim.SetTrigger("Switch");        
-        currentChar+=1;
+        anim.SetTrigger ("Switch");
+        currentChar += 1;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isSelected = true;
-        UpdateStats();
-        StartCoroutine(Death());
+        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = true;
+        UpdateStats ();
+        StartCoroutine (Death ());
         // Supress team member display
         // Make cool thing to say the player is dead
     }
 
-    public ParticleSystem splatParticles;
     public GameObject splatPrefab;
-    public Transform splatHolder;
 
-	private void SplatCastRay()
-	{
-        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) - new Vector3(0, 10, 0) );
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-
-		if (hit.collider != null) 
-		{
-			GameObject splat = Instantiate(splatPrefab, hit.point, Quaternion.identity) as GameObject;
-			splat.transform.SetParent(splatHolder, true);
-            Splat splatScript = splat.GetComponent<Splat>();
-            // GameObject a = Instantiate(blood, transform.position, Quaternion.identity);
-            if (Team.team.Length <= 0)
-            {
-                LavaDie();
-            }
-            splatParticles.transform.position = hit.point;
-            splatParticles.Play();
-            var main = splatParticles.main; 
-            main.startColor = Team.team[currentChar].color;
-            if (hit.collider.gameObject.tag == "BG") {
-                splatScript.Initialize(Splat.SplatLocation.Background);
-            } else {
-                splatScript.Initialize(Splat.SplatLocation.Foreground);
-            }
-		}
-        // else {
-        //     Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
-
-        //     RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-        //     if (Team.team.Length <= 0)
-        //     {
-        //         LavaDie();
-        //     }
-        //     splatParticles.transform.position = hit.point;
-        //     splatParticles.Play();
-        //     var main = splatParticles.main;
-        //     main.startColor = Team.team[currentChar].color;
-        // }
-	}
-
-    IEnumerator Death()
-    {
-        shake.camShake();
-        SplatCastRay();
-        Time.timeScale = 0.1f; 
-        yield return new WaitForSeconds(0.2f);
+    IEnumerator Death () {
+        shake.camShake ();
+        // SplatCastRay();
+        Instantiate (splatPrefab, transform.position, Quaternion.identity);
+        Time.timeScale = 0.7f;
+        yield return new WaitForSeconds (0.2f);
         Time.timeScale = 1;
     }
-    
-    public void LavaDie()
-    {
+
+    public void LavaDie () {
         // Game over
-        GameObject.Find("LevelLoader").GetComponent<LoadingLevel>().LoadGameOverScene();
+        GameObject.Find ("LevelLoader").GetComponent<LoadingLevel> ().LoadGameOverScene ();
         // Trigger Gameover scene
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 23)
-        {
+    void OnTriggerEnter2D (Collider2D other) {
+        if (other.gameObject.layer == 23) {
             nbCrystals += 1;
         }
     }
 
-    void TraitUpdate()
-    {
+    void TraitUpdate () {
         if (Team.team[currentChar].trait == "ColorBlind") {
-            Weapon.SetActive(true);
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
+            Weapon.SetActive (true);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
             currentAffliction = "ColorBlind";
         } else if (Team.team[currentChar].trait == "Blind") {
-            Weapon.SetActive(true);
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(true);
-            colorBlindEffect.SetActive(false);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Blind";            
+            Weapon.SetActive (true);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (true);
+            colorBlindEffect.SetActive (false);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Blind";
         } else if (Team.team[currentChar].trait == "Paranoid") {
-            Weapon.SetActive(true);            
-            ParanoidEffect.SetActive(true);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Paranoid";            
+            Weapon.SetActive (true);
+            ParanoidEffect.SetActive (true);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Paranoid";
         } else if (Team.team[currentChar].trait == "Normal") {
-            Weapon.SetActive(true);
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Normal";            
+            Weapon.SetActive (true);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Normal";
         } else if (Team.team[currentChar].trait == "Pacifist") {
             // no weapons
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(false);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Pacifist";            
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (false);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Pacifist";
         } else if (Team.team[currentChar].trait == "Astronaut") {
             // no gravity / less gravity
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);         
-            Weapon.SetActive(true);
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
             currentAffliction = "Astronaut";
-            GetComponent<Rigidbody2D>().gravityScale = 1.5f;
+            GetComponent<Rigidbody2D> ().gravityScale = 1.5f;
         } else if (Team.team[currentChar].trait == "Partygoer") {
             // fetard
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = confettisLeft;
-            GetComponent<TestController>().BulletRight = confettisRight;
-            fetard.SetActive(true);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = confettisLeft;
+            GetComponent<TestController> ().BulletRight = confettisRight;
+            fetard.SetActive (true);
             currentAffliction = "Partygoer";
         } else if (Team.team[currentChar].trait == "Coprolalia") {
             // insults on hit
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Coprolalia";            
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Coprolalia";
         } else if (Team.team[currentChar].trait == "I.B.S") {
             // Irritable bowel syndrome caca partout
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "I.B.S";            
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "I.B.S";
         } else if (Team.team[currentChar].trait == "Fat") {
             // jump less
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 3f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
-            currentAffliction = "Fat";            
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 3f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
+            currentAffliction = "Fat";
         } else if (Team.team[currentChar].trait == "Sissy") {
             // auto switch on hit
-            ParanoidEffect.SetActive(false);
-            BlindEffect.SetActive(false);
-            colorBlindEffect.SetActive(false);
-            Weapon.SetActive(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2.35f;
-            GetComponent<TestController>().BulletLeft = normalLeft;
-            GetComponent<TestController>().BulletRight = normalRight;
-            fetard.SetActive(false);
+            ParanoidEffect.SetActive (false);
+            BlindEffect.SetActive (false);
+            colorBlindEffect.SetActive (false);
+            Weapon.SetActive (true);
+            GetComponent<Rigidbody2D> ().gravityScale = 2.35f;
+            GetComponent<TestController> ().BulletLeft = normalLeft;
+            GetComponent<TestController> ().BulletRight = normalRight;
+            fetard.SetActive (false);
             currentAffliction = "Sissy";
         }
     }

@@ -71,7 +71,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 21e25b5e2bed1b14b88f9504f78fbbbf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 626d6081f620e7f4cb2a5c2771c14118, type: 2}
   m_sharedMaterial: {fileID: -6197597561396584858, guid: 21e25b5e2bed1b14b88f9504f78fbbbf,
     type: 2}
   m_fontSharedMaterials: []
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -221,3 +221,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960f1571e046e4e4890d3ce6aa268fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentInsult: {fileID: 0}

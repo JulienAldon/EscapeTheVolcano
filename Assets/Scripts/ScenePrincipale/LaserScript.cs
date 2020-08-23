@@ -34,7 +34,6 @@ public class LaserScript : MonoBehaviour
 
         _line = gameObject.GetComponent<LineRenderer>();
         _line.SetPosition(0, transform.position);
-//        int layerMask = (1 << LayerMask.NameToLayer("Ground"));
         _line.SetPosition(0, transform.parent.GetChild(0).position);
         
         if (Time.time < timeSpawn - 0.2f) {
@@ -53,16 +52,10 @@ public class LaserScript : MonoBehaviour
             _line.enabled = false;
         }
         int layerMaskP = (LayerMask.GetMask("Player"));
-
-//        RaycastHit2D hitP = Physic{
-//            GameObject.Find("Player").GetComponent<CharacterStats>().TakeDamage(1);
-//        }
         if (Time.time > timeSpawn && once == 0) {
             once = 1;
             Vector2 newdirection = lastLaserPosition - transform.position;
             GameObject a = Instantiate(Bullet, transform.parent.GetChild(0).position, Quaternion.identity);
-//            a.GetComponent<Rigidbody2D>().AddForce(direction.normalized);
-//            a.GetComponent<Rigidbody2D>().velocity = new Vector2(0.01f * direction.normalized.x, direction.normalized.y);
             a.GetComponent<TurretBullet>().direction = newdirection.normalized;
         }
     }

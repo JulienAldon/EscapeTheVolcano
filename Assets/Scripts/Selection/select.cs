@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class select : MonoBehaviour
 {
     public TextMesh life;
@@ -27,6 +27,11 @@ public class select : MonoBehaviour
     private bool canPressAgain = false;
     private bool once = true;
 
+    public TextMeshProUGUI traitTooltip;
+    public TextMeshProUGUI archetypeTooltip;
+    private Dictionary<string, string> ArchetypeTooltips = new Dictionary<string, string>();
+    private Dictionary<string, string> TraitTooltips = new Dictionary<string, string>();
+
     void Start()
     {
         currentCharacter = GenerateCharacter();
@@ -39,8 +44,27 @@ public class select : MonoBehaviour
         weapon.text = currentCharacter.weaponType;
         trait.text = currentCharacter.trait;
         currentPlayer = GameObject.Find("Player");
-        
-        currentPlayer.GetComponent<SpriteRenderer>().color = currentCharacter.color;        
+        currentPlayer.GetComponent<SpriteRenderer>().color = currentCharacter.color;
+        TraitTooltips["Fat"] = "Fat\nYou are heavier.";
+        TraitTooltips["Coprolalia"] = "Coprolalia\nWhen you are hit insults ennemy.";
+        TraitTooltips["I.B.S"] = "Irritable Bowel Syndrome\nOOOOPS";
+        TraitTooltips["Astronaut"] = "Astronaut\nYour gravity is different.";
+        TraitTooltips["Normal"] = "Normal\nYou are not special.";
+        TraitTooltips["ColorBlind"] = "Colorblind\nYou can't see colors.";
+        TraitTooltips["Blind"] = "Blind\nYou need glasses perhaps.";
+        TraitTooltips["Paranoid"] = "Paranoid\nBehind you !!";
+        TraitTooltips["Pacifist"] = "Pacifist\nCan't use weapons.";
+        TraitTooltips["Partygoer"] = "Partygoer\nPartyyyyyyyyyyy !!! (can't use weapons).";
+        TraitTooltips["Sissy"] = "Sissy\nYou are affraid, if you get hit, you'll run away.";
+        ArchetypeTooltips["Grenadier"] = "Grenadier\nHe can throw bombs using his action key, his number of bombs is limited by his efficiency.";
+        ArchetypeTooltips["Climber"] = "Climber\nHe can use a grappling line to climb easily using his action key, the efficiency affects the cooldown of the ability.";
+        ArchetypeTooltips["Runner"] = "Runner\nHe can dash using his action key, the efficiency affects the cooldown of the ability.";
+        ArchetypeTooltips["Tracker"] = "Tracker\nHe can place a flag by using his action key, by running through it, he get bonus movement speed, the flag is permanent. The efficiency affects the number of flags a tracker can place into the world.";
+        ArchetypeTooltips["Hacker"] = "Hacker\nHe can deactivate a turret permanently by using his action key. The efficiency change the speed of the deactivation.";
+        ArchetypeTooltips["Tank"] = "Tank\nHe can shield himself by using his action key, the shield make the Tank unvulnerable (even to lava). The efficiency affects the time a shield can stay on the Tank. Beware once the Tank used all his shield, he can't use it anymore.";
+        traitTooltip.text = TraitTooltips[currentCharacter.trait];
+        archetypeTooltip.text = ArchetypeTooltips[currentCharacter.archetype];
+
     }
     
     public bool getCanSwitch()
@@ -97,6 +121,8 @@ public class select : MonoBehaviour
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
         weapon.text = currentCharacter.weaponType;
+        traitTooltip.text = TraitTooltips[currentCharacter.trait];
+        archetypeTooltip.text = ArchetypeTooltips[currentCharacter.archetype];
     }
 
     void accept() {
@@ -129,8 +155,20 @@ public class select : MonoBehaviour
         int speed = Random.Range(1, 3);
         int life = Random.Range(3, 5);
         int efficiency = Random.Range(1, 11);
-        int weaponChoice = Random.Range(0, 2);
-        string weaponType = weaponChoice == 0 ? "Missile" : weaponChoice == 2 ? "EnergyGun" : "Gatling"; 
+        string weaponType = "";
+
+        if (trait == "Pacifist" || trait == "Partygoer") {
+            weaponType = "No Weapon";
+        } else {
+            int weaponChoice = Random.Range(0, 3);
+            if (weaponChoice == 0) {
+                weaponType = "Missile";
+            } else if (weaponChoice == 1) {
+                weaponType = "EnergyGun";
+            } else if (weaponChoice == 2) {
+                weaponType = "Gatling";
+            }
+        }
         Color color;
         if (arch == "Runner") {
             color = new Color32(102,255,80, 255);

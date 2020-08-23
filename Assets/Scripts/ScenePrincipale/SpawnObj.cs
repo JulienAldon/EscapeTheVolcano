@@ -11,14 +11,9 @@ public class SpawnObj : MonoBehaviour
         int rand = 0;
 
         rand = Random.Range(0, objects.Length);
-
+        if (objects.Length == 0)
+            return;
         GameObject instance = (GameObject)Instantiate(objects[rand], transform.position, Quaternion.identity);
         instance.transform.parent = transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
