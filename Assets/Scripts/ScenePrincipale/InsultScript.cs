@@ -25,10 +25,6 @@ public class InsultScript : MonoBehaviour
         currentInsult.text = insult.ElementAt(Random.Range(0, insult.Count));
     }
 
-    void Update()
-    {
-    }
-
     void readTextFile(string file_path)
     {
         StreamReader inp_stm = new StreamReader(file_path);

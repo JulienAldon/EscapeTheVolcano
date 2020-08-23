@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5077409680826554396}
   - component: {fileID: 2318609510415655345}
   m_Layer: 0
-  m_Name: Left Right Bottom Room Template 1
-  m_TagString: Untagged
+  m_Name: Left Right Bottom Room Template
+  m_TagString: SpawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5077409680826554396
 Transform:

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3572873720287666549}
   m_Layer: 0
   m_Name: Left Right Room Template
-  m_TagString: Untagged
+  m_TagString: SpawnPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6327183175842928856
 Transform:

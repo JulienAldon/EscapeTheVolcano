@@ -20,10 +20,4 @@ public class PopupsManager : MonoBehaviour
         Switch.text = "Use " + KeyBindScript.keys["Switch"] + " to Switch between team members";
         Action.text = "Use " + KeyBindScript.keys["Action"] + " to trigger specific Action";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -57,7 +57,7 @@ public class Splat : MonoBehaviour
         switch (splatLocation) {
             case SplatLocation.Background:
                 spriteRenderer.color = backgroundTint;
-                // spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+                spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 spriteRenderer.sortingOrder = 0;
                 break;
 

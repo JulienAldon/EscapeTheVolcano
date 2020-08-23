@@ -10,10 +10,4 @@ public class DestroyAfterTime : MonoBehaviour
     {
         Destroy(gameObject, time);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

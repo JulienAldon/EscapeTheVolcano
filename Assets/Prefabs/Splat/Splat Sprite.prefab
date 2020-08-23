@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3390567427555118255
 MonoBehaviour:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14070d472f95d2c46b66a80ee3c428a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundTint: {r: 0, g: 0, b: 0, a: 0}
+  backgroundTint: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
   minSizeMod: 0.8
   maxSizeMod: 1.5
   sprites:

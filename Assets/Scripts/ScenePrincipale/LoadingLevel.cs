@@ -7,11 +7,6 @@ public class LoadingLevel : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 3f;
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Quit()
     {

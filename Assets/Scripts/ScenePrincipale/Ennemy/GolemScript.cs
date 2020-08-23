@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GolemScript : MonoBehaviour
-{
+public class GolemScript : MonoBehaviour {
     public BoxCollider2D playerCol;
     public BoxCollider2D moveCol;
     public float speed;
@@ -11,7 +10,7 @@ public class GolemScript : MonoBehaviour
     public GameObject slashLeft;
     public Animator anim;
     private Shake shake;
-    public GameObject blood; 
+    public GameObject blood;
     public float fireRate;
     private bool attacking;
     Rigidbody2D rb;
@@ -21,107 +20,88 @@ public class GolemScript : MonoBehaviour
     private Material matDefault;
     public GameObject gfx;
 
-    
     // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-		shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        matDefault = gfx.GetComponent<SpriteRenderer>().material;
-         
+    void Start () {
+        rb = GetComponent<Rigidbody2D> ();
+        shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
+        matDefault = gfx.GetComponent<SpriteRenderer> ().material;
+
     }
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
         Collider2D[] r = new Collider2D[10];
-        ContactFilter2D f = new ContactFilter2D();
-        f.layerMask = LayerMask.GetMask("Ground");
-        int a = moveCol.OverlapCollider(f, r);
-        if ((moveCol.IsTouchingLayers(LayerMask.GetMask("Ground")) == false || a > 2) && !attacking)
-        {
-            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+        ContactFilter2D f = new ContactFilter2D ();
+        f.layerMask = LayerMask.GetMask ("Ground");
+        int a = moveCol.OverlapCollider (f, r);
+        if ((moveCol.IsTouchingLayers (LayerMask.GetMask ("Ground")) == false || a > 2) && !attacking) {
+            transform.localScale = new Vector2 (-(Mathf.Sign (rb.velocity.x)), transform.localScale.y);
         }
         if (!attacking) {
-            if (IsFacingRight()) {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+            if (IsFacingRight ()) {
+                rb.velocity = new Vector2 (speed, rb.velocity.y);
             } else {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rb.velocity = new Vector2 (-speed, rb.velocity.y);
             }
         }
-        if (playerCol.IsTouchingLayers(LayerMask.GetMask("Player")) && Time.time > nextFire) {
+        if (playerCol.IsTouchingLayers (LayerMask.GetMask ("Player")) && Time.time > nextFire) {
             nextFire = Time.time + fireRate;
-            StartCoroutine(Attack());
+            StartCoroutine (Attack ());
         }
     }
-    
-    private bool IsFacingRight()
-    {
+
+    private bool IsFacingRight () {
         return transform.localScale.x > Mathf.Epsilon;
     }
-    
-    IEnumerator Attack() 
-    {
+
+    IEnumerator Attack () {
         attacking = true;
-        anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(0.5f);
-        if (IsFacingRight())
-            Instantiate(slashRight, new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z), Quaternion.identity);
+        anim.SetTrigger ("Attack");
+        yield return new WaitForSeconds (0.5f);
+        if (IsFacingRight ())
+            Instantiate (slashRight, new Vector3 (transform.position.x + 1f, transform.position.y, transform.position.z), Quaternion.identity);
         else
-            Instantiate(slashLeft, new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z), Quaternion.identity);
-            
+            Instantiate (slashLeft, new Vector3 (transform.position.x - 1f, transform.position.y, transform.position.z), Quaternion.identity);
+
         attacking = false;
     }
 
-    void TakeDamage()
-    {
-        gfx.GetComponent<SpriteRenderer>().material = matWhite;
+    void TakeDamage () {
+        gfx.GetComponent<SpriteRenderer> ().material = matWhite;
         Health -= 1;
         if (Health <= 0)
-            StartCoroutine(Death());
+            StartCoroutine (Death ());
         else
-            Invoke("ResetMaterial", .2f);
+            Invoke ("ResetMaterial", .2f);
     }
 
-    void ResetMaterial()
-    {
-        gfx.GetComponent<SpriteRenderer>().material = matDefault;
+    void ResetMaterial () {
+        gfx.GetComponent<SpriteRenderer> ().material = matDefault;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+    void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
-            TakeDamage();
+            TakeDamage ();
         }
     }
-	
-	void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.layer == 19)
-        {
-            TakeDamage();
+
+    void OnTriggerEnter2D (Collider2D collision) {
+        if (collision.gameObject.layer == 19) {
+            TakeDamage ();
         }
-	}
-
-    public ParticleSystem splatParticles;
-
-    IEnumerator Death()
-    {
-        shake.camShake();
-
-        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(transform.position) );
-		RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-        splatParticles.transform.position = hit.point;
-        splatParticles.Play();
-        Time.timeScale = 0.1f;
-        yield return new WaitForSeconds(0.01f);
-        Time.timeScale = 1;
-        Destroy(gameObject);
     }
 
-    void OnParticleCollision(GameObject other)
-	{
-		GetComponent<Rigidbody2D>().AddForce(new Vector2( 100 * (transform.position.x - other.transform.position.x ), 100 * (transform.position.y - other.transform.position.y)));
-	}
+    public GameObject splatParticles;
 
+    IEnumerator Death () {
+        shake.camShake ();
+        // SplatCastRay();
+        Instantiate (splatParticles, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds (0.1f);
+        Destroy (gameObject);
+    }
+
+    void OnParticleCollision (GameObject other) {
+        GetComponent<Rigidbody2D> ().AddForce (new Vector2 (100 * (transform.position.x - other.transform.position.x), 100 * (transform.position.y - other.transform.position.y)));
+    }
 
 }

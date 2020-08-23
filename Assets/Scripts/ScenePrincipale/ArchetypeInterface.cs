@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class ArchetypeInterface : MonoBehaviour
 {
+    public Sprite[] weaponSprites;
+    public Sprite[] traitSprites;
     public Sprite[] archetypeSprites;
 
     public Text archetypeText;
     // public Text lifeText;
     public Image archetypeImage;
+    public Image traitImage;
+    public Image weaponImage;
     public Image selectImage;
 
     public string archetype;
+    public string trait;
+    public string weapon;
     public int life;    
     public bool isSelected;
     public bool isDead;
@@ -43,6 +49,38 @@ public class ArchetypeInterface : MonoBehaviour
         } else if (archetype == "Grenadier") {
             archetypeImage.sprite = archetypeSprites[5];
             archetypeText.text = "Grenadier";
+        }
+        if (weapon == "Gatling") {
+            weaponImage.sprite = weaponSprites[0];
+        } else if (weapon == "Missile") {
+            weaponImage.sprite = weaponSprites[1];
+        } else if (weapon == "EnergyGun") {
+            weaponImage.sprite = weaponSprites[2];
+        } else {
+            weaponImage.sprite = weaponSprites[3];
+        }
+        if (trait == "Blind") {
+            traitImage.sprite = traitSprites[0];
+        } else if (trait == "ColorBlind") {
+            traitImage.sprite = traitSprites[1];
+        } else if (trait == "Paranoid") {
+            traitImage.sprite = traitSprites[2];
+        } else if (trait == "Astronaut") {
+            traitImage.sprite = traitSprites[3];
+        } else if (trait == "Pacifist") {
+            traitImage.sprite = traitSprites[4];
+        } else if (trait == "Partygoer") {
+            traitImage.sprite = traitSprites[5];
+        } else if (trait == "Coprolalia") {
+            traitImage.sprite = traitSprites[6];
+        } else if (trait == "I.B.S") {
+            traitImage.sprite = traitSprites[7];
+        } else if (trait == "Sissy") {
+            traitImage.sprite = traitSprites[8];
+        } else if (trait == "Fat") {
+            traitImage.sprite = traitSprites[9];
+        } else {
+            traitImage.sprite = traitSprites[10];
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 926243693936257677}
   - component: {fileID: 680342842239044530}
   - component: {fileID: 6577902978178052880}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,6 @@ MonoBehaviour:
   hackTime: 1.5
   hackRechargeSpeed: 0.1
   turretRange: 90
-  speed: 5
 --- !u!212 &680342842239044530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -139,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640318226471270425}
   - component: {fileID: 2554484688582192892}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8384357499084589926}
   - component: {fileID: 8470269483683026045}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: SelectCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6152875733178999417}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: HeadPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +331,7 @@ GameObject:
   - component: {fileID: 4183754495454460916}
   - component: {fileID: 4183754495454460918}
   - component: {fileID: 4183754495454460919}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: HackProgressionBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4183754496536270481}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: canonEnd
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -457,7 +456,7 @@ GameObject:
   - component: {fileID: 4183754496944994298}
   - component: {fileID: 4183754496944994301}
   - component: {fileID: 4183754496944994300}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Turret
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -589,7 +588,7 @@ GameObject:
   - component: {fileID: 7798617706878333540}
   - component: {fileID: 7133692840834711895}
   - component: {fileID: 4183754496310392529}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
