@@ -15,7 +15,7 @@ public class turretScript : MonoBehaviour {
     public float hackDistance = 65f;
     public float hackTime = 3f;
     public float hackRechargeSpeed = 0.1f;
-    public float turretRange = 90f;
+    public float turretRange = 5f;
     private float hackTimer;
     float nextFire = 0f;
     bool deactivated = false;
@@ -29,8 +29,10 @@ public class turretScript : MonoBehaviour {
     private float hackingCursorTime = 0.1f;
     private float hackingCursorTimer;
     private float nextRefreshHacker = 0;
+	private AudioManager audio;
 
     void Start () {
+		audio = FindObjectOfType<AudioManager> ();        
         target = GameObject.Find ("Player");
         if (Team.team[0] != null)
             hackTime = Team.team[target.GetComponent<CharacterStats> ().currentChar].hacker_time;
@@ -91,6 +93,10 @@ public class turretScript : MonoBehaviour {
                 updateProgressionBar ();
             }
         }
+    }
+
+    public void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, turretRange/4);
     }
 
     public bool getStoppedState () {
@@ -169,6 +175,8 @@ public class turretScript : MonoBehaviour {
         if (deactivated == false) {
             animator.SetBool ("deactivated", true);
             deactivated = true;
+			audio.Play ("TurretDeactivate", UnityEngine.Random.Range (1, 3));
+            
         }
     }
 
@@ -184,5 +192,6 @@ public class turretScript : MonoBehaviour {
         currentLaser = bulletObj;
         bulletObj.transform.parent = gameObject.transform;
         //animator.SetBool("shooting", true);
+        // audio.Play ("TurretFire", UnityEngine.Random.Range (1, 3));        
     }
 }

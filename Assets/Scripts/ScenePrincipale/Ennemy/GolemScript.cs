@@ -19,9 +19,11 @@ public class GolemScript : MonoBehaviour {
     public Material matWhite;
     private Material matDefault;
     public GameObject gfx;
+	private AudioManager audio;
 
     // Start is called before the first frame update
     void Start () {
+		audio = FindObjectOfType<AudioManager> ();		                
         rb = GetComponent<Rigidbody2D> ();
         shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
         matDefault = gfx.GetComponent<SpriteRenderer> ().material;
@@ -95,6 +97,7 @@ public class GolemScript : MonoBehaviour {
     IEnumerator Death () {
         shake.camShake ();
         // SplatCastRay();
+        audio.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														                
         Instantiate (splatParticles, transform.position, Quaternion.identity);
         yield return new WaitForSeconds (0.1f);
         Destroy (gameObject);

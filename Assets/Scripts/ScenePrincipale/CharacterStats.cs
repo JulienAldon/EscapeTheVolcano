@@ -34,6 +34,7 @@ public class CharacterStats : MonoBehaviour {
     public GameObject lifeLostParticles;
 
     private bool damaged;
+    public bool damagedInertia;
     public float damageRate;
     private float nextDamage = 0f;
     public static int nbCrystals;
@@ -44,6 +45,7 @@ public class CharacterStats : MonoBehaviour {
     public float grenadier_bombs;
     public float tank_shield;
     public float hacker_time;
+	private AudioManager audio;
 
     /*
         1 - Runner
@@ -68,6 +70,7 @@ public class CharacterStats : MonoBehaviour {
     }
 
     void Start () {
+		audio = FindObjectOfType<AudioManager> ();                
         matDefault = gfx.GetComponent<SpriteRenderer> ().material;
     }
 
@@ -200,18 +203,21 @@ public class CharacterStats : MonoBehaviour {
     }
 
     public void TakeDamage (int damage, Vector2 _direction) {
-        print(damaged);
         if (damaged)
             return;
         StartCoroutine( Damaged ());
+        StartCoroutine( DamagedInertiaCounter ());
         gfx.GetComponent<SpriteRenderer> ().material = matWhite;
         Invoke ("ResetMaterial", 1f);
         if (_direction.x < 0) {
             _direction.x = -1;
         } else if (_direction.x > 0) {
             _direction.x = 1;
+        } else if (_direction.x == 0) {
+            _direction.x = 1;
         }
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(_direction.x * 30, 20), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(_direction.x * 10, 15), ForceMode2D.Impulse);
         shake.camShake ();
         anim.SetTrigger ("Hit");
         currentHealth -= damage;
@@ -224,9 +230,18 @@ public class CharacterStats : MonoBehaviour {
         }
     }
 
+    IEnumerator DamagedInertiaCounter()
+    {
+        damagedInertia = true;
+        yield return new WaitForSeconds (.2f);
+        damagedInertia = false;
+    }
+
     IEnumerator Damaged() {
         damaged = true;
+        gameObject.layer = 15; // change layer to shell to be un touchable
         yield return new WaitForSeconds (1);
+        gameObject.layer = 10; 
         damaged = false;
     }
     void ResetMaterial () {
@@ -249,17 +264,21 @@ public class CharacterStats : MonoBehaviour {
         var list2 = new List<GameObject> (interfaceTeam);
         list2.Remove (interfaceTeam[currentChar]);
         interfaceTeam = list2.ToArray ();
-
+       
         // switch
         anim.SetTrigger ("Switch");
         currentChar += 1;
         if (currentChar >= Team.team.Length)
             currentChar = 0;
-        interfaceTeam[currentChar].GetComponent<ArchetypeInterface> ().isSelected = true;
+         if (Team.team.Length <= 0) {
+            LavaDie ();
+            return;
+        }
         UpdateStats ();
         StartCoroutine (Death ());
         // Supress team member display
         // Make cool thing to say the player is dead
+        
     }
 
     public GameObject splatPrefab;
@@ -267,6 +286,8 @@ public class CharacterStats : MonoBehaviour {
     IEnumerator Death () {
         shake.camShake ();
         // SplatCastRay();
+        audio.Play ("PlayerDeath", UnityEngine.Random.Range (1f, 3f));																			
+        
         Instantiate (splatPrefab, transform.position, Quaternion.identity);
         Time.timeScale = 0.7f;
         yield return new WaitForSeconds (0.2f);
@@ -275,6 +296,7 @@ public class CharacterStats : MonoBehaviour {
 
     public void LavaDie () {
         // Game over
+        audio.Play ("Lose");																			        
         GameObject.Find ("LevelLoader").GetComponent<LoadingLevel> ().LoadGameOverScene ();
         // Trigger Gameover scene
     }

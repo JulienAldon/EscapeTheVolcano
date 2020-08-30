@@ -66,3 +66,31 @@ ESCAAAAAAPE !!
 
 ## Tracker
 ![](Screenshots/tracker.png)
+
+# Credits
+
+## Sound Effects
+- Lucas Pierru
+- Little Robot Sound Factory (link)[www.littlerobotsoundfactory.com]
+- OpenGameArt links
+    - (Futuristic Shotgun)[https://opengameart.org/content/futuristic-shotgun]
+    - (Futuristic Assault Rifle)[https://opengameart.org/content/futuristic-weapons-assault-rifle]
+    - (Machine Shutting down)[https://opengameart.org/content/machine-shutting-down]
+    - (Energy Gun)[https://opengameart.org/content/4-projectile-launches]
+    - (Lost Sound)[https://opengameart.org/content/epic-amulet-item]
+    - (Crystal sound)[https://opengameart.org/content/completion-sound]
+    - (Explosion)[https://opengameart.org/content/2-high-quality-explosions]
+    - (Grenadier)[https://opengameart.org/content/sfxthrow]
+    - (Climber)[https://opengameart.org/content/arrow-hit-twang]
+    - (LavaLoop)[https://opengameart.org/content/lava-loop]
+    - (Runner)[https://opengameart.org/content/flap-splat-poo-yo-frankie]
+    - (PartyGoer)[https://opengameart.org/node/16322]
+    - (Syssy)[https://opengameart.org/content/aargh-male-screams]
+    - (Coprolalia)[https://opengameart.org/content/rage-mode]
+    - (IBS)[https://opengameart.org/content/gastric-distress]
+## Music
+- Florian Soulas
+
+## Testing
+- Gwendal Perrichon
+

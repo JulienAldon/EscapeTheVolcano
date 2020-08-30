@@ -15,6 +15,8 @@ public class select : MonoBehaviour
     public TextMesh efficiency;
 
     public string[] archetypes;
+    public string[] legendaryTraits;
+    public string[] rareTraits;
     public string[] traits;
     public GameObject player;
     public GameObject gameContinue;
@@ -149,23 +151,34 @@ public class select : MonoBehaviour
 
     Character GenerateCharacter()
     {
+        //efficiency < 5 ? common : efficiency >= 5 && efficiency <= 9 ? Rare : Legendary;
+        int efficiency = Random.Range(1, 11);
         string arch = archetypes[Random.Range(0, archetypes.Length)];
-        string trait = traits[Random.Range(0, traits.Length)];
+        string trait;
+        if (efficiency < 5) { // Common
+            trait = traits[Random.Range(0, traits.Length)];
+        } else if (efficiency >= 5 && efficiency <= 9) {
+            trait = rareTraits[Random.Range(0, rareTraits.Length)];
+        } else {
+            trait = legendaryTraits[Random.Range(0, legendaryTraits.Length)];
+        }
         string name = generateName(5);
         int speed = Random.Range(1, 3);
         int life = Random.Range(3, 5);
-        int efficiency = Random.Range(1, 11);
         string weaponType = "";
-
+        int weaponChoice;
         if (trait == "Pacifist" || trait == "Partygoer") {
             weaponType = "No Weapon";
         } else {
-            int weaponChoice = Random.Range(0, 3);
+            if (efficiency == 10)
+                weaponChoice = Random.Range(0, 5);
+            else 
+                weaponChoice = Random.Range(0, 3);            
             if (weaponChoice == 0) {
                 weaponType = "Missile";
             } else if (weaponChoice == 1) {
                 weaponType = "EnergyGun";
-            } else if (weaponChoice == 2) {
+            } else if (weaponChoice >= 2) {
                 weaponType = "Gatling";
             }
         }

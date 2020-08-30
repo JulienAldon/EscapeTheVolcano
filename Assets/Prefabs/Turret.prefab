@@ -58,7 +58,7 @@ MonoBehaviour:
   hackDistance: 65
   hackTime: 1.5
   hackRechargeSpeed: 0.1
-  turretRange: 90
+  turretRange: 20
 --- !u!212 &680342842239044530
 SpriteRenderer:
   m_ObjectHideFlags: 0

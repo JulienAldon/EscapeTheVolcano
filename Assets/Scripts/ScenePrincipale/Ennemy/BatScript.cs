@@ -15,9 +15,11 @@ public class BatScript : MonoBehaviour {
     private Seeker seeker;
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
+	private AudioManager audio;
 
     // Start is called before the first frame update
     void Start () {
+		audio = FindObjectOfType<AudioManager> ();		        
         target = GameObject.FindWithTag ("Player").transform;
         seeker = GetComponent<Seeker> ();
         shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
@@ -86,6 +88,7 @@ public class BatScript : MonoBehaviour {
 
     IEnumerator Death () {
         shake.camShake ();
+        audio.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
         // SplatCastRay();
         Instantiate (splatParticles, transform.position, Quaternion.identity);
         yield return new WaitForSeconds (0.1f);
