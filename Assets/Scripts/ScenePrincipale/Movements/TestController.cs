@@ -454,6 +454,117 @@ public class TestController : MonoBehaviour {
 		}
 	}
 
+	void MissileFire()
+	{
+		if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
+			bulletPos += new Vector2 (+0.6f, -0.05f);
+			var clone1 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			var clone2 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			var clone3 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			var clone4 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			var clone5 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			clone1.transform.Rotate (0, 0, 20f);
+			clone2.transform.Rotate (0, 0, 10f);
+			clone3.transform.Rotate (0, 0, 0f);
+			clone4.transform.Rotate (0, 0, -10f);
+			clone5.transform.Rotate (0, 0, -20f);
+			clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (300, 0));
+			clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (300, 0));
+			clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0) * new Vector2 (300, 0));
+			clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (300, 0));
+			clone5.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (300, 0));
+		} else {
+			bulletPos += new Vector2 (-0.6f, -0.05f);
+			var clone1 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			var clone2 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			var clone3 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			var clone4 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			var clone5 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			clone1.transform.Rotate (0, 0, 20f);
+			clone2.transform.Rotate (0, 0, 10f);
+			clone3.transform.Rotate (0, 0, 0f);
+			clone4.transform.Rotate (0, 0, -10f);
+			clone5.transform.Rotate (0, 0, -20f);
+			clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (-300, 0));
+			clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (-300, 0));
+			clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0f) * new Vector2 (-300, 0));
+			clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (-300, 0));
+			clone5.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (-300, 0));
+		}
+		audio.Play ("MissileFire", UnityEngine.Random.Range (1, 3));
+	}
+
+	void GatlingFire()
+	{
+		GameObject clone;
+		CharacterStats Character = GetComponent<CharacterStats> ();
+		if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
+			bulletPos += new Vector2 (+0.6f, -0.05f);
+			clone = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
+			int angle = UnityEngine.Random.Range (-(minSpread + spreadRange), minSpread + spreadRange);
+			clone.transform.Rotate (0, 0, angle);
+			clone.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, angle) * new Vector2 (1000, 0));
+		} else {
+			bulletPos += new Vector2 (-0.6f, -0.05f);
+			clone = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
+			int angle = UnityEngine.Random.Range (-(minSpread + spreadRange), minSpread + spreadRange);
+			clone.transform.Rotate (0, 0, angle);
+			clone.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, angle) * new Vector2 (-1000, 0));
+		}
+		audio.Play ("GatlingFire", UnityEngine.Random.Range (1, 3));
+	}
+
+	void EnergyFire()
+	{
+		CharacterStats Character = GetComponent<CharacterStats> ();
+		GameObject clone;
+		if (Team.team[Character.currentChar].currentFire > 2)
+			Team.team[Character.currentChar].currentFire = 0;
+		if (Team.team[Character.currentChar].currentFire == 0) {
+			audio.Play ("PlayerFire1", UnityEngine.Random.Range (1, 3));
+			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
+				bulletPos += new Vector2 (+0.6f, -0.05f);
+				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 0;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (1000, 250));
+			} else {
+				bulletPos += new Vector2 (-0.6f, -0.05f);
+				clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 0;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-1000, 250));
+			}
+		} else if (Team.team[Character.currentChar].currentFire == 1) {
+			audio.Play ("PlayerFire2", UnityEngine.Random.Range (1, 3));
+			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
+				bulletPos += new Vector2 (+0.6f, -0.05f);
+				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 3;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (1500, -100));
+			} else {
+				bulletPos += new Vector2 (-0.6f, -0.05f);
+				clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 3;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-1500, -100));
+
+			}
+		} else if (Team.team[Character.currentChar].currentFire == 2) {
+			audio.Play ("PlayerFire3", UnityEngine.Random.Range (1, 3));
+			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
+				bulletPos += new Vector2 (+0.6f, -0.05f);
+				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 1;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (2000, 50));
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-facing * 700, 0));
+			} else {
+				bulletPos += new Vector2 (-0.6f, -0.05f);
+				clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
+				clone.GetComponent<BulletScript> ().maxBounce = 1;
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-2000, 50));
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-facing * 700, 0));
+			}
+		}
+		Team.team[Character.currentChar].currentFire += 1;
+	}
 	public GameObject BulletLeftGatling;
 	public GameObject BulletRightGatling;
 
@@ -470,179 +581,32 @@ public class TestController : MonoBehaviour {
 			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
 				bulletPos += new Vector2 (+0.6f, -0.05f);
 				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
-				// clone.GetComponent<SplatParticles>().splatParticles.Play();
 			} else {
 				bulletPos += new Vector2 (-0.6f, -0.05f);
 				clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
-				// clone.GetComponent<SplatParticles>().splatParticles.Play();
 			}
 			GameObject b = Instantiate (Shell, transform.position, Quaternion.identity);
 			b.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (300 * -facing, 200));
 			return;
 		}
-		// 3 type of weapon
-		// Missile launcher
-		// gatling
 		if (Team.team[Character.currentChar].weaponType == "Missile") { // missile
 			if (Team.team[Character.currentChar].currentFire > 2)
 				Team.team[Character.currentChar].currentFire = 0;
-			audio.Play ("MissileFire", UnityEngine.Random.Range (1, 3));			
 			if (Team.team[Character.currentChar].currentFire == 0) {
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					var clone1 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0f) * new Vector2 (300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (300, 0));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					var clone1 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (-300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0f) * new Vector2 (-300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (-300, 0));
-				}
+				MissileFire();
+				Team.team[GetComponent<CharacterStats> ().currentChar].fireRate = 0.3f; // TODO: proper missile firerate management
 			} else if (Team.team[Character.currentChar].currentFire == 1) {
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					var clone1 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone4 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone4.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (300, 0));
-					clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (300, 0));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					var clone1 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone4 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone4.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (-300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (-300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (-300, 0));
-					clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (-300, 0));
-				}
+				MissileFire();
+				Team.team[GetComponent<CharacterStats> ().currentChar].fireRate = 0.3f; // TODO: proper missile firerate management
 			} else if (Team.team[Character.currentChar].currentFire == 2) {
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					var clone1 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone4 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					var clone5 = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone4.transform.Rotate (0, 0, -10f);
-					clone5.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0) * new Vector2 (300, 0));
-					clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (300, 0));
-					clone5.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (300, 0));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					var clone1 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone2 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone3 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone4 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					var clone5 = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-					clone1.transform.Rotate (0, 0, 10f);
-					clone2.transform.Rotate (0, 0, 0f);
-					clone3.transform.Rotate (0, 0, -10f);
-					clone4.transform.Rotate (0, 0, -10f);
-					clone5.transform.Rotate (0, 0, -10f);
-					clone1.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 20f) * new Vector2 (-300, 0));
-					clone2.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 10f) * new Vector2 (-300, 0));
-					clone3.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, 0f) * new Vector2 (-300, 0));
-					clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (-300, 0));
-					clone5.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (-300, 0));
-				}
+				MissileFire();
+				Team.team[GetComponent<CharacterStats> ().currentChar].fireRate = 1.5f; // TODO: proper missile firerate management
 			}
 			Team.team[Character.currentChar].currentFire += 1;
 		} else if (Team.team[Character.currentChar].weaponType == "Gatling") { // gatling
-			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-				bulletPos += new Vector2 (+0.6f, -0.05f);
-				clone = Instantiate (BulletRightGatling, bulletPos, Quaternion.identity);
-				int angle = UnityEngine.Random.Range (-(minSpread + spreadRange), minSpread + spreadRange);
-				clone.transform.Rotate (0, 0, angle);
-				clone.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, angle) * new Vector2 (1000, 0));
-			} else {
-				bulletPos += new Vector2 (-0.6f, -0.05f);
-				clone = Instantiate (BulletLeftGatling, bulletPos, Quaternion.identity);
-				int angle = UnityEngine.Random.Range (-(minSpread + spreadRange), minSpread + spreadRange);
-				clone.transform.Rotate (0, 0, angle);
-				clone.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, angle) * new Vector2 (-1000, 0));
-			}
-			audio.Play ("GatlingFire", UnityEngine.Random.Range (1, 3));
-			
+			GatlingFire();			
 		} else if (Team.team[Character.currentChar].weaponType == "EnergyGun") { // energyBall
-			if (Team.team[Character.currentChar].currentFire > 2)
-				Team.team[Character.currentChar].currentFire = 0;
-			if (Team.team[Character.currentChar].currentFire == 0) {
-				audio.Play ("PlayerFire1", UnityEngine.Random.Range (1, 3));
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 0;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (1000, 250));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 0;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-1000, 250));
-
-				}
-			} else if (Team.team[Character.currentChar].currentFire == 1) {
-				audio.Play ("PlayerFire2", UnityEngine.Random.Range (1, 3));
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 3;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (1500, -100));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 3;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-1500, -100));
-
-				}
-			} else if (Team.team[Character.currentChar].currentFire == 2) {
-				audio.Play ("PlayerFire3", UnityEngine.Random.Range (1, 3));
-				if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
-					bulletPos += new Vector2 (+0.6f, -0.05f);
-					clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 1;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (2000, 50));
-					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-facing * 700, 0));
-				} else {
-					bulletPos += new Vector2 (-0.6f, -0.05f);
-					clone = Instantiate (BulletLeft, bulletPos, Quaternion.identity);
-					clone.GetComponent<BulletScript> ().maxBounce = 1;
-					clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-2000, 50));
-					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-facing * 700, 0));
-				}
-			}
-			Team.team[Character.currentChar].currentFire += 1;
+			EnergyFire();
 		}
 
 		GameObject a = Instantiate (Shell, transform.position, Quaternion.identity);

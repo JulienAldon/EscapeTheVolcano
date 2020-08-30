@@ -65,11 +65,14 @@ public class Character
         hacker_state = 20;
         hacker_step = (int)(20 / (hacker_time / 0.1));
         if (weaponType == "Missile")
-			fireRate = 1.4f;
+			fireRate = 0.3f;
+			// fireRate = 0.3f;
         else if (weaponType == "EnergyGun")
 			fireRate = 0.4f;
+			// fireRate = 0.2f;
         else if (weaponType == "Gatling")
             fireRate = 0.06f;
+            // fireRate = 0.03f;
         else if (trait == "Partygoer")
             fireRate = 0.6f;
 
