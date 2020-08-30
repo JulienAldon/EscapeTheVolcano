@@ -81,13 +81,6 @@ public class LevelGeneration : MonoBehaviour {
 			}
 		} else if (direction == 5) { // Move Down
 			downCounter++;
-			if (transform.position.x == startingPositions[randStartingPos >= 2 ? 0 : startingPositions.Length - 1].position.x && transform.position.y == minY) {
-				// Stop level Gen
-				print("aze");
-				Instantiate (wayOut, new Vector2 (transform.position.x, transform.position.y - 2.0f), Quaternion.identity);
-				stopGeneration = true;
-				return;
-			}
 			if (transform.position.y > minY) {
 				Collider2D roomDetection = Physics2D.OverlapCircle (transform.position, 1, room);
 				if (roomDetection.GetComponent<RoomType> ().type != 1 && roomDetection.GetComponent<RoomType> ().type != 3) {
@@ -111,9 +104,33 @@ public class LevelGeneration : MonoBehaviour {
 				Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
 
 				direction = Random.Range (1, 6);
+			} else  {
+				if (transform.position.x == startingPositions[randStartingPos].position.x)
+				{
+					if (transform.position.x < maxX) {
+						downCounter = 0;
+						Vector2 newPos = new Vector2 (transform.position.x + moveAmount, transform.position.y);
+						transform.position = newPos;
+
+						int rand = Random.Range (0, rooms.Length);
+						Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
+					} else {
+						downCounter = 0;
+						Vector2 newPos = new Vector2 (transform.position.x - moveAmount, transform.position.y);
+						transform.position = newPos;
+
+						int rand = Random.Range (0, rooms.Length);
+						Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
+					}
+				}
+				// Stop level Gen
+				Instantiate (wayOut, new Vector2 (transform.position.x, transform.position.y - 2.0f), Quaternion.identity);
+				stopGeneration = true;
 			}
 		}
 	}
+				// while (transform.position.x != startingPositions[randStartingPos >= 2 ? 0 : startingPositions.Length - 1].position.x)
+
 	// Update is called once per frame
 	void Update () {
 		if (timeBtwRoom <= 0 && stopGeneration == false) {
@@ -151,11 +168,11 @@ public class LevelGeneration : MonoBehaviour {
 		Level.path.RemoveAll (item => item == null);
 
 		yield return new WaitForSeconds (1f);
+
 		var Ground = GameObject.FindGameObjectsWithTag ("Ground");
 		foreach (var obj in Ground) {
 			tilemap.SetTile (new Vector3Int ((int) (obj.transform.position.x), (int) (Mathf.Round (obj.transform.position.y - 0.5f)), (int) (obj.transform.position.z)), wall);
 		}
 		isDone = true;
-
 	}
 }
