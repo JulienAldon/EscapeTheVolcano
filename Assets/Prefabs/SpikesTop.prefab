@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042658298424301170}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4675134634333099409}
   - component: {fileID: 6868136183419437637}
   - component: {fileID: 7578914088904816071}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 5815625919978274048}
   - component: {fileID: 1052597586165338923}
   - component: {fileID: 5948552267770511929}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: SpikesTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2855829384834848}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3594351161829007646}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: MeleeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -320,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830517898378743280}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}

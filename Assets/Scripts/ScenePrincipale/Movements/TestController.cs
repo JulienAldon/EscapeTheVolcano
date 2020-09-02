@@ -142,9 +142,9 @@ public class TestController : MonoBehaviour {
 	private float usedTimeShield;
 	private bool canShield = true;
 
-	private AudioManager audio;
+	private AudioManager audioManager;
 	void Start () {
-		audio = FindObjectOfType<AudioManager> ();		
+		audioManager = FindObjectOfType<AudioManager> ();		
 		//Create an object to check if player is grounded or touching wall
 		groundState = new GroundState (transform.gameObject);
 		dashTime = startDashTime;
@@ -163,6 +163,8 @@ public class TestController : MonoBehaviour {
 	private float speedTimer;
 
 	void Update () {
+		if (Team.team.Length == 0)
+			return;
 		speedTimer -= Time.deltaTime;
 		if (speedTimer <= 0) {
 			speed = 5 + GetComponent<CharacterStats> ().Speed.GetValue ();
@@ -179,14 +181,14 @@ public class TestController : MonoBehaviour {
 		}
 		CharacterStats Character = GetComponent<CharacterStats> ();
 		//Handle input
-		if (groundState.isTouching () && Input.GetKeyDown (KeyBindScript.keys["Jump"])  && !GetComponent<CharacterStats>().damagedInertia) {
+		if (groundState.isTouching () && Input.GetKeyDown (KeyBindScript.keys["Jump"])  && !GetComponent<CharacterStats>().knockBack) {
 			isJumping = true;
 			jumpTimeCounter = jumpTime;
 			if (groundState.isTouching ()) {
 				createDust ();
 			}
 			input.y = 1;
-			audio.Play ("PlayerJump");
+			audioManager.Play ("PlayerJump");
 			animator.SetTrigger ("Jumping");
 			animator.SetBool ("Jump", true);
 		}
@@ -204,7 +206,7 @@ public class TestController : MonoBehaviour {
 			isJumping = false;
 		}
 
-		if (Input.GetKey (KeyBindScript.keys["Left"]) && !GetComponent<CharacterStats>().damagedInertia) {
+		if (Input.GetKey (KeyBindScript.keys["Left"]) && !GetComponent<CharacterStats>().knockBack) {
 			input.x = -1;
 			lastInput.x = -1;
 			if (transform.localRotation.y == 0) {
@@ -217,7 +219,7 @@ public class TestController : MonoBehaviour {
 			}
 			if (!isJumping)
 				animator.SetBool ("Running", true);
-		} else if (Input.GetKey (KeyBindScript.keys["Right"])  && !GetComponent<CharacterStats>().damagedInertia) {
+		} else if (Input.GetKey (KeyBindScript.keys["Right"])  && !GetComponent<CharacterStats>().knockBack) {
 			input.x = 1;
 			lastInput.x = 1;
 			if (transform.localRotation.y == -1) {
@@ -248,8 +250,6 @@ public class TestController : MonoBehaviour {
 			if (Input.GetKey (KeyBindScript.keys["Fire"]) && Time.time > nextFire) {
 				nextFire = Time.time + Team.team[GetComponent<CharacterStats> ().currentChar].fireRate;
 				fire ();
-
-				//gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * -facing * 200f);
 				// shake.camShake();
 			}
 			if (Input.GetKeyDown (KeyBindScript.keys["Fire"])) {
@@ -263,7 +263,7 @@ public class TestController : MonoBehaviour {
 		if (Character.ClassType.GetValue () == 1) // Runner
 		{
 			if (Input.GetKeyDown (KeyBindScript.keys["Action"]) && canDash && Time.time > nextDash) {
-				audio.Play ("Runner", UnityEngine.Random.Range (1, 3));														
+				audioManager.Play ("Runner", UnityEngine.Random.Range (1, 3));														
 				Dash (input.x, rawY);
 				Team.team[Character.currentChar].runner_state = 0;
 				nextDash = Time.time + Character.runner_CDR;
@@ -281,7 +281,7 @@ public class TestController : MonoBehaviour {
 		{
 			if (Input.GetKeyDown (KeyBindScript.keys["Action"]) && Time.time > nextClimb) {
 				//create the link (raycast ...)
-				audio.Play ("Climber", UnityEngine.Random.Range (1, 3));										
+				audioManager.Play ("Climber", UnityEngine.Random.Range (1, 3));										
 				
 				int LayerIndex = LayerMask.NameToLayer ("Ground");
 				int layerMask = (1 << LayerIndex);
@@ -333,7 +333,7 @@ public class TestController : MonoBehaviour {
 			GameObject[] turrets = GameObject.FindGameObjectsWithTag ("Turret");
 			GameObject turret = GetClosestTurret (turrets);
 			if (Input.GetKeyDown (KeyBindScript.keys["Action"])) {
-				audio.Play ("Hacker", UnityEngine.Random.Range (1, 3));										
+				audioManager.Play ("Hacker", UnityEngine.Random.Range (1, 3));										
 				// Show range
 				foreach (GameObject n in turrets) {
 					if (!n.transform.GetChild (1).gameObject.GetComponent<turretScript> ().getDeactivation ())
@@ -357,7 +357,7 @@ public class TestController : MonoBehaviour {
 		} else if (Character.ClassType.GetValue () == 4) // Tracker
 		{
 			if (Input.GetKeyDown (KeyBindScript.keys["Action"]) && Time.time > NextFlag && groundState.isGround () && Team.team[GetComponent<CharacterStats> ().currentChar].nbFlags > 0) {
-				audio.Play ("Tracker", UnityEngine.Random.Range (1, 3));														
+				audioManager.Play ("Tracker", UnityEngine.Random.Range (1, 3));														
 				NextFlag = Time.time + FlagRate;
 				Team.team[GetComponent<CharacterStats> ().currentChar].nbFlags -= 1;
 				GetComponent<CharacterStats> ().UpdatePower ();
@@ -380,7 +380,7 @@ public class TestController : MonoBehaviour {
 				Shield.SetActive (false);
 			}
 			if (Input.GetKeyDown (KeyBindScript.keys["Action"])) {
-				audio.Play ("Tank", UnityEngine.Random.Range (1, 3));						
+				audioManager.Play ("Tank", UnityEngine.Random.Range (1, 3));						
 				if (Shield.activeSelf == false && canShield) {
 					Shield.SetActive (true);
 				} else {
@@ -444,7 +444,7 @@ public class TestController : MonoBehaviour {
 	void shootBomb () {
 		if (Time.time > nextBomb && Team.team[GetComponent<CharacterStats> ().currentChar].grenadier_bombs > 0) {
 			nextBomb = Time.time + BombRate;
-			audio.Play ("Grenadier", UnityEngine.Random.Range (1, 3));																	
+			audioManager.Play ("Grenadier", UnityEngine.Random.Range (1, 3));																	
 			//Throw a bomb
 			Team.team[GetComponent<CharacterStats> ().currentChar].grenadier_bombs -= 1;
 			GetComponent<CharacterStats> ().UpdatePower ();
@@ -491,7 +491,7 @@ public class TestController : MonoBehaviour {
 			clone4.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -10f) * new Vector2 (-300, 0));
 			clone5.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, -20f) * new Vector2 (-300, 0));
 		}
-		audio.Play ("MissileFire", UnityEngine.Random.Range (1, 3));
+		audioManager.Play ("MissileFire", UnityEngine.Random.Range (1, 3));
 	}
 
 	void GatlingFire()
@@ -511,7 +511,7 @@ public class TestController : MonoBehaviour {
 			clone.transform.Rotate (0, 0, angle);
 			clone.GetComponent<Rigidbody2D> ().AddForce (Quaternion.Euler (0, 0, angle) * new Vector2 (-1000, 0));
 		}
-		audio.Play ("GatlingFire", UnityEngine.Random.Range (1, 3));
+		audioManager.Play ("GatlingFire", UnityEngine.Random.Range (1, 3));
 	}
 
 	void EnergyFire()
@@ -521,7 +521,7 @@ public class TestController : MonoBehaviour {
 		if (Team.team[Character.currentChar].currentFire > 2)
 			Team.team[Character.currentChar].currentFire = 0;
 		if (Team.team[Character.currentChar].currentFire == 0) {
-			audio.Play ("PlayerFire1", UnityEngine.Random.Range (1, 3));
+			audioManager.Play ("PlayerFire1", UnityEngine.Random.Range (1, 3));
 			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
 				bulletPos += new Vector2 (+0.6f, -0.05f);
 				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
@@ -534,7 +534,7 @@ public class TestController : MonoBehaviour {
 				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-1000, 250));
 			}
 		} else if (Team.team[Character.currentChar].currentFire == 1) {
-			audio.Play ("PlayerFire2", UnityEngine.Random.Range (1, 3));
+			audioManager.Play ("PlayerFire2", UnityEngine.Random.Range (1, 3));
 			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
 				bulletPos += new Vector2 (+0.6f, -0.05f);
 				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
@@ -548,7 +548,7 @@ public class TestController : MonoBehaviour {
 
 			}
 		} else if (Team.team[Character.currentChar].currentFire == 2) {
-			audio.Play ("PlayerFire3", UnityEngine.Random.Range (1, 3));
+			audioManager.Play ("PlayerFire3", UnityEngine.Random.Range (1, 3));
 			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
 				bulletPos += new Vector2 (+0.6f, -0.05f);
 				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
@@ -577,7 +577,7 @@ public class TestController : MonoBehaviour {
 		GameObject clone;
 		CharacterStats Character = GetComponent<CharacterStats> ();
 		if (Character.currentAffliction == "Partygoer") {
-			audio.Play ("Partygoer", UnityEngine.Random.Range (1, 3));																	
+			audioManager.Play ("Partygoer", UnityEngine.Random.Range (1, 3));																	
 			if (transform.localRotation == Quaternion.Euler (0, 0, 0)) {
 				bulletPos += new Vector2 (+0.6f, -0.05f);
 				clone = Instantiate (BulletRight, bulletPos, Quaternion.identity);
@@ -614,7 +614,7 @@ public class TestController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (GetComponent<CharacterStats>().damagedInertia) {
+		if (GetComponent<CharacterStats>().knockBack) {
 			return;
 		}
 		if (direction == 0) {
@@ -637,20 +637,19 @@ public class TestController : MonoBehaviour {
 	public void Damage(Vector3 dir)
 	{
 		CharacterStats Character = GetComponent<CharacterStats> ();
-		// Hitback
-		audio.Play ("PlayerHit", UnityEngine.Random.Range (1, 3));																		
-		Character.TakeDamage (1, (transform.position - dir).normalized);
+		audioManager.Play ("PlayerHit", UnityEngine.Random.Range (1, 3));																		
+		Character.TakeDamage (1, dir.x < transform.position.x ? 1 : -1);
 		shake.camShake ();
 		if (Character.currentAffliction == "Coprolalia") {
 			StartCoroutine (Insult ());
-			audio.Play ("Coprolalia", UnityEngine.Random.Range (1f, 3f));																			
+			audioManager.Play ("Coprolalia", UnityEngine.Random.Range (1f, 3f));																			
 		} else if (Character.currentAffliction == "I.B.S") {
 			Instantiate (poop, transform.position, Quaternion.identity);
-			audio.Play ("IBS", UnityEngine.Random.Range (1f, 3f));														
+			audioManager.Play ("IBS", UnityEngine.Random.Range (1f, 3f));														
 			
 		} else if (Character.currentAffliction == "Sissy") {
 			Character.CharacterSwitch ();
-			audio.Play ("Sissy", UnityEngine.Random.Range (1f, 3f));																								
+			audioManager.Play ("Sissy", UnityEngine.Random.Range (1f, 3f));																								
 		}
 	}
 
@@ -661,13 +660,13 @@ public class TestController : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D collision) {
 		if (collision.gameObject.layer == 8 && jumped) {
 			animator.SetBool ("Jump", false);
-			audio.Play ("PlayerLand", UnityEngine.Random.Range (0.1f, 3f));
+			audioManager.Play ("PlayerLand", UnityEngine.Random.Range (0.1f, 3f));
 			jumped = false;
 			landingDust.Play();
 		}
 		if (collision.otherCollider.GetType () == typeof (CapsuleCollider2D)) {
-			if (collision.gameObject.layer == 17 || collision.gameObject.layer == 18) {
-				//TakeDamage(collision.gameObject.transform.position);
+			if (collision.gameObject.layer == 17 || collision.gameObject.layer == 18) { //|| 
+				Damage(collision.gameObject.transform.position);
 			}
 		} else if (collision.otherCollider.GetType () == typeof (CircleCollider2D)) {
 			// do stuff only for the circle collider

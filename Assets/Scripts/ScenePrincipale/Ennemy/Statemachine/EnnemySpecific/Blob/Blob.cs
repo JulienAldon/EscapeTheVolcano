@@ -28,13 +28,14 @@ public class Blob : Entity
 
 	private Shake shake;
 	public bool canRespawn = true;
+	private AudioManager audioManager;
 
 
     public override void Start()
     {
         base.Start();
 
-        // audio = FindObjectOfType<AudioManager> ();		        		
+        audioManager = FindObjectOfType<AudioManager> ();		        		
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
 
         moveState = new Blob_MoveState(this, stateMachine, "move", moveStateData, this);
@@ -67,10 +68,16 @@ public class Blob : Entity
 			StartCoroutine (Death ());
 		}
 	}
+    public void Damage(Vector3 dir)
+    {
+        StartCoroutine (Death ());
+    }
+
 	IEnumerator Death () {
 		shake.camShake ();
         // GetComponent<AudioSource>().Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		// SplatCastRay();
+        audioManager.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));
 		Instantiate (splatParticles, transform.position, Quaternion.identity);
 		// Time.timeScale = 0.1f;
 		yield return new WaitForSeconds (0.1f);

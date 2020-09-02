@@ -80,6 +80,9 @@ TextureImporter:
   - first:
       213: 6140371026183861522
     second: GolemSpriteSheet_12
+  - first:
+      213: 7008196080364914190
+    second: GolemSpriteSheet_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -433,6 +436,27 @@ TextureImporter:
       bones: []
       spriteID: 2153acc4aeaf63550800000000000000
       internalID: 6140371026183861522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GolemSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 118
+        width: 29
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e068f6e343d124160800000000000000
+      internalID: 7008196080364914190
       vertices: []
       indices: 
       edges: []

@@ -44,7 +44,7 @@ public class LevelGeneration : MonoBehaviour {
 		transform.position = startingPositions[randStartingPos].position;
 		Level.FirstRoom = Instantiate (rooms[0], transform.position, Quaternion.identity);
 		start = transform.position;
-		direction = Random.Range (1, 6);
+		direction = Random.Range (1, 5);
 	}
 
 	private void Move () {
@@ -103,7 +103,7 @@ public class LevelGeneration : MonoBehaviour {
 				int rand = Random.Range (2, 4);
 				Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
 
-				direction = Random.Range (1, 6);
+				direction = Random.Range (1, 5);
 			} else  {
 				if (transform.position.x == startingPositions[randStartingPos].position.x)
 				{
@@ -150,7 +150,8 @@ public class LevelGeneration : MonoBehaviour {
 		int LayerIndex1 = 1 << LayerMask.NameToLayer ("Ground");
 		int LayerIndex2 = 1 << LayerMask.NameToLayer ("Ennemy");
 		int LayerIndex3 = 1 << LayerMask.NameToLayer ("Turret");
-		int layerMask = LayerIndex1 | LayerIndex2 | LayerIndex3;
+		int LayerIndex4 = 1 << LayerMask.NameToLayer ("ennemyBullet");
+		int layerMask = LayerIndex1 | LayerIndex2 | LayerIndex3 | LayerIndex4;
 		// Collider2D[] res = new Collider2D[20];
 		// ContactFilter2D f = new ContactFilter2D();
 		// f.layerMask = layerMask;

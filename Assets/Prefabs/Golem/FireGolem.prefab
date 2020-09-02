@@ -5085,7 +5085,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018620789, y: 0.48}
+  m_Offset: {x: 0.018620789, y: 0.41}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5096,8 +5096,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.9439926}
-  m_EdgeRadius: 0.04
+  m_Size: {x: 0.4, y: 0.71}
+  m_EdgeRadius: 0.06
 --- !u!114 &1947657344549265802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +5124,8 @@ MonoBehaviour:
   meleeAttackPosition: {fileID: 6725760530887497692}
   canRespawn: 1
   attackAnim: {fileID: 1075968368037635349}
+  matWhite: {fileID: 2100000, guid: 3510c76e1fad17e409cc96f9b63cd38d, type: 2}
+  gfx: {fileID: 6251704234207897443}
   splatParticles: {fileID: 5384850827356543091, guid: 73b5029516faa5941beb9c8050836b69,
     type: 3}
 --- !u!1 &7213206375639874383

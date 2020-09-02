@@ -16,16 +16,24 @@ public class KeyBindScript : MonoBehaviour
     void Awake()
     {
         GameObject player = GameObject.Find("Player");
-        // if (!player) {
-            keys.Add("Up", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "G")));
-            keys.Add("Down", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
-            keys.Add("Left", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left", "Q")));
-            keys.Add("Right", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right", "D")));
-            keys.Add("Jump", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Jump", "Space")));
-            keys.Add("Fire", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Fire", "E")));
-            keys.Add("Switch", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Switch", "A")));
-            keys.Add("Action", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Action", "R")));
-        // }
+        if (!player) {
+            if (!keys.ContainsKey("Up"))
+                keys.Add("Up", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "Z")));
+            if (!keys.ContainsKey("Down"))
+                keys.Add("Down", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
+            if (!keys.ContainsKey("Left"))
+                keys.Add("Left", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left", "Q")));
+            if (!keys.ContainsKey("Right"))
+                keys.Add("Right", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right", "D")));
+            if (!keys.ContainsKey("Jump"))
+                keys.Add("Jump", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Jump", "Space")));
+            if (!keys.ContainsKey("Fire"))
+                keys.Add("Fire", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Fire", "E")));
+            if (!keys.ContainsKey("Switch"))
+                keys.Add("Switch", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Switch", "A")));
+            if (!keys.ContainsKey("Action"))
+                keys.Add("Action", (KeyCode) System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Action", "R")));
+        }
         up.text = keys["Up"].ToString();
         down.text = keys["Down"].ToString();
         left.text = keys["Left"].ToString();

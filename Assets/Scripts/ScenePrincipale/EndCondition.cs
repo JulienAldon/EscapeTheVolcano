@@ -7,13 +7,13 @@ public class EndCondition : MonoBehaviour
 {
     private LoadingLevel load;
     private Timer timer;
-    private AudioManager audio;
+    private AudioManager audioManager;
 
     void Start()
     {
         load = GameObject.Find("LevelLoader").GetComponent<LoadingLevel>();
         timer = GameObject.Find("TimeManager").GetComponent<Timer>();
-		audio = FindObjectOfType<AudioManager> ();        
+		audioManager = FindObjectOfType<AudioManager> ();        
         
     } 
 
@@ -21,7 +21,7 @@ public class EndCondition : MonoBehaviour
     {
         if (Level.canWin == true)
         {
-            audio.Play ("win");														                    
+            audioManager.Play ("win");														                    
             timer.Finnish();
             load.LoadWinScene();
             

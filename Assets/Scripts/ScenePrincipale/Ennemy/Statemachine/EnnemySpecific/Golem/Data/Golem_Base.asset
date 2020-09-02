@@ -19,7 +19,7 @@ MonoBehaviour:
   closeRangeActionDistance: 0.62
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 262400
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024

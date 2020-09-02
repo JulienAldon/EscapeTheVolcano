@@ -30,13 +30,20 @@ public class Golem : Entity
 	public bool canRespawn = true;
     public GameObject attackAnim;
 
-
+    private int Health = 5;
+    
+    public Material matWhite;
+    private Material matDefault;
+	private AudioManager audioManager;
+    public GameObject gfx;
+   
     public override void Start()
     {
         base.Start();
 
-        // audio = FindObjectOfType<AudioManager> ();		        		
+        audioManager = FindObjectOfType<AudioManager> ();
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
+        matDefault = gfx.GetComponent<SpriteRenderer> ().material;
 
         moveState = new Golem_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Golem_IdleState(this, stateMachine, "idle", idleStateData, this);
@@ -52,6 +59,11 @@ public class Golem : Entity
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attcakRadius);
     }
 
+    public void Damage(Vector3 dir)
+    {
+        TakeDamage();
+    }
+
     public GameObject splatParticles;
     void OnParticleCollision (GameObject other) {
 		GetComponent<Rigidbody2D> ().AddForce (new Vector2 (30  * (transform.position.x - other.transform.position.x), 30 * (transform.position.y - other.transform.position.y)));
@@ -59,17 +71,29 @@ public class Golem : Entity
 
 	void OnCollisionEnter2D (Collision2D collision) {
 		if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
-			StartCoroutine (Death ());
+			TakeDamage();
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D collision) {
 		if (collision.gameObject.layer == 19) {
-			StartCoroutine (Death ());
+			TakeDamage();
 		}
 	}
+    void ResetMaterial () {
+        gfx.GetComponent<SpriteRenderer> ().material = matDefault;
+    }
+     void TakeDamage () {
+        gfx.GetComponent<SpriteRenderer> ().material = matWhite;
+        Health -= 1;
+        if (Health <= 0)
+            StartCoroutine (Death ());
+        else
+            Invoke ("ResetMaterial", .2f);
+    }
 	IEnumerator Death () {
 		shake.camShake ();
+        audioManager.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));
         // GetComponent<AudioSource>().Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		// SplatCastRay();
 		Instantiate (splatParticles, transform.position, Quaternion.identity);

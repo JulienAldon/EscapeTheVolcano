@@ -29,10 +29,10 @@ public class turretScript : MonoBehaviour {
     private float hackingCursorTime = 0.1f;
     private float hackingCursorTimer;
     private float nextRefreshHacker = 0;
-	private AudioManager audio;
+	private AudioManager audioManager;
 
     void Start () {
-		audio = FindObjectOfType<AudioManager> ();        
+		audioManager = FindObjectOfType<AudioManager> ();        
         target = GameObject.Find ("Player");
         if (Team.team[0] != null)
             hackTime = Team.team[target.GetComponent<CharacterStats> ().currentChar].hacker_time;
@@ -43,8 +43,10 @@ public class turretScript : MonoBehaviour {
     }
 
     void Update () {
-        if (Team.team[0] != null)
-            hackTime = Team.team[target.GetComponent<CharacterStats> ().currentChar].hacker_time;
+        if (Team.team.Length <= 0) {
+            return;
+        }
+        hackTime = Team.team[target.GetComponent<CharacterStats> ().currentChar].hacker_time;
         if (!deactivated) {
             if (currentLaser)
                 firing = currentLaser.GetComponent<LaserScript> ().getStoppedState ();
@@ -175,7 +177,7 @@ public class turretScript : MonoBehaviour {
         if (deactivated == false) {
             animator.SetBool ("deactivated", true);
             deactivated = true;
-			audio.Play ("TurretDeactivate", UnityEngine.Random.Range (1, 3));
+			audioManager.Play ("TurretDeactivate", UnityEngine.Random.Range (1, 3));
             
         }
     }
@@ -192,6 +194,6 @@ public class turretScript : MonoBehaviour {
         currentLaser = bulletObj;
         bulletObj.transform.parent = gameObject.transform;
         //animator.SetBool("shooting", true);
-        // audio.Play ("TurretFire", UnityEngine.Random.Range (1, 3));        
+        // audioManager.Play ("TurretFire", UnityEngine.Random.Range (1, 3));        
     }
 }

@@ -106,7 +106,7 @@ public class LavaBehavior : MonoBehaviour
     {
         if (other.collider.GetType() == typeof(CapsuleCollider2D))
         {
-            GameObject.Find("Player").GetComponent<CharacterStats>().LavaDie();
+            GameObject.Find("Player").GetComponent<CharacterStats>().LavaDamage();
         }
         else if (other.collider.GetType() == typeof(CircleCollider2D))
         {

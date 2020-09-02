@@ -4735,7 +4735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 6251704234606525672, guid: a23f9c08e3f611e438d813b05c45e5b1, type: 3}
-  - {fileID: 6179018448462423052, guid: b3ba6ae6811e23140bcc517a3cd8bdfc, type: 3}
+  - {fileID: 7141781776111240623, guid: 499bc6c70d8462f45a05ba399933bf27, type: 3}
+  - {fileID: 7270749834950062612, guid: 3ee716e95f7ecd143af78c779882bf3c, type: 3}
 --- !u!1 &2557329677996300458
 GameObject:
   m_ObjectHideFlags: 0

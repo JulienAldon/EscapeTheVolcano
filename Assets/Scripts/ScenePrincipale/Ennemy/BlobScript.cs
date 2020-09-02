@@ -97,14 +97,14 @@ public class BlobScript : MonoBehaviour {
 	private Shake shake;
 	private Material matDefault;
 
-	private AudioManager audio;
+	private AudioManager audioManager;
 
 	private bool IsFacingRight () {
 		return transform.localScale.x > Mathf.Epsilon;
 	}
 
 	void Start () {
-		audio = FindObjectOfType<AudioManager> ();		        		
+		audioManager = FindObjectOfType<AudioManager> ();		        		
 		rb = GetComponent<Rigidbody2D> ();
 		groundState = new GroundState (transform.gameObject);
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
@@ -184,7 +184,7 @@ public class BlobScript : MonoBehaviour {
 
 	IEnumerator Death () {
 		shake.camShake ();
-        audio.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
+        audioManager.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		gfx.GetComponent<SpriteRenderer> ().material = matWhite;
 		Invoke ("ResetMaterial", .2f);
 

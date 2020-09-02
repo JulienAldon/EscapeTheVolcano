@@ -7,12 +7,12 @@ public class BombBehavior : MonoBehaviour
     private float startTime;
     public float detonateTime;
     public GameObject explosionEffect;
-    private AudioManager audio;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        audio = FindObjectOfType<AudioManager> ();        
+        audioManager = FindObjectOfType<AudioManager> ();        
         startTime = Time.time;
     }
 
@@ -26,7 +26,7 @@ public class BombBehavior : MonoBehaviour
 
     public void explode()
     {
-        audio.Play ("Explosion", UnityEngine.Random.Range (1f, 3f));						
+        audioManager.Play ("Explosion", UnityEngine.Random.Range (1f, 3f));						
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

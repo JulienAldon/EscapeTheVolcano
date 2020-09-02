@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6102828851231891661}
   - component: {fileID: -5936945170479791422}
   - component: {fileID: 5632708114952614212}
+  - component: {fileID: -8394035718622053583}
   m_Layer: 12
   m_Name: EnergyBall
   m_TagString: Untagged
@@ -255,3 +256,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-8394035718622053583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663981862893239593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c38a3e8e75ff9e4ebdd2f4fb06b4dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10

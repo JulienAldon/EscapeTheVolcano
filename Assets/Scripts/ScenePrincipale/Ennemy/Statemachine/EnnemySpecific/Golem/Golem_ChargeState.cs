@@ -13,7 +13,7 @@ public class Golem_ChargeState : ChargeState
 
     public override void Enter() {
         base.Enter();
-        enemy.rb.AddForce(new Vector2(enemy.facingDirection * 5f, 2f), ForceMode2D.Impulse);
+        enemy.rb.AddForce(new Vector2(enemy.facingDirection * 5f, 4f), ForceMode2D.Impulse);
     }
 
     public override void Exit() {
@@ -25,7 +25,7 @@ public class Golem_ChargeState : ChargeState
         //enemy.SetVelocity(stateData.chargeSpeed); 
         if (performCloseRangeAction) {
                 stateMachine.ChangeState(enemy.meleeAttackState);
-        } else if (!isDetectingLedge || isDetectingWall) {
+        } else if (isDetectingWall) { //!isDetectingLedge || 
             stateMachine.ChangeState(enemy.lookForPlayerState);
         } else if (isChargeTimeOver) {
             
