@@ -7,28 +7,31 @@ public class BombBehavior : MonoBehaviour
     private float startTime;
     public float detonateTime;
     public GameObject explosionEffect;
-    private AudioManager audioManager;
+    public AudioSource explosion;
 
+    private bool once = false;
     // Start is called before the first frame update
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager> ();        
+        
         startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - startTime >= detonateTime) {
+        if (Time.time - startTime >= detonateTime && once) {
+            once = true;
             explode();
         }
     }
 
     public void explode()
     {
-        audioManager.Play ("Explosion", UnityEngine.Random.Range (1f, 3f));						
+        explosion.Play (0);						
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        GetComponent<SpriteRenderer>().enabled = false;
+        Destroy(gameObject, 1f);
     }
 
 /*    void OnTriggerEnter2D(Collider2D collision)

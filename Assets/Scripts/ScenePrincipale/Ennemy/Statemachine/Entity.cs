@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Transform alive { get; private set;}
     public AnimationToStateMachine atsm {get; private set;}
+    public bool dead;
 
     [SerializeField]
     private Transform wallCheck;
@@ -18,11 +19,10 @@ public class Entity : MonoBehaviour
     private Transform ledgeCheck;
     [SerializeField]
     private Transform playerCheck;
-
     private Vector2 velocityWorkspace;
-
     public virtual void Start()
     {  
+        dead = false;
         facingDirection = 1;
         alive = transform.GetChild(0);
         rb = GetComponent<Rigidbody2D>();
@@ -33,13 +33,15 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
-        stateMachine.currentState.LogicUpdate();
+        if (!dead)
+            stateMachine.currentState.LogicUpdate();
 
     }
 
     public virtual void FixedUpdate()
     {
-        stateMachine.currentState.PhysicsUpdate();
+        if (!dead)
+            stateMachine.currentState.PhysicsUpdate();
     }
 
     public virtual void SetVelocity(float velocity)
@@ -80,10 +82,10 @@ public class Entity : MonoBehaviour
     }
 
     public virtual void OnDrawGizmos() {
-        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
-        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * facingDirection * entityData.ledgeCheckDistance));
-        Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.2f);
-        Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.maxAgroDistance), 0.2f);
-        Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.minAgroDistance), 0.2f);
+        // Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+        // Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * facingDirection * entityData.ledgeCheckDistance));
+        // Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.2f);
+        // Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.maxAgroDistance), 0.2f);
+        // Gizmos.DrawWireSphere((playerCheck.position) + (Vector3)(alive.transform.right * entityData.minAgroDistance), 0.2f);
     }
 }

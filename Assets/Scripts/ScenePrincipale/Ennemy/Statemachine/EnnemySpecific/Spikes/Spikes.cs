@@ -7,7 +7,8 @@ public class Spikes : Entity
     public Spikes_IdleState idleState { get; private set; }
     public Spikes_PlayerDetectedState playerDetectedState { get; private set; }
     public Spikes_MeleeAttackState meleeAttackState {get; private set;}
-
+    public AudioSource detectedSound;
+    public AudioSource attackSound;
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -17,6 +18,16 @@ public class Spikes : Entity
     [SerializeField]
     private Transform meleeAttackPosition;
     public bool isTriggered = false;
+
+    public void DetectedSound()
+    {
+        detectedSound.Play(0);
+    }
+
+    public void AttackSound()
+    {
+        attackSound.Play(0);
+    }
 
     public override void Start()
     {

@@ -10,7 +10,9 @@ public class Blob : Entity
     public Blob_ChargeState chargeState {get; private set;}
     public Blob_LookForPlayerState lookForPlayerState {get; private set;}
     public Blob_MeleeAttackState meleeAttackState {get; private set;}
-
+    public AudioSource deathSound;
+    public AudioSource attackSound;
+    public AudioSource detectedSound;
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -28,14 +30,11 @@ public class Blob : Entity
 
 	private Shake shake;
 	public bool canRespawn = true;
-	private AudioManager audioManager;
 
 
     public override void Start()
     {
         base.Start();
-
-        audioManager = FindObjectOfType<AudioManager> ();		        		
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
 
         moveState = new Blob_MoveState(this, stateMachine, "move", moveStateData, this);
@@ -45,11 +44,13 @@ public class Blob : Entity
         lookForPlayerState = new Blob_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerData, this);
         meleeAttackState = new Blob_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData ,this);
         stateMachine.Initialize(moveState);
+        dead = false;
     }
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attcakRadius);
+        // Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attcakRadius);
     }
 
     public GameObject splatParticles;
@@ -58,7 +59,7 @@ public class Blob : Entity
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
+		if ((collision.gameObject.layer == 19 || collision.gameObject.layer == 12)) {
 			StartCoroutine (Death ());
 		}
 	}
@@ -68,30 +69,46 @@ public class Blob : Entity
 			StartCoroutine (Death ());
 		}
 	}
-    public void Damage(Vector3 dir)
+
+    public void AttackSound() 
     {
-        StartCoroutine (Death ());
+        attackSound.Play (0);
+    }
+
+    public void DetectedSound()
+    {
+        detectedSound.Play (0);
     }
 
 	IEnumerator Death () {
-		shake.camShake ();
         // GetComponent<AudioSource>().Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		// SplatCastRay();
-        audioManager.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));
-		Instantiate (splatParticles, transform.position, Quaternion.identity);
-		// Time.timeScale = 0.1f;
-		yield return new WaitForSeconds (0.1f);
-		// Time.timeScale = 1;
-		if (canRespawn) {
-			var Child1 = Instantiate (this.gameObject, transform.position, Quaternion.identity);
-			Child1.GetComponent<Blob> ().canRespawn = false;
-			Child1.transform.localScale = new Vector3 (.5f, .5f, 1);
-            Child1.GetComponent<Rigidbody2D> ().AddForce(new Vector2(-10, 10));
-			var Child2 = Instantiate (this.gameObject, transform.position, Quaternion.identity);
-			Child2.transform.localScale = new Vector3 (.5f, .5f, 1);
-			Child2.GetComponent<Blob> ().canRespawn = false;
-            Child2.GetComponent<Rigidbody2D> ().AddForce(new Vector2(10, 10));
-		}
-		Destroy (gameObject);
+        if (!dead)
+        {
+            deathSound.Play (0);
+            Instantiate (splatParticles, transform.position, Quaternion.identity);
+            // Time.timeScale = 0.1f;
+            shake.camShake ();
+            yield return new WaitForSeconds (0.1f);
+            // Time.timeScale = 1;
+            transform.GetChild(0).gameObject.SetActive(false);
+            dead = true;
+            gameObject.layer = 15; //shells
+            if (canRespawn) {
+                var Child1 = Instantiate (this.gameObject, transform.position, Quaternion.identity);
+                Child1.GetComponent<Blob> ().canRespawn = false;
+                Child1.transform.localScale = new Vector3 (.5f, .5f, 1);
+                Child1.transform.GetChild(0).gameObject.SetActive(true);
+                Child1.layer = 18; //enemy
+                Child1.GetComponent<Rigidbody2D> ().AddForce(new Vector2(-10, 10));
+                var Child2 = Instantiate (this.gameObject, transform.position, Quaternion.identity);
+                Child2.transform.localScale = new Vector3 (.5f, .5f, 1);
+                Child2.GetComponent<Blob> ().canRespawn = false;
+                Child2.transform.GetChild(0).gameObject.SetActive(true);
+                Child2.layer = 18; //enemy
+                Child2.GetComponent<Rigidbody2D> ().AddForce(new Vector2(10, 10));
+            }
+            Destroy (gameObject, 1f);
+        }
 	}
 }

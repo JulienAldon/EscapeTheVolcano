@@ -13,6 +13,7 @@ public class Blob_PlayerDetectedState : PlayerDetectedState
 
     public override void Enter() {
         base.Enter();
+        enemy.DetectedSound();
     }
 
     public override void Exit() {

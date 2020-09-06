@@ -8,12 +8,15 @@ public class TurretBullet : MonoBehaviour
     public float acceleration = 0.5f;
     public float maxSpeed = 2.0f;
     public Vector2 direction;
+    public AudioSource explosion;
+    private bool once;
 
     private float angle;
     private float curSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
+        once = false;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.Rotate(new Vector3(0, 0, angle + 90));        
     }
@@ -31,7 +34,12 @@ public class TurretBullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy (gameObject);
-        Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+        if (!once) {
+            once = true;
+            explosion.Play (0);
+            GetComponent<SpriteRenderer>().enabled = false;
+            Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+            Destroy (gameObject, 0.5f);
+        }
     }
 }

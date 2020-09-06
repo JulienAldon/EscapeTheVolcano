@@ -55,7 +55,9 @@ public class LevelGeneration : MonoBehaviour {
 				transform.position = newPos;
 
 				int rand = Random.Range (0, rooms.Length);
-				Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
+				Collider2D roomDetection = Physics2D.OverlapCircle (transform.position, 1, room);
+				if (!roomDetection)
+					Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
 
 				direction = Random.Range (1, 6);
 				if (direction == 3) {
@@ -64,7 +66,7 @@ public class LevelGeneration : MonoBehaviour {
 					direction = 5;
 				}
 			} else {
-				direction = 5;
+				direction = Random.Range(3, 6);
 			}
 		} else if (direction == 3 | direction == 4) { // Move Left
 			if (transform.position.x > minX) {
@@ -73,11 +75,15 @@ public class LevelGeneration : MonoBehaviour {
 				transform.position = newPos;
 
 				int rand = Random.Range (0, rooms.Length);
-				Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
+				Collider2D roomDetection = Physics2D.OverlapCircle (transform.position, 1, room);
+				if (!roomDetection)
+					Level.path.Add (Instantiate (rooms[rand], transform.position, Quaternion.identity));
 
 				direction = Random.Range (3, 6);
 			} else {
-				direction = 5;
+				direction = Random.Range(1, 4);
+				if (direction == 3)
+					direction = 5;
 			}
 		} else if (direction == 5) { // Move Down
 			downCounter++;
@@ -129,7 +135,6 @@ public class LevelGeneration : MonoBehaviour {
 			}
 		}
 	}
-				// while (transform.position.x != startingPositions[randStartingPos >= 2 ? 0 : startingPositions.Length - 1].position.x)
 
 	// Update is called once per frame
 	void Update () {

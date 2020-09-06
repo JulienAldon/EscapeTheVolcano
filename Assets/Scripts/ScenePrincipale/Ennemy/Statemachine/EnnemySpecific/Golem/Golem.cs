@@ -10,6 +10,8 @@ public class Golem : Entity
     public Golem_ChargeState chargeState {get; private set;}
     public Golem_LookForPlayerState lookForPlayerState {get; private set;}
     public Golem_MeleeAttackState meleeAttackState {get; private set;}
+    public AudioSource deathSound;
+    public AudioSource damageSound;
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -34,14 +36,13 @@ public class Golem : Entity
     
     public Material matWhite;
     private Material matDefault;
-	private AudioManager audioManager;
+	
     public GameObject gfx;
    
     public override void Start()
     {
         base.Start();
 
-        audioManager = FindObjectOfType<AudioManager> ();
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
         matDefault = gfx.GetComponent<SpriteRenderer> ().material;
 
@@ -86,6 +87,7 @@ public class Golem : Entity
      void TakeDamage () {
         gfx.GetComponent<SpriteRenderer> ().material = matWhite;
         Health -= 1;
+        damageSound.Play(0);
         if (Health <= 0)
             StartCoroutine (Death ());
         else
@@ -93,12 +95,12 @@ public class Golem : Entity
     }
 	IEnumerator Death () {
 		shake.camShake ();
-        audioManager.Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));
+        deathSound.Play(0);
         // GetComponent<AudioSource>().Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		// SplatCastRay();
-		Instantiate (splatParticles, transform.position, Quaternion.identity);
 		// Time.timeScale = 0.1f;
-		yield return new WaitForSeconds (0.1f);
+		yield return new WaitForSeconds (0.4f);
+		Instantiate (splatParticles, transform.position, Quaternion.identity);
 		// Time.timeScale = 1;
 		Destroy (gameObject);
 	}

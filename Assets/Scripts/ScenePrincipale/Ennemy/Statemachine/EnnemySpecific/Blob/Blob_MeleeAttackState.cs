@@ -17,6 +17,7 @@ public class Blob_MeleeAttackState : MeleeAttackState
     public override void Enter() 
     {
         base.Enter();
+        enemy.AttackSound();
     }
 
     public override void Exit() {

@@ -13,6 +13,7 @@ public class Spikes_PlayerDetectedState : PlayerDetectedState
 
     public override void Enter() {
         base.Enter();
+        enemy.DetectedSound();
     }
 
     public override void Exit() {

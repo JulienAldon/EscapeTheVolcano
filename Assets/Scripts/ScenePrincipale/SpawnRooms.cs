@@ -11,7 +11,7 @@ public class SpawnRooms : MonoBehaviour
     {
         Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, whatIsRoom);
         if (roomDetection == null && levelGen.stopGeneration == true) {
-            int rand = Random.Range(0, levelGen.rooms.Length);
+            int rand = Random.Range(0, levelGen.rooms.Length - 1);
             Instantiate(levelGen.rooms[rand], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
