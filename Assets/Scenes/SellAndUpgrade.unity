@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 29025143}
   - component: {fileID: 29025142}
   - component: {fileID: 29025141}
+  - component: {fileID: 29025145}
   m_Layer: 5
   m_Name: Cell (21)
   m_TagString: Untagged
@@ -170,7 +171,7 @@ Animator:
   m_GameObject: {fileID: 29025139}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -221,7 +222,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 29025143}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 29025139}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &29025143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -259,6 +282,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29025139}
   m_CullTransparentMesh: 0
+--- !u!114 &29025145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29025139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Normal in Bin'
+  description: Normal can now appear in the bin.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 1
+  upgraded: 0
+  unlocks:
+  - {fileID: 1587766639}
+  - {fileID: 546335856}
 --- !u!1 &40359638
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +340,7 @@ RectTransform:
   m_Children:
   - {fileID: 1754642022}
   m_Father: {fileID: 1315775864}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -326,6 +377,77 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &214300258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 214300259}
+  - component: {fileID: 214300261}
+  - component: {fileID: 214300260}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &214300259
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214300258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315775864}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &214300260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214300258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: d06c9c7acbae9a242994c3073a38842b, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &214300261
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214300258}
+  m_CullTransparentMesh: 0
 --- !u!1 &288546538
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +461,7 @@ GameObject:
   - component: {fileID: 288546542}
   - component: {fileID: 288546541}
   - component: {fileID: 288546540}
+  - component: {fileID: 288546544}
   m_Layer: 5
   m_Name: Cell (4)
   m_TagString: Untagged
@@ -375,7 +498,7 @@ Animator:
   m_GameObject: {fileID: 288546538}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -397,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -422,11 +545,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 288546542}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 288546538}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &288546542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -464,6 +609,195 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288546538}
   m_CullTransparentMesh: 0
+--- !u!114 &288546544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288546538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Runner'
+  description: Runner can dash up to 2 times before needing to touch ground.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1076934048}
+  - {fileID: 773110572}
+  - {fileID: 989847045}
+--- !u!1 &343498486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343498487}
+  - component: {fileID: 343498489}
+  - component: {fileID: 343498488}
+  m_Layer: 5
+  m_Name: Description
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &343498487
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343498486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1658063539}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -571, y: 207}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &343498488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343498486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'bla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla
+    blablabla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla
+    bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla
+    bla '
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 264
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 12.86
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: 217
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -1104.2775, w: -248.18367}
+  m_textInfo:
+    textComponent: {fileID: 343498488}
+    characterCount: 232
+    spriteCount: 0
+    spaceCount: 46
+    wordCount: 46
+    linkCount: 0
+    lineCount: 7
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &343498489
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343498486}
+  m_CullTransparentMesh: 0
 --- !u!1 &346211286
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +811,7 @@ GameObject:
   - component: {fileID: 346211290}
   - component: {fileID: 346211289}
   - component: {fileID: 346211288}
+  - component: {fileID: 346211292}
   m_Layer: 5
   m_Name: Cell (14)
   m_TagString: Untagged
@@ -513,7 +848,7 @@ Animator:
   m_GameObject: {fileID: 346211286}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -535,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -564,7 +899,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 346211290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 346211286}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &346211290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,7 +941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -602,6 +959,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346211286}
   m_CullTransparentMesh: 0
+--- !u!114 &346211292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346211286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Unlock : Tracker'
+  description: Tracker can now appear in the bin and in the market.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 1
+  upgraded: 0
+  unlocks:
+  - {fileID: 1705589375}
+  - {fileID: 1231112162}
 --- !u!1 &364781067
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +1000,7 @@ GameObject:
   - component: {fileID: 364781071}
   - component: {fileID: 364781070}
   - component: {fileID: 364781069}
+  - component: {fileID: 364781073}
   m_Layer: 5
   m_Name: Cell (24)
   m_TagString: Untagged
@@ -651,7 +1037,7 @@ Animator:
   m_GameObject: {fileID: 364781067}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -673,7 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -698,11 +1084,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 364781071}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 364781067}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &364781071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +1130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -740,6 +1148,267 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364781067}
   m_CullTransparentMesh: 0
+--- !u!114 &364781073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364781067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Big Rewards
+  description: 20% more rewards from contracts.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1457533756}
+  - {fileID: 1375693546}
+  - {fileID: 1239629862}
+--- !u!1 &396070122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 396070123}
+  - component: {fileID: 396070126}
+  - component: {fileID: 396070125}
+  - component: {fileID: 396070124}
+  - component: {fileID: 396070127}
+  m_Layer: 5
+  m_Name: Return
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &396070123
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396070122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1658063539}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -491, y: -304}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &396070124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396070122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 1656370781}
+  m_Transition: 3
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 396070125}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &396070125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396070122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Return
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -113.455055, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 396070125}
+    characterCount: 6
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &396070126
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396070122}
+  m_CullTransparentMesh: 0
+--- !u!95 &396070127
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396070122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b1952911800f184abadb4d132db7203, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &462058521
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +1422,7 @@ GameObject:
   - component: {fileID: 462058525}
   - component: {fileID: 462058524}
   - component: {fileID: 462058523}
+  - component: {fileID: 462058527}
   m_Layer: 5
   m_Name: Cell (28)
   m_TagString: Untagged
@@ -789,7 +1459,7 @@ Animator:
   m_GameObject: {fileID: 462058521}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -811,7 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -836,11 +1506,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 462058525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 462058521}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &462058525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +1552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -878,6 +1570,109 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462058521}
   m_CullTransparentMesh: 0
+--- !u!114 &462058527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462058521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Rare Bin
+  description: +15% Rare in the bin (-15% common).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1587766639}
+  - {fileID: 833990686}
+  - {fileID: 1466723709}
+  - {fileID: 546335856}
+--- !u!1 &512012667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 512012668}
+  - component: {fileID: 512012670}
+  - component: {fileID: 512012669}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [PressStart2P SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &512012668
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512012667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1125403437}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &512012669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512012667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 4.256
+  m_canvasRenderer: {fileID: 512012670}
+  m_TextComponent: {fileID: 1125403438}
+  m_materialReferenceIndex: 1
+--- !u!222 &512012670
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512012667}
+  m_CullTransparentMesh: 0
 --- !u!1 &512449362
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +1686,7 @@ GameObject:
   - component: {fileID: 512449366}
   - component: {fileID: 512449365}
   - component: {fileID: 512449364}
+  - component: {fileID: 512449368}
   m_Layer: 5
   m_Name: Cell (26)
   m_TagString: Untagged
@@ -927,7 +1723,7 @@ Animator:
   m_GameObject: {fileID: 512449362}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -949,7 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -974,11 +1770,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 512449366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 512449362}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &512449366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +1816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1016,6 +1834,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512449362}
   m_CullTransparentMesh: 0
+--- !u!114 &512449368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512449362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Contract : less is more, more is less'
+  description: 'Give 50% more time in contracts "finish volcano in less time than...".
+    Give 50% less time in contracts "finish volcano in more time than". '
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1020613044}
+  - {fileID: 668887719}
+  - {fileID: 1239629862}
 --- !u!1 &546335856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1877,7 @@ GameObject:
   - component: {fileID: 546335860}
   - component: {fileID: 546335859}
   - component: {fileID: 546335858}
+  - component: {fileID: 546335862}
   m_Layer: 5
   m_Name: Cell (27)
   m_TagString: Untagged
@@ -1065,7 +1914,7 @@ Animator:
   m_GameObject: {fileID: 546335856}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1087,7 +1936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1112,11 +1961,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 546335860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 546335856}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &546335860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +2007,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1154,6 +2025,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546335856}
   m_CullTransparentMesh: 0
+--- !u!114 &546335862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546335856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Old Platings
+  description: +1 HP to your team if your team is composed with at least 3 bin robots.
+    (MAX 5).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 29025139}
+  - {fileID: 462058521}
+  - {fileID: 1117786831}
 --- !u!1 &668887719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +2068,7 @@ GameObject:
   - component: {fileID: 668887723}
   - component: {fileID: 668887722}
   - component: {fileID: 668887721}
+  - component: {fileID: 668887725}
   m_Layer: 5
   m_Name: Cell (32)
   m_TagString: Untagged
@@ -1203,7 +2105,7 @@ Animator:
   m_GameObject: {fileID: 668887719}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1225,7 +2127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1250,11 +2152,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 668887723}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 668887719}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &668887723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,7 +2198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1292,6 +2216,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668887719}
   m_CullTransparentMesh: 0
+--- !u!114 &668887725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668887719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Foresight
+  description: Can see 6 contracts (from 3).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 512449362}
+  - {fileID: 2036398815}
 --- !u!1 &773110572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +2257,7 @@ GameObject:
   - component: {fileID: 773110576}
   - component: {fileID: 773110575}
   - component: {fileID: 773110574}
+  - component: {fileID: 773110578}
   m_Layer: 5
   m_Name: Cell (10)
   m_TagString: Untagged
@@ -1341,7 +2294,7 @@ Animator:
   m_GameObject: {fileID: 773110572}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1363,7 +2316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1388,11 +2341,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 773110576}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 773110572}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &773110576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,7 +2387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1430,6 +2405,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773110572}
   m_CullTransparentMesh: 0
+--- !u!114 &773110578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773110572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Tank'
+  description: Tank gain 5 seconds of shield.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 288546538}
+  - {fileID: 1525413855}
+  - {fileID: 1562502537}
+  - {fileID: 937962293}
 --- !u!1 &833990686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +2448,7 @@ GameObject:
   - component: {fileID: 833990690}
   - component: {fileID: 833990689}
   - component: {fileID: 833990688}
+  - component: {fileID: 833990692}
   m_Layer: 5
   m_Name: Cell (29)
   m_TagString: Untagged
@@ -1479,7 +2485,7 @@ Animator:
   m_GameObject: {fileID: 833990686}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1501,7 +2507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1526,11 +2532,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 833990690}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 833990686}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &833990690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,7 +2578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1568,6 +2596,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833990686}
   m_CullTransparentMesh: 0
+--- !u!114 &833990692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833990686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Astronaut in Bin'
+  description: Astronaut can now appear in the bin.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1678490064}
+  - {fileID: 462058521}
+  - {fileID: 920323081}
 --- !u!1 &913565106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +2638,7 @@ GameObject:
   - component: {fileID: 913565110}
   - component: {fileID: 913565109}
   - component: {fileID: 913565108}
+  - component: {fileID: 913565112}
   m_Layer: 5
   m_Name: Cell (15)
   m_TagString: Untagged
@@ -1617,7 +2675,7 @@ Animator:
   m_GameObject: {fileID: 913565106}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1639,7 +2697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1668,7 +2726,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 913565110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 913565106}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &913565110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,7 +2768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1706,6 +2786,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913565106}
   m_CullTransparentMesh: 0
+--- !u!114 &913565112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913565106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Unlock : Climber'
+  description: Climber can now appear in the bin and in the market.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 1
+  upgraded: 0
+  unlocks:
+  - {fileID: 937962293}
+  - {fileID: 1562502537}
 --- !u!1 &920323081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +2827,7 @@ GameObject:
   - component: {fileID: 920323085}
   - component: {fileID: 920323084}
   - component: {fileID: 920323083}
+  - component: {fileID: 920323087}
   m_Layer: 5
   m_Name: Cell (23)
   m_TagString: Untagged
@@ -1755,7 +2864,7 @@ Animator:
   m_GameObject: {fileID: 920323081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1777,7 +2886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1802,11 +2911,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 920323085}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 920323081}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &920323085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,7 +2957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1844,6 +2975,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920323081}
   m_CullTransparentMesh: 0
+--- !u!114 &920323087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920323081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Bin Rewards
+  description: 20% reward if the team is composed with at least 3 bin robots.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1587766639}
+  - {fileID: 833990686}
 --- !u!1 &937962293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +3016,7 @@ GameObject:
   - component: {fileID: 937962297}
   - component: {fileID: 937962296}
   - component: {fileID: 937962295}
+  - component: {fileID: 937962299}
   m_Layer: 5
   m_Name: Cell (9)
   m_TagString: Untagged
@@ -1893,7 +3053,7 @@ Animator:
   m_GameObject: {fileID: 937962293}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1915,7 +3075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1940,11 +3100,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 937962297}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 937962293}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &937962297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1964,7 +3146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1982,6 +3164,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937962293}
   m_CullTransparentMesh: 0
+--- !u!114 &937962299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937962293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Plattings
+  description: +1HP to any robots (Max 5).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 913565106}
+  - {fileID: 1076934048}
+  - {fileID: 773110572}
 --- !u!1 &989847045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,6 +3206,7 @@ GameObject:
   - component: {fileID: 989847049}
   - component: {fileID: 989847048}
   - component: {fileID: 989847047}
+  - component: {fileID: 989847051}
   m_Layer: 5
   m_Name: Cell (5)
   m_TagString: Untagged
@@ -2031,7 +3243,7 @@ Animator:
   m_GameObject: {fileID: 989847045}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2053,7 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2078,11 +3290,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 989847049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 989847045}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &989847049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2102,7 +3336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2120,6 +3354,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989847045}
   m_CullTransparentMesh: 0
+--- !u!114 &989847051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989847045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Lava resistance
+  description: You can take 1 more hit from the lava. (Max 2)
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 288546538}
+  - {fileID: 1525413855}
 --- !u!1 &1020613044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,6 +3395,7 @@ GameObject:
   - component: {fileID: 1020613048}
   - component: {fileID: 1020613047}
   - component: {fileID: 1020613046}
+  - component: {fileID: 1020613050}
   m_Layer: 5
   m_Name: Cell (20)
   m_TagString: Untagged
@@ -2169,7 +3432,7 @@ Animator:
   m_GameObject: {fileID: 1020613044}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2191,7 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2220,7 +3483,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1020613048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1020613044}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1020613048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,7 +3525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2258,6 +3543,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020613044}
   m_CullTransparentMesh: 0
+--- !u!114 &1020613050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020613044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sales
+  description: Robots prices are 20% lower.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 1
+  upgraded: 0
+  unlocks:
+  - {fileID: 2144741760}
+  - {fileID: 512449362}
 --- !u!1 &1048970985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +3584,7 @@ GameObject:
   - component: {fileID: 1048970989}
   - component: {fileID: 1048970988}
   - component: {fileID: 1048970987}
+  - component: {fileID: 1048970991}
   m_Layer: 5
   m_Name: Cell (17)
   m_TagString: Untagged
@@ -2307,7 +3621,7 @@ Animator:
   m_GameObject: {fileID: 1048970985}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2329,7 +3643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2354,11 +3668,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1048970989}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1048970985}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1048970989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,7 +3714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2396,6 +3732,191 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048970985}
   m_CullTransparentMesh: 0
+--- !u!114 &1048970991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048970985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Hacker'
+  description: Hacker gain 50% speed when hacking.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1562502537}
+  - {fileID: 1525413855}
+--- !u!1 &1062629911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062629912}
+  - component: {fileID: 1062629914}
+  - component: {fileID: 1062629913}
+  m_Layer: 5
+  m_Name: Select
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1062629912
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062629911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2071294191}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -328, y: 15.9}
+  m_SizeDelta: {x: 396.09863, y: 118.2888}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1062629913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062629911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Select
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1062629913}
+    characterCount: 6
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1062629914
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062629911}
+  m_CullTransparentMesh: 0
 --- !u!1 &1076934048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,6 +3930,7 @@ GameObject:
   - component: {fileID: 1076934052}
   - component: {fileID: 1076934051}
   - component: {fileID: 1076934050}
+  - component: {fileID: 1076934054}
   m_Layer: 5
   m_Name: Cell (3)
   m_TagString: Untagged
@@ -2445,7 +3967,7 @@ Animator:
   m_GameObject: {fileID: 1076934048}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2467,7 +3989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2492,11 +4014,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1076934052}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1076934048}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1076934052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,7 +4060,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2534,6 +4078,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076934048}
   m_CullTransparentMesh: 0
+--- !u!114 &1076934054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076934048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Grenadier'
+  description: Grenadier bomb area of effect.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 937962293}
+  - {fileID: 288546538}
 --- !u!1 &1117786831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +4119,7 @@ GameObject:
   - component: {fileID: 1117786835}
   - component: {fileID: 1117786834}
   - component: {fileID: 1117786833}
+  - component: {fileID: 1117786837}
   m_Layer: 5
   m_Name: Cell (33)
   m_TagString: Untagged
@@ -2583,7 +4156,7 @@ Animator:
   m_GameObject: {fileID: 1117786831}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2605,7 +4178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2630,11 +4203,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1117786835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1117786831}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1117786835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,7 +4249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2672,6 +4267,193 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117786831}
   m_CullTransparentMesh: 0
+--- !u!114 &1117786837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117786831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sacrifice
+  description: At the end of a volcano run can sacrifice any bin robot of your team
+    to save a dead robot.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 546335856}
+  - {fileID: 1466723709}
+--- !u!1 &1125403436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125403437}
+  - component: {fileID: 1125403439}
+  - component: {fileID: 1125403438}
+  m_Layer: 5
+  m_Name: Money
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1125403437
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125403436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 512012668}
+  m_Father: {fileID: 1848960804}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -4.6, y: -13.603}
+  m_SizeDelta: {x: 1066.0002, y: 122.79479}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1125403438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125403436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Money : 1000 $'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1125403438}
+    characterCount: 14
+    spriteCount: 0
+    spaceCount: 3
+    wordCount: 2
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 512012669}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1125403439
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125403436}
+  m_CullTransparentMesh: 0
 --- !u!1 &1231112162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,6 +4467,7 @@ GameObject:
   - component: {fileID: 1231112166}
   - component: {fileID: 1231112165}
   - component: {fileID: 1231112164}
+  - component: {fileID: 1231112168}
   m_Layer: 5
   m_Name: Cell (8)
   m_TagString: Untagged
@@ -2721,7 +4504,7 @@ Animator:
   m_GameObject: {fileID: 1231112162}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2743,7 +4526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2768,11 +4551,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1231112166}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1231112162}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1231112166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2792,7 +4597,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2810,6 +4615,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231112162}
   m_CullTransparentMesh: 0
+--- !u!114 &1231112168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231112162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Unlock : Gatling'
+  description: Robots can now have a Gatling.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 346211286}
+  - {fileID: 1322387887}
+  - {fileID: 1442693151}
 --- !u!1 &1239629862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,6 +4657,7 @@ GameObject:
   - component: {fileID: 1239629866}
   - component: {fileID: 1239629865}
   - component: {fileID: 1239629864}
+  - component: {fileID: 1239629868}
   m_Layer: 5
   m_Name: Cell (25)
   m_TagString: Untagged
@@ -2859,7 +4694,7 @@ Animator:
   m_GameObject: {fileID: 1239629862}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2881,7 +4716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2906,11 +4741,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1239629866}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1239629862}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1239629866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,7 +4787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2948,6 +4805,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239629862}
   m_CullTransparentMesh: 0
+--- !u!114 &1239629868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239629862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Unlock : Level 3 contract'
+  description: Level 3 contracts gives you more rewards. Level 3 contracts are harder.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 2144741760}
+  - {fileID: 512449362}
+  - {fileID: 364781067}
+  - {fileID: 2036398815}
 --- !u!1 &1243498453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,6 +4848,7 @@ GameObject:
   - component: {fileID: 1243498457}
   - component: {fileID: 1243498456}
   - component: {fileID: 1243498455}
+  - component: {fileID: 1243498459}
   m_Layer: 5
   m_Name: Cell (12)
   m_TagString: Untagged
@@ -2997,7 +4885,7 @@ Animator:
   m_GameObject: {fileID: 1243498453}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3019,7 +4907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3044,11 +4932,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1243498457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1243498453}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1243498457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3068,7 +4978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3086,6 +4996,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243498453}
   m_CullTransparentMesh: 0
+--- !u!114 &1243498459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243498453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Paranoid'
+  description: Paranoid effects are 50% reduced. (Less fake ennemies).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1977234184}
 --- !u!1 &1253607411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,13 +5032,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253607412}
+  - component: {fileID: 1253607413}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1253607412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3115,13 +5053,26 @@ RectTransform:
   m_Children:
   - {fileID: 1658063539}
   m_Father: {fileID: 1315775864}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1253607413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253607411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91471f44f7f3074bb30fe552471486e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windowToClose: {fileID: 1253607411}
 --- !u!1 &1315775860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +5148,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3212,8 +5163,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 214300259}
   - {fileID: 40359639}
   - {fileID: 1253607412}
+  - {fileID: 1524662231}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3235,6 +5188,7 @@ GameObject:
   - component: {fileID: 1322387891}
   - component: {fileID: 1322387890}
   - component: {fileID: 1322387889}
+  - component: {fileID: 1322387893}
   m_Layer: 5
   m_Name: Cell (7)
   m_TagString: Untagged
@@ -3271,7 +5225,7 @@ Animator:
   m_GameObject: {fileID: 1322387887}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3293,7 +5247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3318,11 +5272,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1322387891}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1322387887}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1322387891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3342,7 +5318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3360,6 +5336,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322387887}
   m_CullTransparentMesh: 0
+--- !u!114 &1322387893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322387887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Partygoer'
+  description: Partygoer can now shoot a random bullet randomly (gatling, missile
+    or energy gun).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1705589375}
+  - {fileID: 1231112162}
+  - {fileID: 1977234184}
+  - {fileID: 1323745842}
 --- !u!1 &1323745842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,6 +5380,7 @@ GameObject:
   - component: {fileID: 1323745846}
   - component: {fileID: 1323745845}
   - component: {fileID: 1323745844}
+  - component: {fileID: 1323745848}
   m_Layer: 5
   m_Name: Cell (1)
   m_TagString: Untagged
@@ -3409,7 +5417,7 @@ Animator:
   m_GameObject: {fileID: 1323745842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3431,7 +5439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3456,11 +5464,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1323745846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1323745842}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1323745846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3480,7 +5510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3498,6 +5528,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323745842}
   m_CullTransparentMesh: 0
+--- !u!114 &1323745848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323745842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Fat'
+  description: Weighs 50% less.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1442693151}
+  - {fileID: 1520952398}
+  - {fileID: 1322387887}
 --- !u!1 &1375693546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,6 +5570,7 @@ GameObject:
   - component: {fileID: 1375693550}
   - component: {fileID: 1375693549}
   - component: {fileID: 1375693548}
+  - component: {fileID: 1375693552}
   m_Layer: 5
   m_Name: Cell (30)
   m_TagString: Untagged
@@ -3547,7 +5607,7 @@ Animator:
   m_GameObject: {fileID: 1375693546}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3569,7 +5629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3594,11 +5654,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1375693550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1375693546}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1375693550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3618,7 +5700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3636,6 +5718,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375693546}
   m_CullTransparentMesh: 0
+--- !u!114 &1375693552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375693546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Legendary Market
+  description: +10% Legendary in the market (-10% common).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 364781067}
+  - {fileID: 2036398815}
 --- !u!1 &1424551290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3715,6 +5825,7 @@ GameObject:
   - component: {fileID: 1442693155}
   - component: {fileID: 1442693154}
   - component: {fileID: 1442693153}
+  - component: {fileID: 1442693157}
   m_Layer: 5
   m_Name: Cell (2)
   m_TagString: Untagged
@@ -3751,7 +5862,7 @@ Animator:
   m_GameObject: {fileID: 1442693151}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3773,7 +5884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3798,11 +5909,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1442693155}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1442693151}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1442693155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3822,7 +5955,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3840,6 +5973,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442693151}
   m_CullTransparentMesh: 0
+--- !u!114 &1442693157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442693151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Pacifist'
+  description: Pacifist can shoot 5 bullet in the volcano, his kills does not cause
+    pacifist contract to fail.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1323745842}
+  - {fileID: 1231112162}
 --- !u!1 &1457533756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,6 +6015,7 @@ GameObject:
   - component: {fileID: 1457533760}
   - component: {fileID: 1457533759}
   - component: {fileID: 1457533758}
+  - component: {fileID: 1457533762}
   m_Layer: 5
   m_Name: Cell (18)
   m_TagString: Untagged
@@ -3889,7 +6052,7 @@ Animator:
   m_GameObject: {fileID: 1457533756}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3911,7 +6074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3936,11 +6099,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1457533760}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1457533756}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1457533760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,7 +6145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3978,6 +6163,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457533756}
   m_CullTransparentMesh: 0
+--- !u!114 &1457533762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457533756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Keeper
+  description: If contract fails, you keep it.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 2144741760}
+  - {fileID: 364781067}
 --- !u!1 &1466723709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3991,6 +6204,7 @@ GameObject:
   - component: {fileID: 1466723713}
   - component: {fileID: 1466723712}
   - component: {fileID: 1466723711}
+  - component: {fileID: 1466723715}
   m_Layer: 5
   m_Name: Cell (34)
   m_TagString: Untagged
@@ -4027,7 +6241,7 @@ Animator:
   m_GameObject: {fileID: 1466723709}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4049,7 +6263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4074,11 +6288,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1466723713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1466723709}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1466723713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,7 +6334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4116,6 +6352,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466723709}
   m_CullTransparentMesh: 0
+--- !u!114 &1466723715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466723709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Coprolalia in Bin'
+  description: Coprolalia can now appear in the bin.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1117786831}
+  - {fileID: 1678490064}
+  - {fileID: 462058521}
 --- !u!1 &1520952398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +6394,7 @@ GameObject:
   - component: {fileID: 1520952400}
   - component: {fileID: 1520952402}
   - component: {fileID: 1520952403}
+  - component: {fileID: 1520952404}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -4174,7 +6440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4205,7 +6471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4230,11 +6496,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1520952400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1520952398}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!95 &1520952403
 Animator:
   serializedVersion: 3
@@ -4245,7 +6533,7 @@ Animator:
   m_GameObject: {fileID: 1520952398}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4254,6 +6542,71 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1520952404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520952398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Blind'
+  description: Blind can see better now. (50% more vision angle).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 16777215
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1323745842}
+  - {fileID: 1977234184}
+--- !u!1 &1524662230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1524662231}
+  m_Layer: 5
+  m_Name: Help
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1524662231
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524662230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2071294191}
+  - {fileID: 1848960804}
+  m_Father: {fileID: 1315775864}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1525413855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +6620,7 @@ GameObject:
   - component: {fileID: 1525413859}
   - component: {fileID: 1525413858}
   - component: {fileID: 1525413857}
+  - component: {fileID: 1525413861}
   m_Layer: 5
   m_Name: Cell (11)
   m_TagString: Untagged
@@ -4303,7 +6657,7 @@ Animator:
   m_GameObject: {fileID: 1525413855}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4325,7 +6679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4350,11 +6704,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1525413859}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1525413855}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1525413859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4374,7 +6750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4392,6 +6768,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525413855}
   m_CullTransparentMesh: 0
+--- !u!114 &1525413861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525413855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Climber'
+  description: Climber is 50% faster when climbing the grapline.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 773110572}
+  - {fileID: 989847045}
+  - {fileID: 1048970985}
 --- !u!1 &1562502537
 GameObject:
   m_ObjectHideFlags: 0
@@ -4405,6 +6810,7 @@ GameObject:
   - component: {fileID: 1562502541}
   - component: {fileID: 1562502540}
   - component: {fileID: 1562502539}
+  - component: {fileID: 1562502543}
   m_Layer: 5
   m_Name: Cell (16)
   m_TagString: Untagged
@@ -4441,7 +6847,7 @@ Animator:
   m_GameObject: {fileID: 1562502537}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4463,7 +6869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4488,11 +6894,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1562502541}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1562502537}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1562502541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4512,7 +6940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af42dc6fe66ad2459871b7ba27ea6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13e8e9ceebd70cb4080590bc0a50053c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4530,6 +6958,192 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562502537}
   m_CullTransparentMesh: 0
+--- !u!114 &1562502543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562502537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Knockback Resistance
+  description: +25% knockback resistance.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 913565106}
+  - {fileID: 773110572}
+  - {fileID: 1048970985}
+--- !u!1 &1564304050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564304051}
+  - component: {fileID: 1564304053}
+  - component: {fileID: 1564304052}
+  m_Layer: 5
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1564304051
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564304050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1658063539}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -567, y: 327}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1564304052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564304050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Title
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: -14.781347, z: -1104.9019, w: -51.73458}
+  m_textInfo:
+    textComponent: {fileID: 1564304052}
+    characterCount: 5
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1564304053
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564304050}
+  m_CullTransparentMesh: 0
 --- !u!1 &1587766639
 GameObject:
   m_ObjectHideFlags: 0
@@ -4543,6 +7157,7 @@ GameObject:
   - component: {fileID: 1587766643}
   - component: {fileID: 1587766642}
   - component: {fileID: 1587766641}
+  - component: {fileID: 1587766645}
   m_Layer: 5
   m_Name: Cell (22)
   m_TagString: Untagged
@@ -4579,7 +7194,7 @@ Animator:
   m_GameObject: {fileID: 1587766639}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4601,7 +7216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4626,11 +7241,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1587766643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1587766639}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1587766643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4650,7 +7287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4668,6 +7305,279 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587766639}
   m_CullTransparentMesh: 0
+--- !u!114 &1587766645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587766639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Junkyard '
+  description: When you delete a bin robot from your stash, gives you 1/3 of it's
+    normal price.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 29025139}
+  - {fileID: 920323081}
+  - {fileID: 462058521}
+--- !u!1 &1656370779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656370780}
+  - component: {fileID: 1656370783}
+  - component: {fileID: 1656370782}
+  - component: {fileID: 1656370781}
+  - component: {fileID: 1656370784}
+  m_Layer: 5
+  m_Name: Upgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1656370780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656370779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1658063539}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 438, y: -304}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1656370781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656370779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 396070124}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 3
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1656370782}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1656370782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656370779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Upgrade
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -139.93486, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1656370782}
+    characterCount: 7
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1656370783
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656370779}
+  m_CullTransparentMesh: 0
+--- !u!95 &1656370784
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656370779}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b1952911800f184abadb4d132db7203, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1658063538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,14 +7606,18 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1564304051}
+  - {fileID: 343498487}
+  - {fileID: 1656370780}
+  - {fileID: 396070123}
   m_Father: {fileID: 1253607412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -200}
+  m_AnchoredPosition: {x: 0, y: 6.919922}
+  m_SizeDelta: {x: -400, y: -279.6399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1658063540
 MonoBehaviour:
@@ -4718,7 +7632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6313726}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4755,6 +7669,7 @@ GameObject:
   - component: {fileID: 1678490068}
   - component: {fileID: 1678490067}
   - component: {fileID: 1678490066}
+  - component: {fileID: 1678490070}
   m_Layer: 5
   m_Name: Cell (35)
   m_TagString: Untagged
@@ -4791,7 +7706,7 @@ Animator:
   m_GameObject: {fileID: 1678490064}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4813,7 +7728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4838,11 +7753,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1678490068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1678490064}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1678490068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4862,7 +7799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 484adf7af30c2cd46827f55d24204f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a8ec1434595be4fb50f9a4c0f982b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4880,6 +7817,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678490064}
   m_CullTransparentMesh: 0
+--- !u!114 &1678490070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678490064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Legendary Bin
+  description: +10% Legendary in the bin (-10% common).
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1466723709}
+  - {fileID: 833990686}
 --- !u!1 &1705589375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4893,6 +7858,7 @@ GameObject:
   - component: {fileID: 1705589379}
   - component: {fileID: 1705589378}
   - component: {fileID: 1705589377}
+  - component: {fileID: 1705589381}
   m_Layer: 5
   m_Name: Cell (13)
   m_TagString: Untagged
@@ -4929,7 +7895,7 @@ Animator:
   m_GameObject: {fileID: 1705589375}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4951,7 +7917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4976,11 +7942,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1705589379}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1705589375}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1705589379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5000,7 +7988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5018,6 +8006,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705589375}
   m_CullTransparentMesh: 0
+--- !u!114 &1705589381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705589375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Unlock : Missile'
+  description: Robots can now have a Missile launcher.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1322387887}
+  - {fileID: 1243498453}
+  - {fileID: 346211286}
 --- !u!1 &1754642021
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,6 +8048,7 @@ GameObject:
   - component: {fileID: 1754642025}
   - component: {fileID: 1754642023}
   - component: {fileID: 1754642026}
+  - component: {fileID: 1754642027}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -5163,11 +8181,103 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754642021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1431990ce2c3d40aa4927fa9412241, type: 3}
+  m_Script: {fileID: 11500000, guid: ea51e2049b524d44691b760fe5cea5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toZoom: {fileID: 1754642021}
-  zoomModifierSpeed: 0.05
+  zoomModifierSpeed: 0.1
+  lowLimit: 1
+  highLimit: 3
+--- !u!114 &1754642027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754642021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25e9b336bd281649b3638e6fd602ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 1564304052}
+  description: {fileID: 343498488}
+  currentSelection: {fileID: 0}
+--- !u!1 &1848960803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1848960804}
+  - component: {fileID: 1848960806}
+  - component: {fileID: 1848960805}
+  m_Layer: 5
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1848960804
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848960803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1125403437}
+  m_Father: {fileID: 1524662231}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 495}
+  m_SizeDelta: {x: 2000, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1848960805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848960803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.53333336}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1848960806
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848960803}
+  m_CullTransparentMesh: 0
 --- !u!1 &1963796129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,6 +8406,7 @@ GameObject:
   - component: {fileID: 1977234188}
   - component: {fileID: 1977234187}
   - component: {fileID: 1977234186}
+  - component: {fileID: 1977234190}
   m_Layer: 5
   m_Name: Cell (6)
   m_TagString: Untagged
@@ -5332,7 +8443,7 @@ Animator:
   m_GameObject: {fileID: 1977234184}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5354,7 +8465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5379,11 +8490,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1977234188}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1977234184}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1977234188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5403,7 +8536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91b478c2d369f9c46a58ac14e739e6a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80ed7c749da840419abae215f373186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5421,6 +8554,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977234184}
   m_CullTransparentMesh: 0
+--- !u!114 &1977234190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977234184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 'Upgrade : Sissy'
+  description: 50% less chances to swap. (from 100%)
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1520952398}
+  - {fileID: 1322387887}
+  - {fileID: 1243498453}
 --- !u!1 &2036398815
 GameObject:
   m_ObjectHideFlags: 0
@@ -5434,6 +8596,7 @@ GameObject:
   - component: {fileID: 2036398819}
   - component: {fileID: 2036398818}
   - component: {fileID: 2036398817}
+  - component: {fileID: 2036398821}
   m_Layer: 5
   m_Name: Cell (31)
   m_TagString: Untagged
@@ -5470,7 +8633,7 @@ Animator:
   m_GameObject: {fileID: 2036398815}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5492,7 +8655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5517,11 +8680,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2036398819}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2036398815}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2036398819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5541,7 +8726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5559,6 +8744,268 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036398815}
   m_CullTransparentMesh: 0
+--- !u!114 &2036398821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036398815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Accumulator
+  description: Can stack up to two contracts, keep only the one you succeded.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1375693546}
+  - {fileID: 1239629862}
+  - {fileID: 668887719}
+--- !u!1 &2071294190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071294191}
+  - component: {fileID: 2071294193}
+  - component: {fileID: 2071294192}
+  m_Layer: 5
+  m_Name: Bot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2071294191
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071294190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1062629912}
+  - {fileID: 2131175650}
+  m_Father: {fileID: 1524662231}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -495}
+  m_SizeDelta: {x: 2000, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2071294192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071294190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.53333336}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2071294193
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071294190}
+  m_CullTransparentMesh: 0
+--- !u!1 &2131175649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131175650}
+  - component: {fileID: 2131175652}
+  - component: {fileID: 2131175651}
+  m_Layer: 5
+  m_Name: Quit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2131175650
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131175649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2071294191}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 434.2, y: 15.9}
+  m_SizeDelta: {x: 377.94104, y: 118.28856}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2131175651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131175649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Quit
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6cc0141bb4141b1469787dbfdf215dab, type: 2}
+  m_sharedMaterial: {fileID: -6197597561396584858, guid: 6cc0141bb4141b1469787dbfdf215dab,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 2131175651}
+    characterCount: 4
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2131175652
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131175649}
+  m_CullTransparentMesh: 0
 --- !u!1 &2144741760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +9019,7 @@ GameObject:
   - component: {fileID: 2144741764}
   - component: {fileID: 2144741763}
   - component: {fileID: 2144741762}
+  - component: {fileID: 2144741766}
   m_Layer: 5
   m_Name: Cell (19)
   m_TagString: Untagged
@@ -5608,7 +9056,7 @@ Animator:
   m_GameObject: {fileID: 2144741760}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 346fdbf22d5b5b349b6fcbc2fb882b4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1716c52740f51b9428d77eba53a35815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5630,7 +9078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5655,11 +9103,33 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2144741764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253607411}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1754642027}
+        m_MethodName: SkillClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2144741760}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2144741764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5679,7 +9149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23200f0144a456044831ffb93a6ca8c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0589b3f1ecc5834082eb14c73456772, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5697,3 +9167,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144741760}
   m_CullTransparentMesh: 0
+--- !u!114 &2144741766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144741760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0af42fede47d24bb74cfac96aebe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Reward Anyway
+  description: If you fail the contract, get 20% of the reward anyway.
+  unseenColor:
+    serializedVersion: 2
+    rgba: 0
+  seenColor:
+    serializedVersion: 2
+    rgba: 2524806525
+  upgradedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  seen: 0
+  upgraded: 0
+  unlocks:
+  - {fileID: 1020613044}
+  - {fileID: 1457533756}
+  - {fileID: 1239629862}
