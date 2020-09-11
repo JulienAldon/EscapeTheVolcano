@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SkillNode : MonoBehaviour
 {
+    public int price;
     public string title;
     [TextArea]
     public string description;

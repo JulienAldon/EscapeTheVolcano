@@ -19,6 +19,7 @@ public class BatScript : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start () {
+        Team.monsterNumber += 1;
 		audioManager = FindObjectOfType<AudioManager> ();		        
         target = GameObject.FindWithTag ("Player").transform;
         seeker = GetComponent<Seeker> ();
@@ -73,8 +74,11 @@ public class BatScript : MonoBehaviour {
     }
 
     void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
+        if (collision.gameObject.layer == 19) {
             StartCoroutine (Death ());
+        } else if (collision.gameObject.layer == 12) {
+            Team.batKilled += 1;
+			StartCoroutine (Death ());
         }
     }
 

@@ -13,6 +13,7 @@ public class LaunchManager : MonoBehaviour
     {
         instance = this;
         SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Additive); // loadMenu scene
+        // SceneManager.LoadSceneAsync("Contracts", LoadSceneMode.Additive); // loadMenu scene
         currentScene = "Menu";
     }
 
@@ -43,11 +44,12 @@ public class LaunchManager : MonoBehaviour
 
    public void LoadWin()
    {
-        currentScene = "WinScene";
-        LoadingScreen.gameObject.SetActive(true);
-        scenesLoading.Add(SceneManager.UnloadSceneAsync("ScenePrincipale"));
-        scenesLoading.Add(SceneManager.LoadSceneAsync("WinScene", LoadSceneMode.Additive));
-        StartCoroutine(GetSelectSceneLoadProgress());
+       LoadSellAndUpgrade();
+        // currentScene = "WinScene";
+        // LoadingScreen.gameObject.SetActive(true);
+        // scenesLoading.Add(SceneManager.UnloadSceneAsync("ScenePrincipale"));
+        // scenesLoading.Add(SceneManager.LoadSceneAsync("WinScene", LoadSceneMode.Additive));
+        // StartCoroutine(GetSelectSceneLoadProgress());
    }
 
    public void LoadLose()
@@ -74,6 +76,15 @@ public class LaunchManager : MonoBehaviour
         LoadingScreen.gameObject.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1)));
         scenesLoading.Add(SceneManager.LoadSceneAsync("Tutorial", LoadSceneMode.Additive));
+        StartCoroutine(GetSelectSceneLoadProgress());
+   }
+    
+    public void LoadSellAndUpgrade()
+    {
+        currentScene = "SellAndUpgrade";
+        LoadingScreen.gameObject.SetActive(true);
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1)));
+        scenesLoading.Add(SceneManager.LoadSceneAsync("SellAndUpgrade", LoadSceneMode.Additive));
         StartCoroutine(GetSelectSceneLoadProgress());
    }
 

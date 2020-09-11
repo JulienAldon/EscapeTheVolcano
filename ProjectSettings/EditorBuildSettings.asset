@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: d20f9cc969effc64b9c7f29a781b274a
+  - enabled: 1
+    path: Assets/Scenes/SellAndUpgrade.unity
+    guid: e6d71c859e3d4c048b606dea4081bd43
+  - enabled: 1
+    path: Assets/Scenes/Contracts.unity
+    guid: fea35ca4bcd84864489266331e3231ef
   m_configObjects: {}

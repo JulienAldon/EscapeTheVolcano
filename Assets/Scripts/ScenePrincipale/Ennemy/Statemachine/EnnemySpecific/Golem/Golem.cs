@@ -42,6 +42,7 @@ public class Golem : Entity
     public override void Start()
     {
         base.Start();
+        Team.monsterNumber += 1;
 
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
         matDefault = gfx.GetComponent<SpriteRenderer> ().material;
@@ -62,7 +63,7 @@ public class Golem : Entity
 
     public void Damage(Vector3 dir)
     {
-        TakeDamage();
+        TakeDamage(0);
     }
 
     public GameObject splatParticles;
@@ -71,30 +72,36 @@ public class Golem : Entity
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		if (collision.gameObject.layer == 19 || collision.gameObject.layer == 12) {
-			TakeDamage();
+		if (collision.gameObject.layer == 19) {
+			TakeDamage(19);
 		}
+        else if (collision.gameObject.layer == 12) {
+			TakeDamage(12);
+        }
 	}
 
 	void OnTriggerEnter2D (Collider2D collision) {
 		if (collision.gameObject.layer == 19) {
-			TakeDamage();
+			TakeDamage(19);
 		}
 	}
     void ResetMaterial () {
         gfx.GetComponent<SpriteRenderer> ().material = matDefault;
     }
-     void TakeDamage () {
+     void TakeDamage (int killer) {
         gfx.GetComponent<SpriteRenderer> ().material = matWhite;
         Health -= 1;
         damageSound.Play(0);
         if (Health <= 0)
-            StartCoroutine (Death ());
+            StartCoroutine (Death (killer));
         else
             Invoke ("ResetMaterial", .2f);
     }
-	IEnumerator Death () {
+	IEnumerator Death (int killer) {
 		shake.camShake ();
+        if (killer == 12) {
+            Team.golemKilled += 1;
+        }
         deathSound.Play(0);
         // GetComponent<AudioSource>().Play ("MonsterDeath", UnityEngine.Random.Range (1f, 3f));														        
 		// SplatCastRay();

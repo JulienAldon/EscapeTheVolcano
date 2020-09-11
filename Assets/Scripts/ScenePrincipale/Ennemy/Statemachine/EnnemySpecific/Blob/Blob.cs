@@ -35,8 +35,8 @@ public class Blob : Entity
     public override void Start()
     {
         base.Start();
+        Team.monsterNumber += 1;
 		shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
-
         moveState = new Blob_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Blob_IdleState(this, stateMachine, "idle", idleStateData, this);
         playerDetectedState = new Blob_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedData, this);
@@ -59,9 +59,13 @@ public class Blob : Entity
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		if ((collision.gameObject.layer == 19 || collision.gameObject.layer == 12)) {
+		if (collision.gameObject.layer == 19) {
 			StartCoroutine (Death ());
 		}
+        else if (collision.gameObject.layer == 12) {
+            Team.blobKilled += 1;
+			StartCoroutine (Death ());
+        }
 	}
 
 	void OnTriggerEnter2D (Collider2D collision) {

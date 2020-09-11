@@ -57,6 +57,11 @@ public class LoadingLevel : MonoBehaviour
         //StartCoroutine(LoadLevel(1));
     }
 
+    public void LoadSellAndUpgrade()
+    {
+        LaunchManager.instance.LoadSellAndUpgrade();
+    }
+
     public void reset()
     {
         Time.timeScale = 1f;
@@ -64,6 +69,11 @@ public class LoadingLevel : MonoBehaviour
         Level.state = -1;
         Team.team = new Character[4];     
         Team.nbSelected = 0;
+        Team.blobKilled = 0;
+        Team.batKilled = 0;
+        Team.golemKilled = 0;
+        Team.monsterNumber = 0;
+        Team.deadCharacters = new List<Character>();
         PlayerAnimation.count = 0;
         CharacterStats.nbCrystals = 0;
         Timer.endTime = 0;

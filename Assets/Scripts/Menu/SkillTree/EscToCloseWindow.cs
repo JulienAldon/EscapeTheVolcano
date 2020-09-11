@@ -10,7 +10,9 @@ public class EscToCloseWindow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            windowToClose.SetActive(false);
+            if (windowToClose.transform.localScale.x > 0)
+                windowToClose.GetComponent<Animator>().SetTrigger("close");
+            // windowToClose.SetActive(false);
         }
     }
 }

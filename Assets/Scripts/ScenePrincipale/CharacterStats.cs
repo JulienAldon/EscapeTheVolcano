@@ -313,6 +313,7 @@ public class CharacterStats : MonoBehaviour
         // switch and supress char from team
         // delete
         Team.team[currentChar].currentHealth = 0;
+        Team.deadCharacters.Add(Team.team[currentChar]);
         UpdateStats();
         interfaceTeam[currentChar].GetComponent<ArchetypeInterface>().isDead = true;
         if (Team.team.Length <= 0)
