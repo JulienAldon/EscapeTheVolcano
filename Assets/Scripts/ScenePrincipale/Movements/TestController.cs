@@ -46,8 +46,8 @@ public class TestController : MonoBehaviour {
 			int layerMask = (1 << LayerIndex);
 			//			layerMask = ~layerMask;
 			bool bottom1 = Physics2D.Raycast (new Vector2 (player.transform.position.x, player.transform.position.y - height), -Vector2.up, length, layerMask);
-			bool bottom2 = Physics2D.Raycast(new Vector2(player.transform.position.x + (width), player.transform.position.y - height), -Vector2.up, length, layerMask);
-			bool bottom3 = Physics2D.Raycast(new Vector2(player.transform.position.x - (width), player.transform.position.y - height), -Vector2.up, length, layerMask);
+			bool bottom2 = Physics2D.Raycast(new Vector2(player.transform.position.x + (width / 2), player.transform.position.y - height), -Vector2.up, length, layerMask);
+			bool bottom3 = Physics2D.Raycast(new Vector2(player.transform.position.x - (width / 2), player.transform.position.y - height), -Vector2.up, length, layerMask);
 			if (bottom1 || bottom2 || bottom3)
 				return true;
 			else
@@ -99,7 +99,7 @@ public class TestController : MonoBehaviour {
 	public int nbFire = 3;
 
 	[Header ("Effects")]
-	public Animator animator;
+	public Animator anim;
 	public ParticleSystem dust;
 	public ParticleSystem dustWeapon;
 	private GroundState groundState;
@@ -179,9 +179,11 @@ public class TestController : MonoBehaviour {
 		} else {
 			rawY = 0f;
 		}
+		
 		CharacterStats Character = GetComponent<CharacterStats> ();
 		//Handle input
 		if (groundState.isTouching () && Input.GetKeyDown (KeyBindScript.keys["Jump"])  && !GetComponent<CharacterStats>().knockBack) {
+			anim.SetTrigger("takeOf");
 			isJumping = true;
 			jumpTimeCounter = jumpTime;
 			if (groundState.isTouching ()) {
@@ -189,10 +191,13 @@ public class TestController : MonoBehaviour {
 			}
 			input.y = 1;
 			audioManager.Play ("PlayerJump");
-			animator.SetTrigger ("Jumping");
-			animator.SetBool ("Jump", true);
 		}
+		if (groundState.isGround () == false) {
+			anim.SetBool("isJumping", true);
+		} else {
+			anim.SetBool("isJumping", false);
 
+		}
 		if (Input.GetKey (KeyBindScript.keys["Jump"]) && isJumping == true) {
 			if (jumpTimeCounter > 0) {
 				// GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 1 * jump);
@@ -217,8 +222,9 @@ public class TestController : MonoBehaviour {
 					facing = -1;
 				}
 			}
-			if (!isJumping)
-				animator.SetBool ("Running", true);
+			if (!isJumping) {
+				anim.SetBool ("isRunning", true);
+			}
 		} else if (Input.GetKey (KeyBindScript.keys["Right"])  && !GetComponent<CharacterStats>().knockBack) {
 			input.x = 1;
 			lastInput.x = 1;
@@ -230,20 +236,27 @@ public class TestController : MonoBehaviour {
 					facing = 1;
 				}
 			}
-			if (!isJumping)
-				animator.SetBool ("Running", true);
+			if (!isJumping) {
+				anim.SetBool ("isRunning", true);
+			}
 		} else {
 			input.x = 0;
-			animator.SetBool ("Running", false);
+			anim.SetBool ("isRunning", false);
 		}
 		if (isJumping) {
-			animator.SetBool ("Running", false);
+			anim.SetBool ("isRunning", false);
 		}
 		if (isJumping && groundState.isGround ()) {
 			isJumping = false;
 		}
 		if (GetComponent<Rigidbody2D> ().velocity.y < 0 && groundState.isTouching () == false) {
 			jumped = true;
+		}
+		if(groundState.isWall() && !groundState.isGround()) {
+			anim.SetBool("isWall", true);
+			createDust ();
+		} else {
+			anim.SetBool("isWall", false);
 		}
 		// Fire
 		if (Character.currentAffliction != "Pacifist") {
@@ -638,6 +651,9 @@ public class TestController : MonoBehaviour {
 	{
 		CharacterStats Character = GetComponent<CharacterStats> ();
 		audioManager.Play ("PlayerHit", UnityEngine.Random.Range (1, 3));																		
+		if (Character.ClassType.GetValue () == 5 && Shield.activeSelf == true) { //tank
+			return;
+		}
 		Character.TakeDamage (1, dir.x < transform.position.x ? 1 : -1);
 		shake.camShake ();
 		if (Character.currentAffliction == "Coprolalia") {
@@ -659,7 +675,6 @@ public class TestController : MonoBehaviour {
 	public ParticleSystem landingDust;
 	void OnCollisionEnter2D (Collision2D collision) {
 		if (collision.gameObject.layer == 8 && jumped) {
-			animator.SetBool ("Jump", false);
 			audioManager.Play ("PlayerLand", UnityEngine.Random.Range (0.1f, 3f));
 			jumped = false;
 			landingDust.Play();

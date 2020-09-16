@@ -90,13 +90,13 @@ public class Blob : Entity
         if (!dead)
         {
             deathSound.Play (0);
+            dead = true;
             Instantiate (splatParticles, transform.position, Quaternion.identity);
             // Time.timeScale = 0.1f;
             shake.camShake ();
             yield return new WaitForSeconds (0.1f);
             // Time.timeScale = 1;
             transform.GetChild(0).gameObject.SetActive(false);
-            dead = true;
             gameObject.layer = 15; //shells
             if (canRespawn) {
                 var Child1 = Instantiate (this.gameObject, transform.position, Quaternion.identity);

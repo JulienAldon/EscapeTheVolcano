@@ -200,7 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4220b8e854a814a8c0bd1e3647c7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escape: {fileID: 2849843561327574915, guid: ccc5ad1e8fac33f47a2b14530bc919c9, type: 3}
 --- !u!1 &8525758045540501564
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,8 +256,8 @@ MonoBehaviour:
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 0
   m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 359.43
-  m_PointLightOuterAngle: 359.43
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 4
   m_PointLightDistance: 3

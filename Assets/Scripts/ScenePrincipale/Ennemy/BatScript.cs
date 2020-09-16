@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
-
+using System;
 public class BatScript : MonoBehaviour {
     private Shake shake;
     public GameObject blood;
     public Transform target;
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
-
+    private Vector2 direction;
     private Rigidbody2D rb;
-    private Path path;
-    private Seeker seeker;
-    private int currentWaypoint = 0;
-    private bool reachedEndOfPath = false;
 	private AudioManager audioManager;
 
     // Start is called before the first frame update
@@ -22,55 +18,41 @@ public class BatScript : MonoBehaviour {
         Team.monsterNumber += 1;
 		audioManager = FindObjectOfType<AudioManager> ();		        
         target = GameObject.FindWithTag ("Player").transform;
-        seeker = GetComponent<Seeker> ();
         shake = GameObject.FindGameObjectWithTag ("ScreenShake").GetComponent<Shake> ();
-        InvokeRepeating ("UpdatePath", 0f, .5f);
         rb = GetComponent<Rigidbody2D> ();
+        direction = new Vector2(1, 1);
+
     }
 
-    void UpdatePath () {
-        if (seeker.IsDone ())
-            seeker.StartPath (rb.position, new Vector2 (target.position.x - 0.5f, target.position.y - 0.5f), OnPathComplete);
-    }
-
-    public bool GetReachedEndOfPath () {
-        return (reachedEndOfPath);
-    }
-
-    void OnPathComplete (Path p) {
-        if (!p.error) {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
     // Update is called once per frame
     void Update () {
-        if (path == null)
-            return;
-        if (currentWaypoint >= path.vectorPath.Count) {
-            reachedEndOfPath = true;
-            return;
-        } else {
-            reachedEndOfPath = false;
-        }
+        // if (path == null)
+        //     return;
+        // if (currentWaypoint >= path.vectorPath.Count) {
+        //     reachedEndOfPath = true;
+        //     return;
+        // } else {
+        //     reachedEndOfPath = false;
+        // }
 
-        if (Vector2.Distance (transform.position, target.position) < 10f) {
-            Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * speed * Time.deltaTime;
+        // if (Vector2.Distance (transform.position, target.position) < 10f) {
+        //     Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
+        //     Vector2 force = direction * speed * Time.deltaTime;
 
-            rb.AddForce (force);
+        //     rb.AddForce (force);
 
-            float distance = Vector2.Distance (rb.position, path.vectorPath[currentWaypoint]);
+        //     float distance = Vector2.Distance (rb.position, path.vectorPath[currentWaypoint]);
 
-            if (distance < nextWaypointDistance) {
-                currentWaypoint++;
-            }
-            if (force.x > 0) {
-                transform.localRotation = Quaternion.Euler (0, 180, 0);
-            } else if (force.x < 0) {
-                transform.localRotation = Quaternion.Euler (0, 0, 0);
-            }
-        }
+        //     if (distance < nextWaypointDistance) {
+        //         currentWaypoint++;
+        //     }
+        //     if (force.x > 0) {
+        //         transform.localRotation = Quaternion.Euler (0, 180, 0);
+        //     } else if (force.x < 0) {
+        //         transform.localRotation = Quaternion.Euler (0, 0, 0);
+        //     }
+        // }
+        rb.AddForce((-direction) * speed * Time.deltaTime);
     }
 
     void OnCollisionEnter2D (Collision2D collision) {
@@ -79,12 +61,26 @@ public class BatScript : MonoBehaviour {
         } else if (collision.gameObject.layer == 12) {
             Team.batKilled += 1;
 			StartCoroutine (Death ());
+        } else {
+            var x = collision.transform.position.x - transform.position.x;
+            var y = collision.transform.position.y - transform.position.y;
+            var x2 = Math.Pow(x, 2);
+            var y2 =  Math.Pow(y, 2);
+            direction = new Vector2((float)(1 / Math.Sqrt(1 +  (x2 / y2) ) ), (float)( x / (y * Math.Sqrt(1 + (x2 / y2) ) ) ) );
+            print(direction);
         }
     }
 
     void OnTriggerEnter2D (Collider2D collision) {
         if (collision.gameObject.layer == 19) {
             StartCoroutine (Death ());
+        } else {
+            var x = collision.transform.position.x - transform.position.x;
+            var y = collision.transform.position.y - transform.position.y;
+            var x2 = Math.Pow(x, 2);
+            var y2 =  Math.Pow(y, 2);
+            direction = new Vector2((float)(1 / Math.Sqrt(1 +  x2/ y2)), (float)(- x / (y * Math.Sqrt(1 + x2 / y2)) ) );
+            print(direction);
         }
     }
 

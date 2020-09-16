@@ -947,7 +947,7 @@ Transform:
   m_LocalScale: {x: 0.0063792956, y: 0.009432633, z: 0.16554274}
   m_Children: []
   m_Father: {fileID: 451474636}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451474633
 GameObject:
@@ -1085,11 +1085,11 @@ Transform:
   m_LocalScale: {x: 4.646281, y: 4.7134237, z: 4.476186}
   m_Children:
   - {fileID: 783398439}
+  - {fileID: 1245060185}
   - {fileID: 552145507}
   - {fileID: 466307014}
   - {fileID: 674224605}
   - {fileID: 401848454}
-  - {fileID: 1245060185}
   - {fileID: 562568704}
   - {fileID: 892679191}
   - {fileID: 1543163053}
@@ -1290,7 +1290,7 @@ Transform:
   m_LocalScale: {x: 0.0063792956, y: 0.009432633, z: 0.16554274}
   m_Children: []
   m_Father: {fileID: 451474636}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &466307015
 TextMesh:
@@ -1631,7 +1631,7 @@ Transform:
   m_LocalScale: {x: 0.0063792956, y: 0.009432633, z: 0.16554274}
   m_Children: []
   m_Father: {fileID: 451474636}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &552145508
 TextMesh:
@@ -2240,7 +2240,7 @@ Transform:
   m_LocalScale: {x: 0.0063792956, y: 0.009432633, z: 0.16554274}
   m_Children: []
   m_Father: {fileID: 451474636}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &674224606
 TextMesh:
@@ -3620,6 +3620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 657579289}
+  optionMenuUI: {fileID: 0}
 --- !u!114 &1029832973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3866,7 +3867,7 @@ Transform:
   m_Children:
   - {fileID: 1188537816}
   m_Father: {fileID: 451474636}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &1245060186
 TextMesh:

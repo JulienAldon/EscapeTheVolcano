@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     private bool damaged;
-    private Material matDefault;
+    // private Material matDefault;
     private Shake shake;
     private float nextDamage = 0f;
     private AudioManager audioManager;
@@ -53,6 +53,7 @@ public class CharacterStats : MonoBehaviour
     public Animator deathVeil;
     public GameObject BlindLight;
     public GameObject NormalLight;
+    public ParticleSystem damageParticles;
     /*
         1 - Runner
         2 - Climber
@@ -81,7 +82,7 @@ public class CharacterStats : MonoBehaviour
     {
         knockBack = false;
         audioManager = FindObjectOfType<AudioManager>();
-        matDefault = gfx.GetComponent<SpriteRenderer>().material;
+        //matDefault = gfx.GetComponent<SpriteRenderer>().material;
     }
 
     void UpdateStats()
@@ -215,7 +216,7 @@ public class CharacterStats : MonoBehaviour
     IEnumerator ChangeColor()
     {
         yield return new WaitForSeconds(0.8f);
-        gfx.GetComponent<SpriteRenderer>().color = Team.team[currentChar].color;
+        //gfx.GetComponent<SpriteRenderer>().color = Team.team[currentChar].color; //TODO: FIND A WAY TO CHANGE COLOR
     }
 
     public void CharacterSwitch()
@@ -278,8 +279,8 @@ public class CharacterStats : MonoBehaviour
         if (damaged)
             return;
         StartCoroutine(Damaged());
-        gfx.GetComponent<SpriteRenderer>().material = matWhite;
-        Invoke("ResetMaterial", 1f);
+        //gfx.GetComponent<SpriteRenderer>().material = matWhite;
+        //Invoke("ResetMaterial", 1f);
         KnockBack(_direction);
         shake.camShake();
         anim.SetTrigger("Hit");
@@ -298,14 +299,14 @@ public class CharacterStats : MonoBehaviour
     {
         damaged = true;
         gameObject.layer = 15; // change layer to shell to be untouchable
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1f);
         gameObject.layer = 10;
         damaged = false;
     }
 
     void ResetMaterial()
     {
-        gfx.GetComponent<SpriteRenderer>().material = matDefault;
+        //gfx.GetComponent<SpriteRenderer>().material = matDefault;
     }
 
     public void Die()
