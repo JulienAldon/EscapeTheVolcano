@@ -39,8 +39,8 @@ public class select : MonoBehaviour
         currentCharacter = GenerateCharacter();
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
-        efficiency.text = currentCharacter.efficiency < 5 ? "COMMON": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "RARE": "LEGENDARY";
-        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);     
+        efficiency.text = currentCharacter.efficiency;
+        efficiency.color = currentCharacter.efficiency == "Common" ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency == "Rare" ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);     
         name.text = currentCharacter.name;
         archetype.text = currentCharacter.archetype;
         weapon.text = currentCharacter.weaponType;
@@ -118,8 +118,8 @@ public class select : MonoBehaviour
         life.text = currentCharacter.life.ToString();
         speed.text = currentCharacter.speed.ToString();
         name.text = currentCharacter.name;
-        efficiency.text = currentCharacter.efficiency < 5 ? "COMMON": currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? "RARE": "LEGENDARY";
-        efficiency.color = currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);        
+        efficiency.text = currentCharacter.efficiency;
+        efficiency.color = currentCharacter.efficiency == "Common" ? new Color32(65, 65, 65, 255) : currentCharacter.efficiency == "Rare" ? new Color32(0, 64, 255, 255) : new Color32(250, 230, 70, 255);        
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
         weapon.text = currentCharacter.weaponType;
@@ -152,14 +152,18 @@ public class select : MonoBehaviour
     Character GenerateCharacter()
     {
         //efficiency < 5 ? common : efficiency >= 5 && efficiency <= 9 ? Rare : Legendary;
-        int efficiency = Random.Range(1, 11);
+        int efficiencyNum = Random.Range(1, 11);
+        string efficiency;
         string arch = archetypes[Random.Range(0, archetypes.Length)];
         string trait;
-        if (efficiency < 5) { // Common
+        if (efficiencyNum < 5) { // Common
+            efficiency = "Common";
             trait = traits[Random.Range(0, traits.Length)];
-        } else if (efficiency >= 5 && efficiency <= 9) {
+        } else if (efficiencyNum >= 5 && efficiencyNum <= 9) {
+            efficiency = "Rare";
             trait = rareTraits[Random.Range(0, rareTraits.Length)];
         } else {
+            efficiency = "Legendary";
             trait = legendaryTraits[Random.Range(0, legendaryTraits.Length)];
         }
         string name = generateName(5);
@@ -170,7 +174,7 @@ public class select : MonoBehaviour
         if (trait == "Pacifist" || trait == "Partygoer") {
             weaponType = "No Weapon";
         } else {
-            if (efficiency == 10)
+            if (efficiencyNum == 10)
                 weaponChoice = Random.Range(0, 5);
             else 
                 weaponChoice = Random.Range(0, 3);            
@@ -196,7 +200,7 @@ public class select : MonoBehaviour
         } else { // grenadier
             color = new Color32(60,180,255, 255);
         }
-        Character carac = new Character(name, arch, speed, life, color, trait, efficiency, weaponType);
+        Character carac = new Character(name, arch, speed, life, color, trait, efficiency, weaponType, "market");
         return carac;
     }
 

@@ -9,6 +9,7 @@ public class MoneyDisplay : MonoBehaviour
 
     void Start()
     {
+        Team.money = 3000;
         money.text = "Money : " + Team.money.ToString() + " $";
     }
 

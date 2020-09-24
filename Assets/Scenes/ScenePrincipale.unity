@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -40410,7 +40410,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2975206259343581620, guid: a7ff1db5150037d4ba3d675437258534,
+      objectReference: {fileID: 8151571854843481539, guid: 70a320d6e0df4ca4d8187ac59cf4db6d,
         type: 3}
     - target: {fileID: 7285099480082681746, guid: f467f1cd6eafe944e93053e180f765c4,
         type: 3}
@@ -40482,6 +40482,18 @@ GameObject:
 --- !u!1 &1282395045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 799056559925591875, guid: f467f1cd6eafe944e93053e180f765c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1282395039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1282395046 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1129894677530323230, guid: f467f1cd6eafe944e93053e180f765c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1282395039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1282395047 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6729149134448758676, guid: f467f1cd6eafe944e93053e180f765c4,
     type: 3}
   m_PrefabInstance: {fileID: 1282395039}
   m_PrefabAsset: {fileID: 0}
@@ -40783,6 +40795,15 @@ MonoBehaviour:
   deathVeil: {fileID: 115135779}
   BlindLight: {fileID: 27796044}
   NormalLight: {fileID: 1319043448}
+  head: {fileID: 1282395047}
+  body: {fileID: 1282395046}
+  heads:
+  - {fileID: 8151571854843481539, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
+  - {fileID: -2418897784996909089, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
+  - {fileID: -3629303101714879720, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
+  - {fileID: -2629896249596844441, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
+  - {fileID: 6911783411587475130, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
+  - {fileID: -7783753291009012412, guid: 70a320d6e0df4ca4d8187ac59cf4db6d, type: 3}
   damageParticles: {fileID: 1066223787}
 --- !u!50 &1294343992
 Rigidbody2D:

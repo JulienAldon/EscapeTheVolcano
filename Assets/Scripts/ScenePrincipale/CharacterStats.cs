@@ -27,7 +27,7 @@ public class CharacterStats : MonoBehaviour
     public string currentAffliction;
     public Stat Speed;
     public Stat ClassType;
-    public int efficiency;
+    public string efficiency;
     public GameObject confettisLeft;
     public GameObject confettisRight;
     public GameObject normalLeft;
@@ -53,6 +53,9 @@ public class CharacterStats : MonoBehaviour
     public Animator deathVeil;
     public GameObject BlindLight;
     public GameObject NormalLight;
+    public SpriteRenderer head;
+    public SpriteRenderer body;
+    public Sprite[] heads;
     public ParticleSystem damageParticles;
     /*
         1 - Runner
@@ -113,6 +116,11 @@ public class CharacterStats : MonoBehaviour
         TraitUpdate();
         UpdateLife();
         UpdatePower();
+
+        // update head and color
+        head.color = Team.team[currentChar].color;
+        head.sprite = heads[Team.team[currentChar].headForm];
+        body.color = Team.team[currentChar].color;
     }
 
     public void UpdatePower()

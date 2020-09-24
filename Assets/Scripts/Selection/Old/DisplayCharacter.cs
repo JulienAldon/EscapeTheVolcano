@@ -25,6 +25,6 @@ public class DisplayCharacter : MonoBehaviour
         archetype.text = currentCharacter.archetype;
         trait.text = currentCharacter.trait;
         weapon.text = currentCharacter.weaponType;
-        GetComponent<SpriteRenderer>().color =  currentCharacter.efficiency < 5 ? new Color32(65, 65, 65, 150) : currentCharacter.efficiency >= 5 && currentCharacter.efficiency <= 9 ? new Color32(0, 64, 255, 150) : new Color32(250, 230, 70, 150);;
+        GetComponent<SpriteRenderer>().color =  currentCharacter.efficiency == "Common" ? new Color32(65, 65, 65, 150) : currentCharacter.efficiency == "Rare" ? new Color32(0, 64, 255, 150) : new Color32(250, 230, 70, 150);
     }
 }

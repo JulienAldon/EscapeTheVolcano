@@ -11,6 +11,138 @@ TextureImporter:
   - first:
       213: -3629303101714879720
     second: heads_2
+  - first:
+      213: -6940917557378704222
+    second: heads_0
+  - first:
+      213: 6764347807976951332
+    second: heads_1
+  - first:
+      213: -4240614583442130935
+    second: heads_2
+  - first:
+      213: -2629896249596844441
+    second: heads_3
+  - first:
+      213: 6911783411587475130
+    second: heads_4
+  - first:
+      213: -7783753291009012412
+    second: heads_5
+  - first:
+      213: -937414457029156179
+    second: heads_3
+  - first:
+      213: -1746376636719825356
+    second: heads_4
+  - first:
+      213: 3031153344791636400
+    second: heads_5
+  - first:
+      213: -3885562131057874840
+    second: heads_6
+  - first:
+      213: 2489393101990002349
+    second: heads_7
+  - first:
+      213: -2395469524431817524
+    second: heads_8
+  - first:
+      213: 6641918707104500586
+    second: heads_9
+  - first:
+      213: 1675130227642193028
+    second: heads_10
+  - first:
+      213: 362300644809765513
+    second: heads_11
+  - first:
+      213: -1570113855355568326
+    second: heads_12
+  - first:
+      213: 7792641118072525264
+    second: heads_13
+  - first:
+      213: 4009647923738899478
+    second: heads_14
+  - first:
+      213: 4171772792281494693
+    second: heads_15
+  - first:
+      213: -7691723506715293191
+    second: heads_16
+  - first:
+      213: 7631571561935282335
+    second: heads_17
+  - first:
+      213: 6151222021762841146
+    second: heads_18
+  - first:
+      213: -5649015801601141876
+    second: heads_19
+  - first:
+      213: -3922064334631121435
+    second: heads_20
+  - first:
+      213: 6948765907269033001
+    second: heads_21
+  - first:
+      213: 7690644730568168636
+    second: heads_22
+  - first:
+      213: 945897801048519625
+    second: heads_23
+  - first:
+      213: 6781296686031464320
+    second: heads_24
+  - first:
+      213: 5994276992074411944
+    second: heads_25
+  - first:
+      213: -5226485998993914091
+    second: heads_26
+  - first:
+      213: 9109737941262851837
+    second: heads_27
+  - first:
+      213: 5079402913038492481
+    second: heads_28
+  - first:
+      213: -2132857949551206530
+    second: heads_29
+  - first:
+      213: -5362932512078135400
+    second: heads_30
+  - first:
+      213: 7756697968226068791
+    second: heads_31
+  - first:
+      213: 4083183396649531423
+    second: heads_32
+  - first:
+      213: 4613108454728420765
+    second: heads_33
+  - first:
+      213: -4999441203245383573
+    second: heads_34
+  - first:
+      213: -4763355300428573746
+    second: heads_35
+  - first:
+      213: -158361484795957389
+    second: heads_36
+  - first:
+      213: -6052748280630650104
+    second: heads_37
+  - first:
+      213: -1018004428138703319
+    second: heads_38
+  - first:
+      213: -3907918587752675143
+    second: heads_39
+  - first:
+      213: 8318672433638397727
+    second: heads_40
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,19 +231,19 @@ TextureImporter:
       name: heads_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 310
-        width: 89
-        height: 145
+        x: 5
+        y: 248
+        width: 150
+        height: 215
       alignment: 9
-      pivot: {x: 0.46742076, y: 0.036070935}
+      pivot: {x: 0.4381427, y: 0.019887099}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cd8401c963302170800000000000000
-      internalID: 8151571854843481539
+      spriteID: 2ac9b219148ecaf90800000000000000
+      internalID: -6940917557378704222
       vertices: []
       indices: 
       edges: []
@@ -120,19 +252,19 @@ TextureImporter:
       name: heads_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 319
-        width: 70
-        height: 110
+        x: 176
+        y: 260
+        width: 150
+        height: 215
       alignment: 9
-      pivot: {x: 0.5165693, y: -0.000832575}
+      pivot: {x: 0.5038664, y: 0.019887099}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdfa749c7495e6ed0800000000000000
-      internalID: -2418897784996909089
+      spriteID: 42e88a70e7acfdd50800000000000000
+      internalID: 6764347807976951332
       vertices: []
       indices: 
       edges: []
@@ -141,19 +273,82 @@ TextureImporter:
       name: heads_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 319
-        width: 89
-        height: 84
+        x: 347
+        y: 267
+        width: 150
+        height: 215
       alignment: 9
-      pivot: {x: 0.49348468, y: 0.037451606}
+      pivot: {x: 0.49613425, y: 0.014492585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81baf00de0022adc0800000000000000
-      internalID: -3629303101714879720
+      spriteID: 908379c018f4625c0800000000000000
+      internalID: -4240614583442130935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heads_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 37
+        width: 151
+        height: 215
+      alignment: 9
+      pivot: {x: 0.5000002, y: 0.036070537}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da226799482adf2f0800000000000000
+      internalID: -937414457029156179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heads_4
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 37
+        width: 150
+        height: 215
+      alignment: 9
+      pivot: {x: 0.48453593, y: 0.030676004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ef54c93bf93c7e0800000000000000
+      internalID: -1746376636719825356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heads_5
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 35
+        width: 150
+        height: 215
+      alignment: 9
+      pivot: {x: 0.527063, y: 0.027978765}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9ea0848e1d01a20800000000000000
+      internalID: 3031153344791636400
       vertices: []
       indices: 
       edges: []
