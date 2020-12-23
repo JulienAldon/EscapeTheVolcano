@@ -152,9 +152,4 @@ public class ContractValidation : MonoBehaviour
         rewardText.text = ((Team.currentContract.reward / objectives.Count) * validatedCount).ToString() + " $ / crystals"; // here perks that grant 20%anyway
         totalRewardText.text = "Total : " + (((Team.currentContract.reward / objectives.Count) * validatedCount) * CharacterStats.nbCrystals).ToString() + " $";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

@@ -16,6 +16,7 @@ TagManager:
   - PowerDisplay
   - BG
   - SpawnPoints
+  - map
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - PostProcessingLayer
   - Treasure
   - Flag
-  - 
+  - Traps
   - 
   - 
   - 
@@ -73,6 +74,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3497420877
+    locked: 0
+  - name: Ennemies
+    uniqueID: 2548763873
     locked: 0
   - name: Foreground
     uniqueID: 2269746319

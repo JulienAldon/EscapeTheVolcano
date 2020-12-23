@@ -28,8 +28,10 @@ public class LaunchManager : MonoBehaviour
     {
         LoadingScreen.gameObject.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1)));
-        scenesLoading.Add(SceneManager.LoadSceneAsync("SelectionScene", LoadSceneMode.Additive));
-        currentScene = "SelectionScene";
+        // scenesLoading.Add(SceneManager.LoadSceneAsync("SelectionScene", LoadSceneMode.Additive));
+        scenesLoading.Add(SceneManager.LoadSceneAsync("SelectionSceneV2", LoadSceneMode.Additive));
+        // currentScene = "SelectionScene";
+        currentScene = "SelectionSceneV2";
         StartCoroutine(GetSelectSceneLoadProgress());
     }
    
@@ -37,7 +39,8 @@ public class LaunchManager : MonoBehaviour
    {
         LoadingScreen.gameObject.SetActive(true);
         currentScene = "ScenePrincipale";
-        scenesLoading.Add(SceneManager.UnloadSceneAsync("SelectionScene"));
+        // scenesLoading.Add(SceneManager.UnloadSceneAsync("SelectionScene"));
+        scenesLoading.Add(SceneManager.UnloadSceneAsync("SelectionSceneV2"));
         scenesLoading.Add(SceneManager.LoadSceneAsync("ScenePrincipale", LoadSceneMode.Additive));
         StartCoroutine(GetGameSceneLoadProgress());
    }
@@ -78,7 +81,7 @@ public class LaunchManager : MonoBehaviour
         scenesLoading.Add(SceneManager.LoadSceneAsync("Tutorial", LoadSceneMode.Additive));
         StartCoroutine(GetSelectSceneLoadProgress());
    }
-    
+
     public void LoadSellAndUpgrade()
     {
         currentScene = "SellAndUpgrade";
@@ -150,7 +153,8 @@ public class LaunchManager : MonoBehaviour
 
     public void play()
     {
-        SceneManager.LoadScene("SelectionScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("SelectionSceneV2", LoadSceneMode.Single);
+        // SceneManager.LoadScene("SelectionScene", LoadSceneMode.Single);
         Time.timeScale = 1f;
     }
 

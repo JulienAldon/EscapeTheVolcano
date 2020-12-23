@@ -67,7 +67,6 @@ public class BatScript : MonoBehaviour {
             var x2 = Math.Pow(x, 2);
             var y2 =  Math.Pow(y, 2);
             direction = new Vector2((float)(1 / Math.Sqrt(1 +  (x2 / y2) ) ), (float)( x / (y * Math.Sqrt(1 + (x2 / y2) ) ) ) );
-            print(direction);
         }
     }
 
@@ -80,7 +79,6 @@ public class BatScript : MonoBehaviour {
             var x2 = Math.Pow(x, 2);
             var y2 =  Math.Pow(y, 2);
             direction = new Vector2((float)(1 / Math.Sqrt(1 +  x2/ y2)), (float)(- x / (y * Math.Sqrt(1 + x2 / y2)) ) );
-            print(direction);
         }
     }
 

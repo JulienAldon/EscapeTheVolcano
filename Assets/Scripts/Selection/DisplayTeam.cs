@@ -7,7 +7,8 @@ public class DisplayTeam : MonoBehaviour
     // Start is called before the first frame update
     public CharacterDisplay[] teamList;
     public GameObject[] teamObj;
-
+    public GameObject goButton;
+    private bool teamCanGo = false;
     void Start()
     {
         
@@ -21,6 +22,9 @@ public class DisplayTeam : MonoBehaviour
                 teamObj[i].SetActive(true);
                 teamList[i].changeText(Team.team[i]);
             }
+        }
+        if (Team.team[3] != null && Team.currentContract != null) {
+            goButton.SetActive(true);
         }
     }
 }
